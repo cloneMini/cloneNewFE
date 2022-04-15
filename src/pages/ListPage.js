@@ -1,21 +1,76 @@
 import styled from "styled-components";
 import Room from '../component/Room';
 import {Maps} from 'google-map-react';
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { MarkerClusterer } from "@googlemaps/markerclusterer";
+import Geocode from 'react-geocode';
+import homeIcon from '../elements/home.png';
 
 function ListPage(){
-    const array = [1,2,3,4,5]
-    const mapRef = useRef(null);
+    Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
+    Geocode.setLanguage('ko')
+    Geocode.setRegion('kr')
+    Geocode.enableDebug()
+    let [getadd, setadd] = useState({
+        le : '',
+        re : '',
+    });
+      
+    const getLatLngFromAddress = address => {
+        Geocode.fromAddress(address).then(
+          response => {
+            const { lat, lng } = response.results[0].geometry.location;
+            console.log(lat, lng)
+            setadd({le : lat, re : lng})
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      };
 
+    const mapRef = useRef(null);
     const initMap = useCallback(() => {
-        new window.google.maps.Map(mapRef.current, {
+        const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: 37.497, lng: 127.004 },
         zoom: 14,
         });
+        const infoWindow = new window.google.maps.InfoWindow({
+            content: "",
+            disableAutoPan: true,
+          });
+        const labels = "BCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // 그 정보들을 배열로 받아와야 한다.
+        const markers = locations.map((position, i) => {
+            const label = labels[i % labels.length];
+            console.log(label)
+            const myIcon = new window.google.maps.MarkerImage(homeIcon, null, null, null, new window.google.maps.Size(55,55));
+            const marker = new window.google.maps.Marker({
+              position,
+              label,
+              icon : myIcon,
+            });
+            marker.addListener("click", () => {
+              infoWindow.setContent();
+              infoWindow.open(map, marker);
+            });
+            return marker;
+          }); 
+        new MarkerClusterer({ markers, map });
     }, [mapRef]);
+
+    const locations = [
+        { lat: getadd.le, lng: getadd.re },
+        { lat: 37.523234, lng: 127.034181 },
+        { lat: 37.519111, lng: 127.035124 },
+        { lat: 37.515988, lng: 127.039834 },
+        { lat: 37.515702, lng: 127.029968 },
+        
+      ];
 
     useEffect(() => {
         initMap();
+        getLatLngFromAddress('서울특별시 서초구 신반포로 194');
       }, [initMap]);
 
     return(
