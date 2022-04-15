@@ -3,7 +3,13 @@ import styled from "styled-components";
 const FollowBar = () => {
   return (
     <BarContainer>
-    <NavBar>sdf</NavBar>
+    <NavBar>
+
+    <NavBox>
+
+    </NavBox>
+
+    </NavBar>
     </BarContainer>
   );
 };
@@ -20,10 +26,22 @@ const BarContainer = styled.div`
 
 const NavBar = styled.div`
   background-color: beige;
-  width: 300px;
+  width: 372px;
   align-items: stretch;
   float: right;
-  height: 300px;
+  height: 328px;
+  border: 1px solid rgb(221, 221, 221);
+   
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 
 
 `;
+
+const NavBox = styled.div`
+width: 100%;
+height: 100%;
+background-color: #ffffff;
+box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+border-radius: 12px;
+`
