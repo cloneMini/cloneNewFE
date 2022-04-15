@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Title = (props) => {
   return (
     <>
-      <div>
+      <Wrap>
         <PostTitle>05_AA음성 Self_quarantine ok</PostTitle>
 
         <Btngroup>
@@ -19,12 +19,16 @@ const Title = (props) => {
             저장
           </div>
         </Btngroup>
-      </div>
+      </Wrap>
     </>
   );
 };
 
 export default Title;
+  
+  const Wrap = styled.div`
+  
+  `
 
 const PostTitle = styled.h1`
   display: block;

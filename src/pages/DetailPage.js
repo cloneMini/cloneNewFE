@@ -7,8 +7,9 @@ const DetailPage = () => {
     <>
       <Container>
         <Title></Title>
-        <TitleImg></TitleImg>
       </Container>
+   <TitleImg></TitleImg>
+   
     </>
   );
 };
