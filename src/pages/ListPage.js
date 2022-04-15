@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import Geocode from 'react-geocode';
 import homeIcon from '../elements/home.png';
+import Logo from '../elements/airbnb.png';
 
 function ListPage(){
     Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
@@ -75,7 +76,17 @@ function ListPage(){
 
     return(
         <>
-        <Upper />
+        <Upper>
+            <Topbox>
+                <img style={{width:'125px', height:'50px'}} src={Logo}/>
+                <Infodiv/>
+            </Topbox>
+            <Botbox>
+                <Filter>무선 인터넷</Filter>
+                <Filter>주차공간</Filter>
+                <Filter>세탁기</Filter>
+            </Botbox>
+        </Upper>
         <ListBox>
             <RoomList>
                 {
@@ -98,6 +109,20 @@ const Upper = styled.div`
     background:white;
     border-bottom: 0.5px solid #d2d2d2;
 `
+const Topbox = styled.div`
+    width:100vw;
+    height:50%;
+    text-align:left;
+    padding-top:15px;
+    padding-left:40px;
+`
+const Botbox = styled.div`
+    width:100vw;
+    height:50%;
+    text-align:left;
+    padding-top: 5px;
+    padding-left: 40px;
+`
 const ListBox = styled.div`
     width: 100vw;
     height: 100%;
@@ -117,7 +142,30 @@ const Mapbox = styled.div`
     height: 88vh;
     background:#eee;
     right:20;
-    
+`
+const Filter = styled.button`
+    width:5vw;
+    height:40px;
+    border:0.5px solid #d2d2d2;
+    border-radius:25px;
+    margin-right:20px;
+    background:white;
+    font-size:15px;
+    &:hover{
+        border: 1px solid black;
+    }
+`
+const Infodiv = styled.button`
+    width:100px;
+    height:40px;
+    border:0.5px solid #d2d2d2;
+    border-radius:25px;
+    float:right;
+    margin-right:3%;
+    background:white;
+    &:hover{
+        border: 1px solid black;
+    }
 `
 
 export default ListPage
