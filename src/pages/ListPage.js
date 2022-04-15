@@ -1,9 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components"
+import {actionCreators as postActions} from '../redux/modules/post';
 
 function ListPage(){
+    const dispatch = useDispatch();
+    
     return(
         <Background>
-                111111
+            
         </Background>
     )
 }
