@@ -31,8 +31,7 @@ const ImgBox = styled.div`
   flex-direction: row;
   display: flex;
   flex-wrap: wrap;
-  /* margin : auto;
-  max-width: 1200px; */
+  width: 100%;
 
   justify-content: center;
 `;
@@ -66,7 +65,7 @@ const PieceImg = styled.div`
 `;
 
 const PieceImgR = styled.div`
-  width: 15vw;
+  max-width: 272px;
   height: 225px;
   background-image: url(${(props) => props.src});
   background-size: cover;
@@ -76,7 +75,7 @@ const PieceImgR = styled.div`
 `;
 
 const PieceImgRd = styled.div`
-  width: 15vw;
+  width: 272px;
   height: 225px;
   background-image: url(${(props) => props.src});
   background-size: cover;

@@ -2,13 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import Title from "../detailcompo/Title";
 import TitleImg from "../detailcompo/TitleImg";
+import Introduce from "../detailcompo/Introduce";
 const DetailPage = () => {
   return (
     <>
-      <Container>
+   
+        <Wrap>
         <Title></Title>
-      </Container>
-   <TitleImg></TitleImg>
+        <TitleImg></TitleImg>
+         <Introduce></Introduce>
+        </Wrap>
+       
+     
+ 
    
     </>
   );
@@ -16,14 +22,22 @@ const DetailPage = () => {
 
 export default DetailPage;
 
-const Container = styled.div`
+const Wrap = styled.div`
 
   max-width: 1128px;
   /* min-width: 1128px; */
-  display: flex;
 flex-direction: column;
-height: 100%;
 margin: auto;
-padding: 100px 80px 0px 80px;
+
+padding: 50px 80px 0px 80px;
 
 `;
+
+// const Container = styled.div`
+// width: 100%;
+// height: 100%;
+// min-height: 100vh;
+// min-width: 100vw;
+// justify-content: center;
+// display: flex;
+// `

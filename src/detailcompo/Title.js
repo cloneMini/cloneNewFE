@@ -10,8 +10,8 @@ const Title = (props) => {
         <Btngroup>
           
             <CommentLocal>
-              <p style={{ marginRight : "5px"}}>별 후기x개 ·</p>
-              <p style={{ color: "gray" }}>송파구, 서울, 한국</p>
+              <p style={{ marginRight : "5px"}}>별 comment.length ·</p>
+              <p style={{ color: "gray" }}>post.adress</p>
             </CommentLocal>
           
           <div>
@@ -27,7 +27,7 @@ const Title = (props) => {
 export default Title;
   
   const Wrap = styled.div`
-  
+ 
   `
 
 const PostTitle = styled.h1`
