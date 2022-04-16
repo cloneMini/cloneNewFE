@@ -54,7 +54,7 @@ const SignUp = () => {
 const LoginBody = styled.div`
   justify-content: center;
   display: flex;
-  padding-top: 80px;
+  padding: 80px;
 `;
 
 const LoginBox = styled.div`
@@ -67,7 +67,7 @@ const LoginBox = styled.div`
   margin-top: 32px 0px;
   overflow: visible;
   box-sizing: border-box;
-  bottom: 0px;
+  bottom: 24px;
   top: 24px;
   right: 0px;
   left: 0px;
