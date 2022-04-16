@@ -226,8 +226,8 @@ const ImotiText = styled.div`
 
 const Calender = styled.div`
   background-color: #e7e7e7;
-  width: 716px;
-  height: 340px;
+  width: 680px;
+  height: 315px;
 `;
 
 const Cfooter = styled.div`

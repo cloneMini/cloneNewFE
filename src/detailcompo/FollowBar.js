@@ -65,7 +65,7 @@ export default FollowBar;
 const BarContainer = styled.div`
   min-width: 500px;
   width: 100%;
-  height: 100%;
+  height: 1800px;
   align-items: stretch;
   
   

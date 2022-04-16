@@ -6,7 +6,7 @@ const Title = (props) => {
   return (
     <>
       <Wrap>
-        <PostTitle>05_AA음성 Self_quarantine ok</PostTitle>
+        <PostTitle>아이유가 운영하는 풀하우스</PostTitle>
 
         <Btngroup>
           <CommentLocal>
@@ -14,7 +14,7 @@ const Title = (props) => {
               <GoStar style={{ color: "#ff385c", width: "14px", marginRight:"2px" }} />
             
             </span>
-            <p style={{ margin: "0px 5px 3px 0px" }}> 4.82 · comment.length ·</p>
+            <p style={{ margin: "0px 5px 3px 0px" }}> 4.82 · 가보고싶다 ·</p>
             <p style={{ color: "gray" }}>post.adress</p>
           </CommentLocal>
 

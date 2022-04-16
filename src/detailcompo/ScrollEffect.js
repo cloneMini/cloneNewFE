@@ -50,6 +50,7 @@ const FixedNav = styled.div`
   position: fixed;
   height: 80px;
   border-bottom: 1px solid #dddddd;
+  z-index: 99;
 `;
 
 const FixdeNavtextBox = styled.div`

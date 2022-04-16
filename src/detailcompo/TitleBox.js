@@ -6,7 +6,7 @@ const TitleBox = () => {
     <HostWrap>
     
     <TextWrap>
-        <TextWho>user.nickName님이 호스팅하는 공동 주택 전체</TextWho>
+        <TextWho>아이유님이 호스팅하는 공동 주택 전체</TextWho>
       <TextInfo>최대 인원2명 · 침실 1개 · 침대1개 · 욕실 1개</TextInfo>
     </TextWrap>
     
