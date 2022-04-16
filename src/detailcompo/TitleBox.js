@@ -4,11 +4,14 @@ const TitleBox = () => {
   return (
     <>
     <HostWrap>
+    
     <TextWrap>
         <TextWho>user.nickName님이 호스팅하는 공동 주택 전체</TextWho>
       <TextInfo>최대 인원2명 · 침실 1개 · 침대1개 · 욕실 1개</TextInfo>
     </TextWrap>
-    <HostImage>Profile</HostImage>
+    
+    <HostImage src="https://cdn.gukjenews.com/news/photo/202201/2388626_2381760_1339.jpg"></HostImage>
+
     </HostWrap>
    
      
@@ -22,8 +25,8 @@ export default TitleBox;
 const HostWrap = styled.div`
 justify-content: space-between;
 display: flex;
-align-items: center;
-width: 650px;
+/* align-items: center; */
+width: 640px;
 margin-bottom: 10px;
 `
 
@@ -34,14 +37,19 @@ const TextWho = styled.div`
 
 const TextInfo = styled.div`
 font-size: 16px;
+margin:8px 0px;
 `
 
 const HostImage = styled.div`
-background-color: gray;
-margin: 48px 0px 24px 0px;
+margin: 58px 0px 0px 0px;
+
 width: 56px;
 height: 56px;
 border-radius: 50px;
+background-image: url(${(props) => props.src});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `
 
 

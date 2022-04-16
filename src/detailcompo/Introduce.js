@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TitleBox from "./TitleBox";
 import FollowBar from "./FollowBar";
 import IntroBox from "./IntroBox";
+import Comment from "./Comment";
 const Introduce = () => {
   return (
     <>
@@ -16,7 +17,9 @@ const Introduce = () => {
         <div>
           <FollowBar />
         </div>
+        
       </IntroContainer>
+      <Comment/>
     </>
   );
 };

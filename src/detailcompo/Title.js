@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { GoStar } from "react-icons/go";
 
 const Title = (props) => {
-
   return (
     <>
       <Wrap>
@@ -10,7 +10,11 @@ const Title = (props) => {
 
         <Btngroup>
           <CommentLocal>
-            <p style={{ marginRight: "5px" }}>별 · comment.length ·</p>
+            <span style={{ margin:"4px 4px 6px 0px" }}>
+              <GoStar style={{ color: "#ff385c", width: "14px", marginRight:"2px" }} />
+            
+            </span>
+            <p style={{ margin: "0px 5px 3px 0px" }}> 4.82 · comment.length ·</p>
             <p style={{ color: "gray" }}>post.adress</p>
           </CommentLocal>
 
@@ -35,10 +39,9 @@ const PostTitle = styled.p`
   color: #222222;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif !important;
-    font-size: 26px;
-    font-weight: 550;
-    margin-top:0px;
-
+  font-size: 26px;
+  font-weight: 550;
+  margin-top: 0px;
 `;
 
 const Btngroup = styled.div`
@@ -54,9 +57,9 @@ const Btngroup = styled.div`
 const CommentLocal = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const ShareBtn = styled.span`
   margin-right: 25px;
 `;
-

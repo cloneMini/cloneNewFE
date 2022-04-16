@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GoStar } from "react-icons/go";
+import { BsFillFlagFill } from "react-icons/bs";
 
 const FollowBar = () => {
 
@@ -47,9 +48,12 @@ const FollowBar = () => {
                 <BoxText2>게스트 1명</BoxText2>
               </NavSbox1>
             </BoxWrap>
-            <PinkButton>예약 가능 여부 보기</PinkButton>
+            <PinkButton onClick={()=> { window.alert("어디가.. 항해 해야지...")}}>예약 가능 여부 보기</PinkButton>
           </NavContent>
         </NavBox>
+        <Fuck onClick={()=> { window.alert("봐주세요...")}}>
+          <span style={{marginRight:" 16px", paddingTop:"15"}}><BsFillFlagFill /></span>
+          숙소 신고하기</Fuck>
       </NavBar>
     </BarContainer>
     </>
@@ -88,6 +92,7 @@ const NavBox = styled.div`
   border-radius: 12px;
   text-align: left;
   border: 1px solid rgb(221, 221, 221);
+  
  
 `;
 
@@ -162,4 +167,17 @@ const PinkButton = styled.button`
   font-size: 16px;
   font-weight: 550;
   align-items: center;
+  cursor: pointer;
+
 `;
+
+const Fuck = styled.div`
+  color: #717171;
+  font-size: 14px;
+  margin: 24px 0px 0px 0px;
+  font-weight: 600;
+  text-decoration: underline black;
+  cursor: pointer;
+
+  
+`
