@@ -63,6 +63,8 @@ const BarContainer = styled.div`
   width: 100%;
   height: 100%;
   align-items: stretch;
+  
+  
 `;
 
 const NavBar = styled.div`
@@ -73,6 +75,9 @@ const NavBar = styled.div`
   height: 328px;
 
   padding: 24px;
+  position: sticky;
+  top: 100px;
+ 
 `;
 
 const NavBox = styled.div`
@@ -83,6 +88,7 @@ const NavBox = styled.div`
   border-radius: 12px;
   text-align: left;
   border: 1px solid rgb(221, 221, 221);
+ 
 `;
 
 const NavContent = styled.div`
@@ -105,6 +111,7 @@ const NavSbox = styled.div`
   flex-direction: row;
   width: 100%;
   height: 56px;
+  
 `;
 const NavSbox1 = styled.div`
   width: 100%;

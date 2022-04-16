@@ -10,6 +10,8 @@ const TitleBox = () => {
     </TextWrap>
     <HostImage>Profile</HostImage>
     </HostWrap>
+   
+     
     </>
   );
 };

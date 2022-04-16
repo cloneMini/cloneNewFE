@@ -11,7 +11,7 @@ const IntroBox = () => {
       <Wrap>
         <TextWrap>
           <TextBox>
-            <BsDoorOpen style={{ fontSize: "24px", paddingTop: "12px" }} />
+            <BsDoorOpen style={{ fontSize: "28px", paddingTop: "12px" }} />
             <Pgroup>
               <TitleP>셀프 체크인</TitleP>
               <IntroP>키패드를 이용해 체크인하세요.</IntroP>
