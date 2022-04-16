@@ -49,13 +49,15 @@ export default Title;
 
 const Wrap = styled.div``;
 
-const PostTitle = styled.h1`
+const PostTitle = styled.p`
   display: block;
   text-align: left;
   margin-bottom: 5px;
   color: #222222;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif !important;
+    font-size: 26px;
+    font-weight: 550;
 `;
 
 const Btngroup = styled.div`
