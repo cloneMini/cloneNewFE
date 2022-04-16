@@ -9,33 +9,23 @@ import Logo from '../elements/airbnb.png';
 import Header from "../component/Header";
 
 function ListPage(){
-    Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
-    Geocode.setLanguage('ko')
-    Geocode.setRegion('kr')
-    Geocode.enableDebug()
-    let [getadd, setadd] = useState({
-        le : '',
-        re : '',
-    });
-      
-    const getLatLngFromAddress = address => {
-        Geocode.fromAddress(address).then(
-          response => {
-            const { lat, lng } = response.results[0].geometry.location;
-            console.log(lat, lng)
-            setadd({le : lat, re : lng})
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      };
-
     const mapRef = useRef(null);
+    const calculate = (data) => {
+        let latitude = 0;
+        let longitude = 0;
+        for(let i = 0; i < data.length; i++){
+            latitude += data[i].lat
+            longitude += data[i].lng
+        }
+        latitude = latitude/data.length;
+        longitude = longitude/data.length;
+        return {latitude, longitude}
+    }
     const initMap = useCallback(() => {
+        
         const map = new window.google.maps.Map(mapRef.current, {
-        center: { lat: 37.497, lng: 127.004 },
-        zoom: 14,
+        center: { lat: calculate(locations).latitude, lng: calculate(locations).longitude },
+        zoom: 12,
         });
         const infoWindow = new window.google.maps.InfoWindow({
             content: "",
@@ -45,7 +35,7 @@ function ListPage(){
         // 그 정보들을 배열로 받아와야 한다.
         const markers = locations.map((position, i) => {
             const label = labels[i % labels.length];
-            console.log(label)
+            // console.log(label)
             const myIcon = new window.google.maps.MarkerImage(homeIcon, null, null, null, new window.google.maps.Size(55,55));
             const marker = new window.google.maps.Marker({
               position,
@@ -60,20 +50,16 @@ function ListPage(){
           }); 
         new MarkerClusterer({ markers, map });
     }, [mapRef]);
-    console.log(getadd)
     const locations = [
-        { lat: getadd.le, lng: getadd.re },
         { lat: 37.523234, lng: 127.034181 },
         { lat: 37.519111, lng: 127.035124 },
         { lat: 37.515988, lng: 127.039834 },
         { lat: 37.515702, lng: 127.029968 },
-        
       ];
-    console.log(getadd.re)
+    console.log()
       
     useEffect(() => {
         initMap();
-        getLatLngFromAddress('서울특별시 서초구 신반포로 194');
       }, [initMap]);
 
     return(
