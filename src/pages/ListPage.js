@@ -69,6 +69,7 @@ function ListPage(){
         { lat: 37.515702, lng: 127.029968 },
         
       ];
+    console.log(getadd.re)
       
     useEffect(() => {
         initMap();
