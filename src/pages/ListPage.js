@@ -6,6 +6,7 @@ import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import Geocode from 'react-geocode';
 import homeIcon from '../elements/home.png';
 import Logo from '../elements/airbnb.png';
+import Header from "../component/Header";
 
 function ListPage(){
     Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
@@ -68,7 +69,7 @@ function ListPage(){
         { lat: 37.515702, lng: 127.029968 },
         
       ];
-
+      
     useEffect(() => {
         initMap();
         getLatLngFromAddress('서울특별시 서초구 신반포로 194');
@@ -76,6 +77,7 @@ function ListPage(){
 
     return(
         <>
+        <Header/>
         <Upper>
             <Topbox>
                 <img style={{width:'125px', height:'50px'}} src={Logo}/>
