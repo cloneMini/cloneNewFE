@@ -6,36 +6,35 @@ import mine from '../image/mine.png'
 
 const Header = () => {
     return (
-        <div width='100%' max-width='1500px'>
             <HeadDiv>
                 <img src={logo} width='118px' />
                 <SearchBtn>
                     검색 시작하기
                     <SearchIcon src={search} />
                 </SearchBtn>
-                <HeadDiv>
+                <LeftDiv>
                     <PostWriteBtn>게시물 작성</PostWriteBtn>
                     <MyPageBtn src={mine} />
-                </HeadDiv>
+                </LeftDiv>
             </HeadDiv>
-        </div>
     )
 }
 
 const HeadDiv = styled.div`
+width:100%;
 height:80px;
 padding:0px 80px;
 display:flex; 
 justify-content:space-between;
 align-items:center !important;
 border-bottom:solid 0.2px gray;
+position:fixed;
+background:#ffffff !important;
 `
 
 const SearchBtn = styled.div`
-appearance:none;
 backgrond-color:#ffffff;
-border:1px solid transparent;
-box-shadox:1px 1px 1px 1px gray;
+box-shadow:0px 0px 3px 0px gray;
 display:flex;
 font-family:inherit;
 font-size:inherit;
@@ -52,6 +51,7 @@ border-top-left-radius: 24px;
 border-bottom-left-radius:24px;
 border-top-right-radius:24px;
 border-bottom-right-radius:24px;
+box-sizing:border-box;
 `
 const SearchDiv = styled.div`
 
@@ -59,6 +59,14 @@ const SearchDiv = styled.div`
 
 const SearchIcon = styled.img`
 width:32px;
+`
+
+const LeftDiv = styled.div`
+height:80px;
+padding:0px 80px;
+display:flex; 
+justify-content:space-between;
+align-items:center !important;
 `
 
 const PostWriteBtn = styled.button`
