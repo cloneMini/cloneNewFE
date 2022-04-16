@@ -6,6 +6,9 @@ import Introduce from "../detailcompo/Introduce";
 import Header from "../component/Header";
 import ScrollEffect from "../detailcompo/ScrollEffect";
 const DetailPage = () => {
+
+
+  
   return (
     <>
     <Header />
