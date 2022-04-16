@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Title from "../detailcompo/Title";
 import TitleImg from "../detailcompo/TitleImg";
 import Introduce from "../detailcompo/Introduce";
+import Header from "../component/Header";
 const DetailPage = () => {
   return (
     <>
-   
+    <Header />
         <Wrap>
         <Title></Title>
         <TitleImg></TitleImg>
@@ -42,3 +43,4 @@ padding: 50px 80px 0px 80px;
 // justify-content: center;
 // display: flex;
 // `
+
