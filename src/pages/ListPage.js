@@ -60,7 +60,7 @@ function ListPage(){
           }); 
         new MarkerClusterer({ markers, map });
     }, [mapRef]);
-
+    console.log(getadd)
     const locations = [
         { lat: getadd.le, lng: getadd.re },
         { lat: 37.523234, lng: 127.034181 },
