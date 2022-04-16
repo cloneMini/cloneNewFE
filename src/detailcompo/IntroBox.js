@@ -93,25 +93,25 @@ const IntroBox = () => {
         <Facilities>
           <HalfFac>
             <ImotiText>
-              <sapn> 이모티</sapn>
+              <span> 이모티</span>
               <div>아무거나</div>
             </ImotiText>
             <ImotiText>
-              <sapn> 이모티</sapn>
+              <span> 이모티</span>
               <div>아무거나</div>
             </ImotiText>
             <ImotiText>
-              <sapn> 이모티</sapn>
+              <span> 이모티</span>
               <div>아무거나</div>
             </ImotiText>
           </HalfFac>
           <HalfFac>
             <ImotiText>
-              <sapn> 이모티</sapn>
+              <span> 이모티</span>
               <div>아무거나</div>
             </ImotiText>
             <ImotiText>
-              <sapn> 이모티</sapn>
+              <span> 이모티</span>
               <div>아무거나</div>
             </ImotiText>
           </HalfFac>

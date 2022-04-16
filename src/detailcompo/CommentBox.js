@@ -1,46 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-const CommentBox = () => {
+import { useSelector } from "react-redux";
+const CommentBox = (props) => {
+  const comment = useSelector((state) => state.comment.list.comment)
+
+
+
   return (
     <>
       <Comment>
         <UserProfile 이름 날짜 이미지>
           <div>
-            <UserImage src="https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg" />{" "}
+            <UserImage src={comment.userProfile} />
           </div>
           <NameDate 이름이랑 날짜 싸기>
-            <UserName> user.userNickname</UserName>
-            <Date> comment.date</Date>
+            <UserName> {comment.nickName}</UserName>
+            <Date> {comment.commentDate}</Date>
           </NameDate>
         </UserProfile>
         <CommentContent>
-          클론 코딩은 정말 재밌다 ~! 얘는 왜 줄이 안 왜 줄이 높이좀 고정해라
-          죽기싫으면 !!!!!!!!!!!!!!!!!!!!ㅇ하하하하하{" "}
+          {comment.contents}
         </CommentContent>
-      </Comment>
-      <Comment>
-        <UserProfile 이름 날짜 이미지>
-          <div>
-            <UserImage src="https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg" />{" "}
-          </div>
-          <NameDate 이름이랑 날짜 싸기>
-            <UserName> user.userNickname</UserName>
-            <Date> comment.date</Date>
-          </NameDate>
-        </UserProfile>
-        <CommentContent>클론 코딩은 정말 재밌다 ~!</CommentContent>
-      </Comment>
-      <Comment>
-        <UserProfile 이름 날짜 이미지>
-          <div>
-            <UserImage src="https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg" />{" "}
-          </div>
-          <NameDate 이름이랑 날짜 싸기>
-            <UserName> user.userNickname</UserName>
-            <Date> comment.date</Date>
-          </NameDate>
-        </UserProfile>
-        <CommentContent>클론 코딩은 정말 재밌다 ~!</CommentContent>
       </Comment>
     </>
   );

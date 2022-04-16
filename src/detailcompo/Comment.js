@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import CommentBox from "./CommentBox";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useParams } from "react-router-dom";
 const Comment = () => {
   const dispatch = useDispatch();
   const params = useParams()
   const [comment, setComment] = React.useState("");
-
+  const post = useSelector((state) => state.comment.list.post)
+  console.log(post)
   const handleform = (e) => {
     setComment(e.target.value);
   };
@@ -27,7 +28,7 @@ const Comment = () => {
       <Wrap>
         <CommentTitle>
           <span>아이콘</span>
-          <CommnetCnt>4.76 및 comment.length</CommnetCnt>
+          <CommentCnt>4.76 · 후기 {post.postCommentCnt}개</CommentCnt>
         </CommentTitle>
         <WriteComment 후기 작성>
           <input type="text" value={comment} onChange={handleform} />
@@ -62,7 +63,7 @@ const CommentTitle = styled.div`
   margin: 0px 0px 32px 0px;
 `;
 
-const CommnetCnt = styled.div`
+const CommentCnt = styled.div`
   font-size: 22px;
   color: #222222;
   margin-left: 15px;
