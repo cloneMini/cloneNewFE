@@ -25,7 +25,8 @@ export default DetailPage;
 const Wrap = styled.div`
 
   max-width: 1128px;
-  /* min-width: 1128px; */
+  /* max-width: 1128px; */
+
 flex-direction: column;
 margin: auto;
 

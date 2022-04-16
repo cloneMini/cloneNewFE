@@ -25,7 +25,7 @@ export default Introduce;
 
 const IntroContainer = styled.div`
   justify-content: space-between;
-  background-color: #fafafa;
+
   flex-direction: row;
   display: flex;
  

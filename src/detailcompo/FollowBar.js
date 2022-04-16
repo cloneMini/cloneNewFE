@@ -3,8 +3,13 @@ import styled from "styled-components";
 import { GoStar } from "react-icons/go";
 
 const FollowBar = () => {
+
+
   return (
+    <>
+    
     <BarContainer>
+     
       <NavBar>
         <NavBox>
           <NavContent>
@@ -13,7 +18,7 @@ const FollowBar = () => {
             <p style={{ margin: "3px 5px 24px 0px", fontWeight: "500" }}>
               <span style={{ marginBottom: "5px" }}>
                 <GoStar style={{ color: "#ff385c", width: "13px" }} />
-              </span>{" "}
+              </span>
               4.76 ·
               <span
                 style={{
@@ -47,13 +52,13 @@ const FollowBar = () => {
         </NavBox>
       </NavBar>
     </BarContainer>
+    </>
   );
 };
 
 export default FollowBar;
 
 const BarContainer = styled.div`
-  background-color: darkblue;
   min-width: 500px;
   width: 100%;
   height: 100%;
@@ -61,13 +66,13 @@ const BarContainer = styled.div`
 `;
 
 const NavBar = styled.div`
-  background-color: beige;
+  margin-top: 23px;
+
   width: 372px;
   float: right;
   height: 328px;
-  border: 1px solid rgb(221, 221, 221);
+
   padding: 24px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 `;
 
 const NavBox = styled.div`
@@ -115,7 +120,7 @@ const HalfBox1 = styled.div`
 `;
 
 const BoxWrap = styled.div`
-  border-radius: 9px;
+  border-radius: 10px;
   border: 1px solid #717171;
 `;
 
@@ -140,13 +145,14 @@ const BoxText2 = styled.p`
 
 const PinkButton = styled.button`
   width: 100%;
-  margin-top: 15px;
+  margin: 14px 0px;
   height: 50px;
   padding: 0px;
   background-color: #e51d52;
   border: none;
-  border-radius: 9px;
+  border-radius: 10px;
   color: white;
   font-size: 16px;
   font-weight: 550;
+  align-items: center;
 `;

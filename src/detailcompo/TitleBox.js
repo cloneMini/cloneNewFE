@@ -8,7 +8,7 @@ const TitleBox = () => {
         <TextWho>user.nickName님이 호스팅하는 공동 주택 전체</TextWho>
       <TextInfo>최대 인원2명 · 침실 1개 · 침대1개 · 욕실 1개</TextInfo>
     </TextWrap>
-    <HostImage>userProfile</HostImage>
+    <HostImage>Profile</HostImage>
     </HostWrap>
     </>
   );
@@ -35,8 +35,8 @@ font-size: 16px;
 `
 
 const HostImage = styled.div`
-background-color: green;
-margin-top: 50px;
+background-color: gray;
+margin: 48px 0px 24px 0px;
 width: 56px;
 height: 56px;
 border-radius: 50px;

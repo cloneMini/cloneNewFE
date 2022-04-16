@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { BsDoorOpen, BsKey } from "react-icons/bs";
 import { MdOutlinePlace } from "react-icons/md";
+import { BiBed } from "react-icons/bi";
+import { MdBed } from "react-icons/md";
 
 const IntroBox = () => {
   return (
@@ -45,27 +47,47 @@ const IntroBox = () => {
           <br />
           이방은 남향이지만 햇볕이 들지 않습니다. 10미터 거리에 다른건물이 있어
           전망이 좋지 않습니다. <br />
-          <br />{" "}
+          <br />
           <span
             style={{
               fontWeight: "600",
               cursor: "pointer",
               textDecoration: "underline",
-           
             }}
             onClick={() => {
               window.alert("comming soon");
             }}
           >
-            더 보기{" "}
+            더 보기
           </span>
         </TextWrap1>
       </Wrap>
 
-      <Wrap>
-
-
+      <Wrap style={{ padding: "48px 0px 100px" }}>
+        <SleepZone>
+          <SleepP>숙박 장소</SleepP>
+          <BadBox>
+            <BadContent style={{ marginBottom: "16px" }}>
+              <BiBed style={{fontSize:"26px"}}/>
+              <MdBed style={{fontSize:"26px", marginLeft:"6px"}}/>
+            </BadContent>
+            <BadContent
+              style={{
+                marginBottom: "8px",
+                fontSize: "16px",
+                fontWeight: "800",
+              }}
+            >
+              침실
+            </BadContent>
+            <BadContent style={{ fontSize: "14px" }}>
+              퀸사이즈 침대 1개, 소파 1개
+            </BadContent>
+          </BadBox>
+        </SleepZone>
       </Wrap>
+
+      <Wrap></Wrap>
     </>
   );
 };
@@ -87,6 +109,7 @@ const TextBox = styled.div`
   font-size: 16px;
   margin-bottom: 16px;
   display: flex;
+  margin: 0px 0px 5px 0px;
 `;
 const TextBox1 = styled.div`
   font-size: 16px;
@@ -106,13 +129,38 @@ const TitleP = styled.p`
   color: rgb(34, 34, 34);
 `;
 const IntroP = styled.p`
-  font-size: 15px;
-  line-height: 5px;
+  font-size: 14px;
+  line-height: 8px;
   color: rgb(113, 113, 113);
 `;
 
 const TextWrap1 = styled.span`
   line-height: 24px;
   max-width: 450px;
+  padding-bottom: 16px;
 `;
 const TextWrap = styled.span``;
+
+const SleepZone = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 207px;
+  height: 163px;
+  
+`;
+
+const SleepP = styled.div`
+  font-size: 22px;
+  margin: 0px;
+  font-weight: 600;
+  padding-bottom: 24px;
+`;
+
+const BadBox = styled.div`
+  border: 1px solid #dddddd;
+  padding: 24px;
+  border-radius: 10px;
+`;
+
+const BadContent = styled.div`
+`;
