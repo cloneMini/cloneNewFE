@@ -18,7 +18,6 @@ const addPostDB = (data, fileInput) => {
       await Geocode.fromAddress(data.address).then(
         response => {
           const { lat, lng } = response.results[0].geometry.location;
-          console.log(lat, lng)
           lati = lat;
           long = lng
         })
@@ -31,7 +30,6 @@ const addPostDB = (data, fileInput) => {
             for(let i = 0; i < fileInput.current.files.length; i++){
                 formData.append(`postImg${i+1}`, fileInput.current.files[i])
             }
-            formData.append('postTitle', data.roomName)
             formData.append('postTitle', data.roomName)
             formData.append('postDesc', data.desc)
             formData.append('postCharge', data.price)

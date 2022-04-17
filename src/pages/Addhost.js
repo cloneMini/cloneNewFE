@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import Geocode from 'react-geocode';
 import { useDispatch } from "react-redux";
-import {actionCreators as postActions} from '../redux/modules/post'
+import {actionCreators as postActions} from '../redux/modules/post';
+import Logo from '../elements/airbnb.png';
+import axios from "axios";
+import DaumPostCode from 'react-daum-postcode';
 
 function Addhost(){
     // Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
@@ -16,7 +19,20 @@ function Addhost(){
         manCnt : '', wifi : '',
         parking : '', laundry : '',
     });
+    const [getOpen, setOpen] = useState(false);
     const fileInput = useRef(null);
+
+    const postCodeStyle = {
+        display: getOpen == true ? 'block' : 'none',
+        padding:'30px',
+        background:'white',
+        position: "absolute",
+        top: "23%",
+        left: '55%',
+        width: "400px",
+        height: "500px",
+        border:'2px solid #d2d2d2'
+      };
 
     const checked = (data) => {
         let array = [roomName, address, desc, price, manCnt, wifi, parking]
@@ -48,10 +64,19 @@ function Addhost(){
         } 
     }
 
+    const onComplete = (data) => {
+        setInputs({address : data.address})
+        setOpen(false)
+        return data.address
+    }
 
     return(
         <div style={{width:'100vw', height:'100vh',display:'flex',float:'left'}}>
-            <ScreenLeft></ScreenLeft>
+            <ScreenLeft>
+                <DaumPostCode style={postCodeStyle}  onComplete={onComplete}/>
+                <img style={{width:'125px', height:'50px', margin:'5% 80% 10px 10px'}} src={Logo}/>
+                <p style={{fontSize:'45px', fontWeight:'bold', color:'white', margin:'30% 0% 0 0'}}>여러분의 집을 호스팅 해보세요!</p>
+            </ScreenLeft>
             <ScreenRight>
                 <InputBox>
                     <Textarea >당신의 숙소 이름을 정해보세요!</Textarea>
@@ -61,6 +86,8 @@ function Addhost(){
                     <Textarea>숙소의 주소를 기입해임마</Textarea>
                     <Inputarea name='address' value={address} onChange={onChange}/>
                 </InputBox>
+                <button onClick={()=>{setOpen(!getOpen)}} style={{fontSize:'16px',marginLeft:'-60%',border:'none', borderRadius:'10px', 
+                width:'150px', height:'40px'}}>주소찾기</button>
                 <InputBox>
                     <input style={{marginTop:'30px', height:'40px', width:'150px'}}
                         accept='image/*' type='file' ref={fileInput} multiple id='file'/>
@@ -81,12 +108,12 @@ function Addhost(){
                     </Select>
                     <Select name='wifi' value={wifi} onChange={onChange}>
                         <option>와이파이</option>
-                        <option>와이파이 없음</option>
+                        <option selected>와이파이 있음</option>
                         <option>와이파이 없음</option>
                     </Select>
                     <Select name='parking' value={parking} onChange={onChange}>
                         <option>주차공간</option>
-                        <option>주차공간 있음</option>
+                        <option selected>주차공간 있음</option>
                         <option>주차공간 없음</option>
                     </Select>
                     <Select name='laundry' value={laundry} onChange={onChange}>
@@ -138,6 +165,7 @@ const Select = styled.select`
     border-radius:20px;
     text-align:center;
     margin:20px 30px 0 0;
+    background:#d2d2d2
 `
 const Submit = styled.button`
     width:300px;
@@ -150,4 +178,6 @@ const Submit = styled.button`
     border:none;
     border-radius:15px;
 `
+
+
 export default Addhost
