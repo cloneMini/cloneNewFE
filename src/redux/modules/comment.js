@@ -31,16 +31,15 @@ const initialState = {
         },
       },
 
-      comment: {
+      comment: [{
         postId: "고유id",
         commentId: "댓글 고유 아이디",
         contents: "아 오늘도 역시나 밤을 새는구나 ㅎㅎㅎ 리덕스 연결 완료!",
         nickName: "아이유",
         userProfile: "https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg",
         commentDate: "2022년 4월",
-      },
-    },
-  
+      }],       
+    },  
 };
 
 const getCommentDB = (postId) => {
@@ -62,21 +61,28 @@ const getCommentDB = (postId) => {
   };
 };
 
-const addCommentDB = (comments, postId) => {
+const addCommentDB = (contents, postId) => {
   return async function (dispatch, getState) {
-    try {
-      await axios({
-        method: "post",
-        url: `/api/commentPost/:${postId}`,
-        data: comments,
-        headers: {
-          // authorization: `Bearer ${token}`,
-        },
-      });
-      dispatch(addComment());
-    } catch (err) {
-      console.log(err);
+    const _comments = {
+      ...initialState.list.comment[0],
+      contents:contents
     }
+    console.log(contents)
+   
+    // try {
+    //   await axios({
+    //     method: "post",
+    //     url: `/api/commentPost/:${postId}`,
+    //     data: comments,
+    //     headers: {
+    //       // authorization: `Bearer ${token}`,
+    //     },
+    //   });
+    //   dispatch(addComment());
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    dispatch(addComment(_comments));
   };
 };
 
@@ -107,7 +113,7 @@ export default handleActions(
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.concat(action.payload.comment);
+        draft.list.comment.unshift(action.payload.comment);
       }),
     [DEL_COMMENT]: (state, action) =>
       produce(state, (draft) => {
