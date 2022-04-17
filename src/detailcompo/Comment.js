@@ -4,12 +4,16 @@ import CommentBox from "./CommentBox";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useParams } from "react-router-dom";
-const Comment = () => {
+import { GoStar } from "react-icons/go";
+const Comment = (props) => {
   const dispatch = useDispatch();
   const params = useParams()
   const [comment, setComment] = React.useState("");
   const post = useSelector((state) => state.comment.list.post)
-  console.log(post)
+  const comment_list = useSelector((state) => state.comment.list.comment)
+  
+  console.log(comment_list)
+  
   const handleform = (e) => {
     setComment(e.target.value);
   };
@@ -21,13 +25,14 @@ const Comment = () => {
     }
     dispatch(commentActions.addCommentDB(comment));
     window.alert("작성이 완료 되었습니다!")
+    setComment("")
   };
 
   return (
     <>
       <Wrap>
         <CommentTitle>
-          <span>아이콘</span>
+          <span><GoStar  style={{ color: "#ff385c", fontSize: "21px", marginTop:"5px" }}/></span>
           <CommentCnt>4.76 · 후기 {post.postCommentCnt}개</CommentCnt>
         </CommentTitle>
         <WriteComment 후기 작성>
@@ -36,11 +41,15 @@ const Comment = () => {
         </WriteComment>
 
         <CommentWrap 댓글들만 싸기>
-          <CommentBox />
+          {comment_list.map((c, index) => {
+           if(index<6) return <CommentBox {...c}/>
+
+          })}
+          
         </CommentWrap>
         <OverComment>
           <p style={{ margin: "0px", padding: "13px 23px" }}>
-            후기 x개 모두 보기
+            후기 {post.postCommentCnt}개 모두 보기
           </p>
         </OverComment>
       </Wrap>
@@ -66,7 +75,7 @@ const CommentTitle = styled.div`
 const CommentCnt = styled.div`
   font-size: 22px;
   color: #222222;
-  margin-left: 15px;
+  margin-left: 8px;
   font-weight: 600;
 `;
 
@@ -83,8 +92,9 @@ const CommentWrap = styled.div`
 const OverComment = styled.div`
   border-radius: 5px;
   border: 1px solid black;
-  width: 180px;
+  min-width: 180px;
   height: 48px;
   font-size: 16px;
   font-weight: 600;
+  display: inline-block;
 `;

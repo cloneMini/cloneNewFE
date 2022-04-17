@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { GoStar } from "react-icons/go";
+import { FiShare } from "react-icons/fi";
+import { BiHeart } from "react-icons/bi";
 
 const Title = (props) => {
   return (
@@ -14,14 +16,23 @@ const Title = (props) => {
               <GoStar style={{ color: "#ff385c", width: "14px", marginRight:"2px" }} />
             
             </span>
-            <p style={{ margin: "0px 5px 3px 0px" }}> 4.82 · 가보고싶다 ·</p>
-            <p style={{ color: "gray" }}>post.adress</p>
+            <p style={{ margin: "0px 5px 3px 0px" }}> 4.82 · 후기x개 ·</p>
+            <p style={{ color: "gray", margin:"0px 0px 3px 0px" }}>post.adress</p>
           </CommentLocal>
 
-          <div>
-            <ShareBtn>공유하기</ShareBtn>
-            저장
-          </div>
+          <Btn onClick={() => {window.alert("comming soon")}}>
+           
+           <ShareBtn style={{marginRight:"20px"}}>
+            <Icons ><FiShare/></Icons>
+            <div>공유하기</div>
+            </ShareBtn>
+            
+            <ShareBtn>
+            <Icons style={{ fontSize:"18px"}}><BiHeart/></Icons>
+            <div>저장</div>
+          </ShareBtn>
+          
+          </Btn>
         </Btngroup>
       </Wrap>
     </>
@@ -52,6 +63,7 @@ const Btngroup = styled.div`
   font-weight: 600;
   text-decoration: underline;
   line-height: 5px;
+  
 `;
 
 const CommentLocal = styled.div`
@@ -61,5 +73,26 @@ const CommentLocal = styled.div`
 `;
 
 const ShareBtn = styled.span`
-  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px;
+  /* height: 42px; */
+  border-radius: 8px;
+  color:rgb(34, 34, 34);
+  
 `;
+
+const Btn = styled.div`
+display: flex;
+flex-direction: row;
+
+cursor: pointer;
+& :hover {
+    background: #f7f7f7;
+  }
+`
+
+const Icons = styled.span`
+margin-right:  8px ;
+`

@@ -182,6 +182,7 @@ const TextWrap1 = styled.span`
   padding-bottom: 16px;
   flex-direction: column;
   display: flex;
+  min-height: 182px;
 `;
 const TextWrap = styled.span``;
 

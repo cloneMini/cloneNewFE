@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 const CommentBox = (props) => {
-  const comment = useSelector((state) => state.comment.list.comment)
+  // const comment = useSelector((state) => state.comment.list.comment)
 
 
 
@@ -11,15 +11,15 @@ const CommentBox = (props) => {
       <Comment>
         <UserProfile 이름 날짜 이미지>
           <div>
-            <UserImage src={comment.userProfile} />
+            <UserImage src={props.userProfile} />
           </div>
           <NameDate 이름이랑 날짜 싸기>
-            <UserName> {comment.nickName}</UserName>
-            <Date> {comment.commentDate}</Date>
+            <UserName> {props.nickName}</UserName>
+            <Date> {props.commentDate}</Date>
           </NameDate>
         </UserProfile>
         <CommentContent>
-          {comment.contents}
+          {props.contents}
         </CommentContent>
       </Comment>
     </>
@@ -32,6 +32,7 @@ const Comment = styled.div`
   width: 48%;
   margin: 0px 0px 40px 0px;
   padding: 0px 8px;
+  min-height: 160px;
 `;
 
 const UserProfile = styled.div`
