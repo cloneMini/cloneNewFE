@@ -4,7 +4,6 @@ import Geocode from 'react-geocode';
 import { useDispatch } from "react-redux";
 import {actionCreators as postActions} from '../redux/modules/post';
 import Logo from '../elements/airbnb.png';
-import axios from "axios";
 import DaumPostCode from 'react-daum-postcode';
 
 function Addhost(){
