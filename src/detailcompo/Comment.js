@@ -30,14 +30,15 @@ const Comment = (props) => {
 
   return (
     <>
+    {/* 코맨트 */}
       <Wrap>
         <CommentTitle>
           <span><GoStar  style={{ color: "#ff385c", fontSize: "21px", marginTop:"5px" }}/></span>
           <CommentCnt>4.76 · 후기 {post.postCommentCnt}개</CommentCnt>
         </CommentTitle>
         <WriteComment 후기 작성>
-          <input type="text" value={comment} onChange={handleform} />
-          <button onClick={addComment}>작성하기</button>
+          <InputCom type="text" value={comment} onChange={handleform} />
+          <AddCom onClick={addComment}>작성하기</AddCom>
         </WriteComment>
 
         <CommentWrap 댓글들만 싸기>
@@ -53,6 +54,15 @@ const Comment = (props) => {
           </p>
         </OverComment>
       </Wrap>
+   {/* 지도 들어갈부분 */}
+   <Wrap>
+     <div>
+
+       dfdf
+     </div>
+
+   </Wrap>
+    
     </>
   );
 };
@@ -80,13 +90,30 @@ const CommentCnt = styled.div`
 `;
 
 const WriteComment = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 50px;
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
 `;
+
+const AddCom = styled.button`
+ padding: 12px 16px 12px 16px;
+ border: none;
+ box-shadow:  #e51d52 0px 0px 0px 1px inset ;
+ border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #e51d52;
+  font-weight: 600;
+ 
+`
 
 const CommentWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   max-width: 100%;
+
 `;
 
 const OverComment = styled.div`
@@ -98,3 +125,21 @@ const OverComment = styled.div`
   font-weight: 600;
   display: inline-block;
 `;
+
+const InputCom = styled.input`
+cursor: text ;
+    display: flex ;
+    min-height: unset ;
+    width: 65% ;
+    margin: 0px ;
+    border: none ;
+    color: rgb(34, 34, 34) ;
+    background-color: rgb(247, 247, 247) ;
+    height: unset ;
+    align-items: center ;
+    padding: 12px 12px 12px 16px ;
+
+    border-top-left-radius:100px;
+    border-bottom-left-radius: 100px;
+    box-shadow: rgb(176 176 176) 0px 0px 0px 1px inset ;
+`
