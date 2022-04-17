@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FollowBar from "./FollowBar";
+
 const ScrollEffect = () => {
   const [ScrollY, setScrollY] = React.useState(0); // window 의 pageYOffset값을 저장
   const [ScrollActive, setScrollActive] = React.useState(false);
