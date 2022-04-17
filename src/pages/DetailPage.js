@@ -8,7 +8,7 @@ import ScrollEffect from "../detailcompo/ScrollEffect";
 const DetailPage = () => {
 
 
-  
+
   return (
     <>
     <Header />
@@ -35,7 +35,7 @@ const Wrap = styled.div`
 
 flex-direction: column;
 margin: auto;
-
+color:#222222;
 padding: 24px 80px 0px 80px;
 
 `;

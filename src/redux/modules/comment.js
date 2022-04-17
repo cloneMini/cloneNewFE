@@ -19,10 +19,10 @@ const initialState = {
         postDesc: "",
         postImg: "이미지",
         postCharge: "요금",
-        address: "주소",
+        address: "송파구, 서울, 한국",
         postCommentCnt: "32",
         nickName: "별명",
-        userProfile: "유저프로필사진",
+        userProfile: "https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2020/10/PS20100800026.jpg",
         category: {
           room: 1,
           wifi: false,
