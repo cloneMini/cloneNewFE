@@ -8,10 +8,10 @@ import DaumPostCode from 'react-daum-postcode';
 import { useHistory } from "react-router-dom";
 
 function Addhost(){
-    // Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
-    // Geocode.setLanguage('ko');
-    // Geocode.setRegion('kr');
-    // Geocode.enableDebug();
+    Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
+    Geocode.setLanguage('ko');
+    Geocode.setRegion('kr');
+    Geocode.enableDebug();
     const history = useHistory();
     const dispatch = useDispatch();
     const [getInputs, setInputs] = useState({
@@ -65,7 +65,7 @@ function Addhost(){
             dispatch(postActions.addPostDB(getInputs, fileInput))
         } 
     }
-
+    
     const onComplete = (data) => {
         setInputs({address : data.address})
         setOpen(false)

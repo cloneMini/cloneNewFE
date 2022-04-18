@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
-function Room(){
+function Room(props){
+    const post = props.element;
+
+    console.log(post.category.join(' '))
     return(
         <>
         <Rooms>
             <Imgbox>
                 <Imgset  
-                src='https://a0.muscache.com/im/pictures/a1728fbe-c28d-4040-8a5b-dc69f69afb38.jpg?im_w=720'/>
+                src={post.postImg[0]}/>
             </Imgbox>
             <Contentbox>
                 <Textbox>
-                    <p>서울특별시 마포구 공덕동</p>
+                    <p>{post.address}</p>
                 </Textbox>
                 <Textbox>
-                    <p>논현동 포근하고 깔끔한 작은방 여성전용 개인실</p>
+                    <p>{post.postDesc}</p>
                 </Textbox>
                 <Textbox>
-                    <p>방 1개, 무선인터넷 있음, 세탁기 있음, 주차공간 있음</p>
+                    <p>{post.category.join(' ')}</p>
                 </Textbox>
                 <Textbox></Textbox>
             </Contentbox>

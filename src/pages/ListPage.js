@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import Room from '../component/Room';
-import {Maps} from 'google-map-react';
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
-import Geocode from 'react-geocode';
 import homeIcon from '../elements/home.png';
-import Logo from '../elements/airbnb.png';
 import Header from "../component/Header";
+import { useDispatch, useSelector } from "react-redux";
+import {actionCreators as postActions} from '../redux/modules/post';
 
 function ListPage(){
+    const post_list = useSelector(state => state.post.list);
+    const dispatch = useDispatch();
     const mapRef = useRef(null);
     const calculate = (data) => {
         let latitude = 0;
@@ -56,9 +57,9 @@ function ListPage(){
         { lat: 37.515988, lng: 127.039834 },
         { lat: 37.515702, lng: 127.029968 },
       ];
-    console.log()
       
     useEffect(() => {
+        dispatch(postActions.getPostDB());
         //initMap();
       }, [initMap]);
 
@@ -76,8 +77,8 @@ function ListPage(){
         <ListBox>
             <RoomList>
                 {
-                    Array.from({length:5},e =>{
-                        return <Room/>
+                    post_list.map((element, idx) =>{
+                        return <Room element={element} idx={idx}/>
                     })
                 }
             </RoomList>
