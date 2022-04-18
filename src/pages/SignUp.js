@@ -4,14 +4,13 @@ import styled from "styled-components";
 import Header from "../component/Header";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { idVal, pwdVal } from "../shared/validation";
+import { idVal, idVal1 } from "../shared/validation";
 
 const SignUp = (props) => {
-
   const dispatch = useDispatch();
 
-  const dupState = useSelector((state) => state.user.is_check);
-  console.log(dupState);
+  const dupState = useSelector((state) => state.user.is_login);
+
 
   const [email, setEmail] = React.useState("");
   const [nickName, setNickName] = React.useState("");
@@ -23,73 +22,89 @@ const SignUp = (props) => {
   const [pwdCheck2, setPwdCheck2] = React.useState("");
   const [emailCheck, setEmailCheck] = React.useState("");
 
-  const onKey = (e) => {
-    const value = e.target.value;
-  }; 
+  console.log(email, password, nickName);
 
-  const checkEmail = (val) => {
-    if (val === "") {
-      setEmailCheck("아이디를 입력해주세요.");
-      return;
-    }
-    if (!idVal(val)) {
-      setEmailCheck("아이디가 형식에 맞지 않습니다.(알파벳4~20자)");
-      return;
+  const onChange = useCallback(e => {
+    setUserProfile(e.target.value)
+  },[])
+
+  const checkEmail = (e) => {
+    console.log(e);
+    if (e.key === "Enter") {
+      console.log(e.target.value);
+      if (e.target.value === "") {
+        setEmailCheck("아이디를 입력해주세요.");
+        return;
+      }
+      if (!idVal1(e.target.value)) {
+        setEmailCheck("아이디가 형식에 맞지 않습니다.(알파벳4~20자)");
+        console.log("아이디입력 실패");
+        return;
+      }
+      setEmailCheck("아이디가 형식에 맞습니다.");
     }
   };
 
-  const checkNN = (val) => {
-    if (val === "") {
-      setNickCheck("닉네임을 입력해주세요.");
-      return;
-    }
-    if (!idVal(val)) {
-      setNickCheck("닉네임이 형식에 맞지 않습니다.(알파벳4~20자)");
-      return;
+  const checkNN = (e) => {
+    console.log(e);
+    if (e.key === "Enter") {
+      console.log(e.target.value);
+      if (e.target.value === "") {
+        setNickCheck("닉네임을 입력해주세요.");
+        return;
+      }
+      if (!idVal(e.target.value)) {
+        setNickCheck("닉네임이 형식에 맞지 않습니다.(알파벳4~20자)");
+        console.log("아이디입력 실패");
+        return;
+      }
+      setNickCheck("닉네임이 형식에 맞습니다.");
     }
   };
 
-  const checkPW = (val) => {
-    if (val === "") {
-      setPwdCheck("패스워드를 입력해주세요.");
-      return;
+  const checkPW = (e) => {
+    if (e.key === "Enter") {
+      if (e.target.value === "") {
+        setPwdCheck("패스워드를 입력해주세요.");
+        return;
+      }
+      if (e.target.value.length < 4) {
+        setPwdCheck("패스워드를 확인해주세요.");
+        return;
+      }
+      if (!idVal(e.target.value)) {
+        setPwdCheck("패스워드를 확인해주세요.");
+      }
     }
-    if (val.length < 4) {
-      setPwdCheck("패스워드를 확인해주세요.");
-      return;
-    }
-    setPwdCheck("사용가능한 패스워드입니다.");
+    setPwdCheck("사용가능한 패스워드입니다.")
   };
 
-  const checkPW2 = (val) => {
-    if (val === "") {
+  const checkPW2 = (e) => {
+    if (e.key === "Enter") {
+    if (e.target.value === "") {
       setPwdCheck2("패스워드를 한 번 더 입력해주세요.");
       return;
     }
-    if (val.length < 4) {
+    if (e.target.value.length < 4) {
       setPwdCheck2("패스워드를 한 번 더 확인해주세요.");
       return;
     }
-    if (val === password) {
-      setPwdCheck2("패스워드가 일치합니다!");
+    if (e.target.value !== password) {
+      setPwdCheck2("패스워드가 일치하지 않습니다!");
     }
-    setPwdCheck2("패스워드가 일치하지 않습니다.");
-  };
-
-
-  const checkDup = () => {
-    dispatch(userActions.checkID(email));
-    setEmailCheck("");
-  };
+    setPwdCheck2("패스워드가 일치합니다.");
+  }
+}
 
   const signup = () => {
-    if (!(dupState))
-      return window.alert("입력한 내용을 다시 확인해주세요!");
+    if (emailCheck!=="아이디가 형식에 맞습니다."
+    || nickCheck!=="닉네임이 형식에 맞습니다."
+    || pwdCheck!=="사용가능한 패스워드입니다."
+    || pwdCheck2!=="패스워드가 일치합니다.")
+    return;
 
-    dispatch(userActions.signupDB(email, password, password2));
+    dispatch(userActions.signupDB(email, password, nickName));
   };
-
-
 
   return (
     <>
@@ -106,12 +121,12 @@ const SignUp = (props) => {
                 name="Email"
                 placeholder="Email"
                 type="text"
-                value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                onKeyUp={onKey}
-                onKeyPress={checkEmail}
+                onKeyPress={(e) => {
+                  checkEmail(e);
+                }}
               ></Input>
               <P>{emailCheck}</P>
             </InputUpDiv>
@@ -122,51 +137,54 @@ const SignUp = (props) => {
                 onChange={(e) => {
                   setNickName(e.target.value);
                 }}
-                onKey={onKey}
-                onKeyPress={checkNN}
+                onKeyPress={(e) => {
+                  checkNN(e);
+                }}
               ></Input>
               <P>{nickCheck}</P>
             </InputMidDiv>
             <InputMidDiv>
               <Input
                 placeholder="프로필이미지를 넣어주세요(URL)"
+                onChange={onChange}
                 value={userProfile}
-                onChange={(e) => {
-                  setUserProfile(e.target.value);
-                }}
-                onKey={onKey}
               ></Input>
             </InputMidDiv>
             <InputMidDiv>
               <Input
                 placeholder="비밀번호"
-                type='password'
-                value={password}
+                type="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                onKey={onKey}
-                onKeyPress={checkPW}
+                onKeyPress={(e) => {
+                  checkPW(e);
+                }}
               ></Input>
               <P>{pwdCheck}</P>
             </InputMidDiv>
             <InputDownDiv>
               <Input
                 placeholder="비밀번호 확인"
-                type='password'
+                type="password"
                 value={password2}
                 onChange={(e) => {
                   setPassword2(e.target.value);
                 }}
-                onKey={onKey}
-                onKeyPress={checkPW2}
+                onKeyPress={(e) => {
+                  checkPW2(e);
+                }}
               ></Input>
               <P>{pwdCheck2}</P>
             </InputDownDiv>
             <ContinueDiv>
-              <Continue onClick={()=>{
-                signup()
-              }}>가입</Continue>
+              <Continue
+                onClick={() => {
+                  signup();
+                }}
+              >
+                가입
+              </Continue>
             </ContinueDiv>
           </DownDiv>
         </LoginBox>
@@ -209,6 +227,7 @@ const P = styled.p`
   font-size: 12px;
   font-weight: 400;
   color: #212121;
+  text-align: center;
 `;
 
 const DownDiv = styled.div`
@@ -291,8 +310,6 @@ const Continue = styled.button`
   height: 50px;
   border-radius: 12px;
   font-weight: 700;
-`
-  
-
+`;
 
 export default SignUp;

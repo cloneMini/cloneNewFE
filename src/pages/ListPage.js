@@ -1,15 +1,19 @@
 import styled from "styled-components";
 import Room from '../component/Room';
-import {Maps} from 'google-map-react';
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
-import Geocode from 'react-geocode';
 import homeIcon from '../elements/home.png';
-import Logo from '../elements/airbnb.png';
 import Header from "../component/Header";
+import { useDispatch, useSelector } from "react-redux";
+import {actionCreators as postActions} from '../redux/modules/post';
 
 function ListPage(){
+    const post_list = useSelector(state => state.post.list);
+    const dispatch = useDispatch();
     const mapRef = useRef(null);
+    const [getLot, setLot] = useState(false);
+    const [getDry, setDry] = useState(false);
+    const [getWfi, setWfi] = useState(false);
     const calculate = (data) => {
         let latitude = 0;
         let longitude = 0;
@@ -21,6 +25,8 @@ function ListPage(){
         longitude = longitude/data.length;
         return {latitude, longitude}
     }
+
+    console.log(post_list);
     const initMap = useCallback(() => {
         
         const map = new window.google.maps.Map(mapRef.current, {
@@ -56,31 +62,28 @@ function ListPage(){
         { lat: 37.515988, lng: 127.039834 },
         { lat: 37.515702, lng: 127.029968 },
       ];
-    console.log()
       
     useEffect(() => {
-        initMap();
-      }, [initMap]);
+        dispatch(postActions.getPostDB(getLot, getDry, getWfi));
+        //initMap();
+      }, [getLot, getDry, getWfi]); // getLot이 변ㅕ시마다 useEffect 작동
 
     return(
         <>
         <Header/>
         <Upper>
-            <Topbox>
-                <img style={{width:'125px', height:'50px'}} src={Logo}/>
-                <Infodiv/>
-            </Topbox>
+           
             <Botbox>
-                <Filter>무선 인터넷</Filter>
-                <Filter>주차공간</Filter>
-                <Filter>세탁기</Filter>
+                <Filter onClick={()=>{setWfi(!getWfi)}}>무선 인터넷</Filter>
+                <Filter onClick={()=>{setLot(!getLot)}}>주차공간</Filter>
+                <Filter onClick={()=>{setDry(!getDry)}}>세탁기</Filter>
             </Botbox>
         </Upper>
         <ListBox>
             <RoomList>
                 {
-                    Array.from({length:5},e =>{
-                        return <Room/>
+                    post_list.map((element, idx) =>{
+                        return <Room element={element} idx={idx}/>
                     })
                 }
             </RoomList>
@@ -94,23 +97,17 @@ function ListPage(){
 
 const Upper = styled.div`
     width: 100vw;
-    height: 13vh;
+    height: 100%;
     background:white;
     border-bottom: 0.5px solid #d2d2d2;
 `
-const Topbox = styled.div`
-    width:100vw;
-    height:50%;
-    text-align:left;
-    padding-top:15px;
-    padding-left:40px;
-`
 const Botbox = styled.div`
     width:100vw;
-    height:50%;
+    height:60%;
     text-align:left;
     padding-top: 5px;
     padding-left: 40px;
+    margin-bottom:15px;
 `
 const ListBox = styled.div`
     width: 100vw;
@@ -120,20 +117,27 @@ const ListBox = styled.div`
     float:left;
 `
 const RoomList = styled.div`
-    width: 43vw;
+    width: 44vw;
     height: 87vh;
     padding-top : 10px;
     overflow:scroll;
     z-index:5;
+    @media screen and (max-width: 1300px) {
+        width:100%;
+    }
+    
 `
 const Mapbox = styled.div`
-    width: 57vw;
+    width: 56vw;
     height: 88vh;
     background:#eee;
     right:20;
+    @media screen and (max-width: 1300px) {
+        display : none;
+    }
 `
 const Filter = styled.button`
-    width:5vw;
+    width:100px;
     height:40px;
     border:0.5px solid #d2d2d2;
     border-radius:25px;

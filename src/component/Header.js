@@ -33,7 +33,6 @@ const HeadDiv = styled.div`
   width: 100%;
   height: 80px;
   display: flex;
-  border-bottom: solid 0.2px #eeeeee;
   background: #ffffff !important;
 `;
 
