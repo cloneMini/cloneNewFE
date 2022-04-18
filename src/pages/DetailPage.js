@@ -4,10 +4,15 @@ import Title from "../detailcompo/Title";
 import TitleImg from "../detailcompo/TitleImg";
 import Introduce from "../detailcompo/Introduce";
 import Header from "../component/Header";
+import ScrollEffect from "../detailcompo/ScrollEffect";
 const DetailPage = () => {
+
+
+
   return (
     <>
     <Header />
+    <ScrollEffect/>
         <Wrap>
         <Title></Title>
         <TitleImg></TitleImg>
@@ -30,8 +35,8 @@ const Wrap = styled.div`
 
 flex-direction: column;
 margin: auto;
-
-padding: 50px 80px 0px 80px;
+color:#222222;
+padding: 24px 80px 0px 80px;
 
 `;
 

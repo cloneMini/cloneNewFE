@@ -1,44 +1,42 @@
 import React from "react";
 import styled from "styled-components";
-
+import { GoStar } from "react-icons/go";
+import { FiShare } from "react-icons/fi";
+import { BiHeart } from "react-icons/bi";
+import {  useSelector } from "react-redux";
 const Title = (props) => {
-  const [ScrollY, setScrollY] = React.useState(0); // window 의 pageYOffset값을 저장
-  const [ScrollActive, setScrollActive] = React.useState(false);
-  function handleScroll() {
-    if (ScrollY > 599) {
-      setScrollY(window.pageYOffset);
-      setScrollActive(true);
-    } else {
-      setScrollY(window.pageYOffset);
-      setScrollActive(false);
-    }
-  }
-  React.useEffect(() => {
-    function scrollListener() {
-      window.addEventListener("scroll", handleScroll);
-    } //  window 에서 스크롤을 감시 시작
-    scrollListener(); // window 에서 스크롤을 감시
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    }; //  window 에서 스크롤을 감시를 종료
-  });
+  const post = useSelector(state => state.comment.list.post)
+
+console.log(post)
 
   return (
     <>
-      {ScrollActive ? <FixedNav><FixdeNavtext>ㅇㅇㅇ</FixdeNavtext></FixedNav> : null}
       <Wrap>
-        <PostTitle>05_AA음성 Self_quarantine ok</PostTitle>
+        <PostTitle>{post.postTitle}</PostTitle>
 
         <Btngroup>
           <CommentLocal>
-            <p style={{ marginRight: "5px" }}>별 comment.length ·</p>
-            <p style={{ color: "gray" }}>post.adress</p>
+            <span style={{ margin:"4px 4px 6px 0px" }}>
+              <GoStar style={{ color: "#ff385c", width: "14px", marginRight:"2px" }} />
+            
+            </span>
+            <p style={{ margin: "0px 5px 3px 0px" }}> 4.76 · 후기{post.postCommentCnt}개 ·</p>
+            <p style={{ color: "gray", margin:"0px 0px 3px 0px" }}>{post.address}</p>
           </CommentLocal>
 
-          <div>
-            <ShareBtn>공유하기</ShareBtn>
-            저장
-          </div>
+          <Btn onClick={() => {window.alert("comming soon")}}>
+           
+           <ShareBtn style={{marginRight:"20px"}}>
+            <Icons ><FiShare/></Icons>
+            <div>공유하기</div>
+            </ShareBtn>
+            
+            <ShareBtn>
+            <Icons style={{ fontSize:"18px"}}><BiHeart/></Icons>
+            <div>저장</div>
+          </ShareBtn>
+          
+          </Btn>
         </Btngroup>
       </Wrap>
     </>
@@ -56,8 +54,9 @@ const PostTitle = styled.p`
   color: #222222;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif !important;
-    font-size: 26px;
-    font-weight: 550;
+  font-size: 26px;
+  font-weight: 550;
+  margin-top: 0px;
 `;
 
 const Btngroup = styled.div`
@@ -68,36 +67,36 @@ const Btngroup = styled.div`
   font-weight: 600;
   text-decoration: underline;
   line-height: 5px;
+  
 `;
 
 const CommentLocal = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const ShareBtn = styled.span`
-  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px;
+  /* height: 42px; */
+  border-radius: 8px;
+  color:rgb(34, 34, 34);
+  
 `;
 
-const FixedNav = styled.div`
-  width: 100%;
-  top: 0;
- 
-  border-radius: 0;
-  text-align: left; 
-  background-color: white;
-  position: fixed;
-  color: #222222;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-    Helvetica Neue, sans-serif !important;
-  font-weight: 400 !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  height: 80px;
-  border-bottom: 1px solid #222222;
-`;
+const Btn = styled.div`
+display: flex;
+flex-direction: row;
 
-const FixdeNavtext = styled.div`
-max-width: 1128px;
+cursor: pointer;
+& :hover {
+    background: #f7f7f7;
+  }
+`
 
+const Icons = styled.span`
+margin-right:  8px ;
 `
