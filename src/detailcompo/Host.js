@@ -3,16 +3,20 @@ import styled from "styled-components";
 import airprotect from "./Imagegroup/airprotect.PNG"
 import { GoStar } from "react-icons/go";
 import { RiShieldCheckFill } from "react-icons/ri";
+import { useSelector } from "react-redux";
 const Host = (props) => {
+
+const comment_list = useSelector((state) => state.comment.list.comment);
+
 
   return (
     <>
 
     {/* 호스트 프로필 */}
       <Hostprofile >
-        <HostImage src={props.userProfile}></HostImage>
+        <HostImage src={props[0].userProfile}></HostImage>
         <div >
-          <HostName>호스트:{props.nickName}님</HostName>
+          <HostName>호스트:{props[0].nickName}님</HostName>
           <HostDate>회원 가입일: 2022년 4월</HostDate>
         </div>
       </Hostprofile>
@@ -31,7 +35,7 @@ const Host = (props) => {
                   }}
                 />
               </span>
-              <AfterC> 후기 {props.postCommentCnt}개 </AfterC>
+              <AfterC> 후기 {comment_list.length}개 </AfterC>
             </After>
             <After style={{ marginLeft: "24px" }} 인증>
               <span>

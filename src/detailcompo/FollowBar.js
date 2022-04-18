@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const FollowBar = () => {
 
   const post = useSelector(state => state.comment.list.post[0])
+  const comment_list = useSelector(state => state.comment.list.comment)
   
 
   return (
@@ -32,7 +33,7 @@ const FollowBar = () => {
                   
                 }}
               >
-                후기{post.postCommentCnt}개
+                후기{comment_list.length}개
               </span>
             </p></Ctext>
 

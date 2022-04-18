@@ -6,8 +6,9 @@ import { BiHeart } from "react-icons/bi";
 import {  useSelector } from "react-redux";
 const Title = (props) => {
   const post = useSelector(state => state.comment.list.post[0])
+  const comment_list = useSelector(state => state.comment.list.comment)
 
-console.log(post)
+console.log(comment_list)
 
   return (
     <>
@@ -20,7 +21,7 @@ console.log(post)
               <GoStar style={{ color: "#ff385c", width: "14px", marginRight:"2px" }} />
             
             </span>
-            <p style={{ margin: "0px 5px 3px 0px" }}> 4.76 · 후기{post.postCommentCnt}개 ·</p>
+            <p style={{ margin: "0px 5px 3px 0px" }}> 4.76 · 후기{comment_list.length}개 ·</p>
             <p style={{ color: "gray", margin:"0px 0px 3px 0px" }}>{post.address}</p>
           </CommentLocal>
 

@@ -41,7 +41,7 @@ const Comment = (props) => {
               style={{ color: "#ff385c", fontSize: "21px", marginTop: "5px" }}
             />
           </span>
-          <CommentCnt>4.76 · 후기 {post.postCommentCnt}개</CommentCnt>
+          <CommentCnt>4.76 · 후기 {comment_list.length}개</CommentCnt>
         </CommentTitle>
         <WriteComment 후기 작성>
           <InputCom type="text" value={comment} onChange={handleform} />
@@ -55,7 +55,7 @@ const Comment = (props) => {
         </CommentWrap>
         <OverComment>
           <p style={{ margin: "0px", padding: "13px 23px" }}>
-            후기 {post.postCommentCnt}개 모두 보기
+            후기 {comment_list.length}개 모두 보기
           </p>
         </OverComment>
       </Wrap>
@@ -65,7 +65,7 @@ const Comment = (props) => {
       </Wrap>
          {/* 호스트 소개 */}
           <Wrap>
-               <Host {...post}  />
+               <Host {...post} />
           </Wrap>
    
     </>

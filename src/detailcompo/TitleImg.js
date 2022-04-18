@@ -1,21 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-
+import { useSelector } from "react-redux";
 const TitleImg = (props) => {
+  const post = useSelector(state => state.comment.list.post[0])
+
+console.log(post.postImg)
+
   return (
     <>
       <ImgBox>
-        <BigImg src="https://www.nordicnest.kr/assets/contentful/p7vzp7ftmsr1/57B4dlNjouxoa4rzthZu3d/90c61efb2cf549b330dbef61d35f9ea3/36655-02-04.jpg?preset=tiny&dpr=2"></BigImg>
+        <BigImg src={post.postImg[0]}></BigImg>
         <PieceBox>
-          <PieceImg src="https://www.nordicnest.kr/assets/contentful/p7vzp7ftmsr1/4NCLDIsHvQm3BFsjo8fJPZ/007f06ed3fbd43eeb33c0204921ccac1/04-0835.jpg?preset=tiny&dpr=2"></PieceImg>
+          <PieceImg src={post.postImg[1]}></PieceImg>
           <PieceBoxBot>
-            <PieceImg src="https://mblogthumb-phinf.pstatic.net/MjAyMDEyMThfMTcg/MDAxNjA4Mjk5NjIwMDc4.3VIw_mXHUy3qg68fUlZCdMBbeZjI3ZcrNlVpW7giumYg.TXJIy3LBDoC0dABi4eIbZCynFPmTqaVZsxvSOSQrQDcg.JPEG.designpress2016/Pent-Haus_Home_Collection.jpg?type=w800"></PieceImg>
+            <PieceImg src={post.postImg[2]}></PieceImg>
           </PieceBoxBot>
         </PieceBox>
         <PieceBox >
-          <PieceImgR src="https://m.younggagu.com/web/product/big/202104/28039b9cb97f7cdfe778ee7783b79b4b.jpg"></PieceImgR>
+          <PieceImgR src={post.postImg[3]}></PieceImgR>
           <PieceBoxBot>
-            <PieceImgRd src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDK095xKxVlxJxrBSdS220ZSAFAt3ksuMfQ1U6E3NUEhVAX3ttu2XFhqsBDjL9GlIXr20&usqp=CAU"
+            <PieceImgRd src={post.postImg[4]}
             ></PieceImgRd>
           </PieceBoxBot>
         </PieceBox>
