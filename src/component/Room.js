@@ -38,11 +38,21 @@ const Rooms = styled.div`
     @media screen and (max-width: 1300px) {
         width:100%;
     }
+    @media screen and (max-width: 650px) {
+        width:100%;
+        height:57%;
+        float:none;
+        display:flex;
+        flex-direction:column;
+    }
 `
 const Imgbox = styled.div`
     width: 35%;
     height: 100%;
     z-index: 5;
+    @media screen and (max-width: 650px) {
+        width:100%;
+    }
 `
 const Imgset = styled.img`
     width:100%;
@@ -52,6 +62,11 @@ const Imgset = styled.img`
         width:80%;
         margin-left:-15%;
     }
+    @media screen and (max-width: 650px) {
+        width:95%;
+        margin-left:-5%;
+    }
+    
 `
 const Contentbox = styled.div`
     width: 65%;
@@ -60,6 +75,10 @@ const Contentbox = styled.div`
     z-index: 5;
     @media screen and (max-width: 1300px) {
         margin-left:-5%;
+    }
+    @media screen and (max-width: 650px) {
+        width:100%;
+        margin-left:2%;
     }
 `
 const Textbox = styled.div`

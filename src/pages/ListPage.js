@@ -66,10 +66,7 @@ function ListPage(){
         <>
         <Header/>
         <Upper>
-            <Topbox>
-                <img style={{width:'125px', height:'50px'}} src={Logo}/>
-                <Infodiv/>
-            </Topbox>
+           
             <Botbox>
                 <Filter>무선 인터넷</Filter>
                 <Filter>주차공간</Filter>
@@ -94,23 +91,17 @@ function ListPage(){
 
 const Upper = styled.div`
     width: 100vw;
-    height: 13vh;
+    height: 100%;
     background:white;
     border-bottom: 0.5px solid #d2d2d2;
 `
-const Topbox = styled.div`
-    width:100vw;
-    height:50%;
-    text-align:left;
-    padding-top:15px;
-    padding-left:40px;
-`
 const Botbox = styled.div`
     width:100vw;
-    height:50%;
+    height:60%;
     text-align:left;
     padding-top: 5px;
     padding-left: 40px;
+    margin-bottom:15px;
 `
 const ListBox = styled.div`
     width: 100vw;
@@ -128,6 +119,7 @@ const RoomList = styled.div`
     @media screen and (max-width: 1300px) {
         width:100%;
     }
+    
 `
 const Mapbox = styled.div`
     width: 56vw;
