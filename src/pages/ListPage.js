@@ -11,6 +11,9 @@ function ListPage(){
     const post_list = useSelector(state => state.post.list);
     const dispatch = useDispatch();
     const mapRef = useRef(null);
+    const [getLot, setLot] = useState(false);
+    const [getDry, setDry] = useState(false);
+    const [getWfi, setWfi] = useState(false);
     const calculate = (data) => {
         let latitude = 0;
         let longitude = 0;
@@ -22,6 +25,8 @@ function ListPage(){
         longitude = longitude/data.length;
         return {latitude, longitude}
     }
+
+    console.log(post_list);
     const initMap = useCallback(() => {
         
         const map = new window.google.maps.Map(mapRef.current, {
@@ -59,9 +64,9 @@ function ListPage(){
       ];
       
     useEffect(() => {
-        dispatch(postActions.getPostDB());
+        dispatch(postActions.getPostDB(getLot, getDry, getWfi));
         //initMap();
-      }, [initMap]);
+      }, [getLot, getDry, getWfi]); // getLot이 변ㅕ시마다 useEffect 작동
 
     return(
         <>
@@ -69,9 +74,9 @@ function ListPage(){
         <Upper>
            
             <Botbox>
-                <Filter>무선 인터넷</Filter>
-                <Filter>주차공간</Filter>
-                <Filter>세탁기</Filter>
+                <Filter onClick={()=>{setWfi(!getWfi)}}>무선 인터넷</Filter>
+                <Filter onClick={()=>{setLot(!getLot)}}>주차공간</Filter>
+                <Filter onClick={()=>{setDry(!getDry)}}>세탁기</Filter>
             </Botbox>
         </Upper>
         <ListBox>

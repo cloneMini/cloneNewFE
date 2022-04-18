@@ -3,7 +3,6 @@ import styled from "styled-components";
 function Room(props){
     const post = props.element;
 
-    console.log(post.category.join(' '))
     return(
         <>
         <Rooms>

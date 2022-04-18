@@ -71,15 +71,24 @@ const addPostDB = (data, fileInput) => {
     }
   }
 
-  const getPostDB = () => {
+  const getPostDB = (getLot, getDry, getWfi) => {
     return async function(dispatch){
       axios({
         method : 'get',
         url : 'http://3.38.178.66/api/listPage',
       })
       .then(response => {
-        console.log(response)
-        dispatch(getPost(response.data.post))
+        let post = response.data.post;
+        let something = [];
+          if(getLot) something = post.filter(post => post.category.includes('주차공간 있음'))
+          if(getDry) something = post.filter(post => post.category.includes('세탁기 있음'))
+          if(getWfi) something = post.filter(post => post.category.includes('와이파이 있음'))
+        if(something.length > 0){
+          dispatch(getPost(something))
+        } else {
+          dispatch(getPost(response.data.post))
+        }
+        
       })
       .catch(error => {
         console.log(error)
