@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
-function Room(){
+function Room(props){
+    const post = props.element;
+
     return(
         <>
         <Rooms>
             <Imgbox>
-                <img style={{width:'100%', height:'100%', borderRadius:'20px'}} 
-                src='https://a0.muscache.com/im/pictures/a1728fbe-c28d-4040-8a5b-dc69f69afb38.jpg?im_w=720'/>
+                <Imgset  
+                src={post.postImg[0]}/>
             </Imgbox>
             <Contentbox>
                 <Textbox>
-                    <p>서울특별시 마포구 공덕동</p>
+                    <p>{post.address}</p>
                 </Textbox>
                 <Textbox>
-                    <p>논현동 포근하고 깔끔한 작은방 여성전용 개인실</p>
+                    <p>{post.postDesc}</p>
                 </Textbox>
                 <Textbox>
-                    <p>방 1개, 무선인터넷 있음, 세탁기 있음, 주차공간 있음</p>
+                    <p>{post.category.join(' ')}</p>
                 </Textbox>
                 <Textbox></Textbox>
             </Contentbox>
@@ -35,17 +37,51 @@ const Rooms = styled.div`
     display: flex;
     float: left;
     z-index: 5;
+    @media screen and (max-width: 1300px) {
+        width:100%;
+    }
+    @media screen and (max-width: 650px) {
+        width:100%;
+        height:57%;
+        float:none;
+        display:flex;
+        flex-direction:column;
+    }
 `
 const Imgbox = styled.div`
     width: 35%;
     height: 100%;
     z-index: 5;
+    @media screen and (max-width: 650px) {
+        width:100%;
+    }
+`
+const Imgset = styled.img`
+    width:100%;
+    height:100%;
+    border-radius:20px;
+    @media screen and (max-width: 1300px) {
+        width:80%;
+        margin-left:-15%;
+    }
+    @media screen and (max-width: 650px) {
+        width:95%;
+        margin-left:-5%;
+    }
+    
 `
 const Contentbox = styled.div`
     width: 65%;
     height: 90%;
     padding:10px;
     z-index: 5;
+    @media screen and (max-width: 1300px) {
+        margin-left:-5%;
+    }
+    @media screen and (max-width: 650px) {
+        width:100%;
+        margin-left:2%;
+    }
 `
 const Textbox = styled.div`
     width:100%;
