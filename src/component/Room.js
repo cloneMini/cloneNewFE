@@ -5,7 +5,7 @@ function Room(){
         <>
         <Rooms>
             <Imgbox>
-                <img style={{width:'100%', height:'100%', borderRadius:'20px'}} 
+                <Imgset  
                 src='https://a0.muscache.com/im/pictures/a1728fbe-c28d-4040-8a5b-dc69f69afb38.jpg?im_w=720'/>
             </Imgbox>
             <Contentbox>
@@ -35,17 +35,32 @@ const Rooms = styled.div`
     display: flex;
     float: left;
     z-index: 5;
+    @media screen and (max-width: 1300px) {
+        width:100%;
+    }
 `
 const Imgbox = styled.div`
     width: 35%;
     height: 100%;
     z-index: 5;
 `
+const Imgset = styled.img`
+    width:100%;
+    height:100%;
+    border-radius:20px;
+    @media screen and (max-width: 1300px) {
+        width:80%;
+        margin-left:-15%;
+    }
+`
 const Contentbox = styled.div`
     width: 65%;
     height: 90%;
     padding:10px;
     z-index: 5;
+    @media screen and (max-width: 1300px) {
+        margin-left:-5%;
+    }
 `
 const Textbox = styled.div`
     width:100%;

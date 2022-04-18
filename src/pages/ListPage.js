@@ -59,7 +59,7 @@ function ListPage(){
     console.log()
       
     useEffect(() => {
-        initMap();
+        //initMap();
       }, [initMap]);
 
     return(
@@ -120,20 +120,26 @@ const ListBox = styled.div`
     float:left;
 `
 const RoomList = styled.div`
-    width: 43vw;
+    width: 44vw;
     height: 87vh;
     padding-top : 10px;
     overflow:scroll;
     z-index:5;
+    @media screen and (max-width: 1300px) {
+        width:100%;
+    }
 `
 const Mapbox = styled.div`
-    width: 57vw;
+    width: 56vw;
     height: 88vh;
     background:#eee;
     right:20;
+    @media screen and (max-width: 1300px) {
+        display : none;
+    }
 `
 const Filter = styled.button`
-    width:5vw;
+    width:100px;
     height:40px;
     border:0.5px solid #d2d2d2;
     border-radius:25px;

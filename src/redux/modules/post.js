@@ -27,6 +27,9 @@ const addPostDB = (data, fileInput) => {
       );
       const formData = new FormData();
         if(fileInput.current){
+          if(fileInput.current.files.length !== 5){
+            alert('사진을 다섯개 올려주세요!')
+          } else {
             for(let i = 0; i < fileInput.current.files.length; i++){
                 formData.append(`postImg${i+1}`, fileInput.current.files[i])
             }
@@ -43,6 +46,7 @@ const addPostDB = (data, fileInput) => {
             for (var pair of formData.entries()){
                 console.log(pair);
              }
+            }
           }
       
       // axios({

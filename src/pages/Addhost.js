@@ -5,12 +5,14 @@ import { useDispatch } from "react-redux";
 import {actionCreators as postActions} from '../redux/modules/post';
 import Logo from '../elements/airbnb.png';
 import DaumPostCode from 'react-daum-postcode';
+import { useHistory } from "react-router-dom";
 
 function Addhost(){
     // Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
     // Geocode.setLanguage('ko');
     // Geocode.setRegion('kr');
     // Geocode.enableDebug();
+    const history = useHistory();
     const dispatch = useDispatch();
     const [getInputs, setInputs] = useState({
         roomName : '', address : '',
@@ -35,6 +37,7 @@ function Addhost(){
 
     const checked = (data) => {
         let array = [roomName, address, desc, price, manCnt, wifi, parking]
+
         for(let i = 0; i < array.length; i++){
             if(array[i] == ''){
                 alert('내용을 입력해주세요!')
@@ -68,7 +71,6 @@ function Addhost(){
         setOpen(false)
         return data.address
     }
-
     return(
         <div style={{width:'100vw', height:'100vh',display:'flex',float:'left'}}>
             <ScreenLeft>
@@ -82,21 +84,24 @@ function Addhost(){
                     <Inputarea name='roomName' value={roomName} onChange={onChange}/>
                 </InputBox>
                 <InputBox>
-                    <Textarea>숙소의 주소를 기입해임마</Textarea>
+                    <Textarea>숙소 주소를 입력해주세요</Textarea>
                     <Inputarea name='address' value={address} onChange={onChange}/>
                 </InputBox>
-                <button onClick={()=>{setOpen(!getOpen)}} style={{fontSize:'16px',marginLeft:'-60%',border:'none', borderRadius:'10px', 
-                width:'150px', height:'40px'}}>주소찾기</button>
                 <InputBox>
-                    <input style={{marginTop:'30px', height:'40px', width:'150px'}}
+                <button onClick={()=>{setOpen(!getOpen)}} style={{fontSize:'16px',border:'none', borderRadius:'10px', 
+                width:'150px', height:'40px'}}>주소찾기</button>
+                </InputBox>
+                <InputBox><Textarea>5개의 사진을 올려주세요!</Textarea>
+                    <label for='file'><p style={{ padding: '6px 25px', backgroundColor:'#FF6600', borderRadius: '10px', color: 'white', width:'110px'}}>사진 업로드하기</p></label>
+                    <input style={{marginTop:'0px', height:'40px', width:'0px'}}
                         accept='image/*' type='file' ref={fileInput} multiple id='file'/>
                 </InputBox>
                 <InputBox>
-                    <Textarea>얼마냐?</Textarea>
+                    <Textarea>숙소 금액입력 <p style={{fontSize:'12px', marginTop:'2px'}}>(1박기준)</p></Textarea>
                     <Inputarea name='price' value={price} onChange={onChange}/>
                 </InputBox>
                 <InputBox>
-                    <Textarea>숙소의 소개</Textarea>
+                    <Textarea>여러분의 숙소를 간략하게 소개해주세요!</Textarea>
                     <Inputarea name='desc' value={desc} onChange={onChange}/>
                 </InputBox>
                 <InputBox>
@@ -133,26 +138,36 @@ const ScreenLeft = styled.div`
     width:50vw;
     height:100vh;
     background:linear-gradient(to right, blue, pink);
+    @media screen and (max-width: 1200px) {
+        display: none;
+        }
 `
 const ScreenRight = styled.div`
     width:50vw;
     height:100vh;
     background:white;
     padding-top:100px;
+    padding-left:100px;
+    margin: 0 auto;
+    
 `
 const InputBox = styled.div`
-    width:80%;
+    width:100%;
     height:100px;
     margin : 0 auto;
     text-align:left;
+    @media screen and (max-width: 640px) {
+        width:150%;
+        }
 `
 const Textarea = styled.p`
-    font-size:20px;
+    font-size:16px;
+    font-weight:bold;
     margin-bottom:5px;
 `
 const Inputarea = styled.input`
-    width: 80%;
-    height: 40px;
+    width: 60%;
+    height: 30px;
     border-radius:10px;
     border: 1.5px solid #d2d2d2;
 `
@@ -164,7 +179,8 @@ const Select = styled.select`
     border-radius:20px;
     text-align:center;
     margin:20px 30px 0 0;
-    background:#d2d2d2
+    background:#eee;
+    font-weight:bold;
 `
 const Submit = styled.button`
     width:300px;
@@ -176,6 +192,13 @@ const Submit = styled.button`
     background:linear-gradient(to right, blue, pink);
     border:none;
     border-radius:15px;
+    font-weight:bold;
+`
+const fileUpload = styled.p`
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:5px;
+    background:yellow;
 `
 
 
