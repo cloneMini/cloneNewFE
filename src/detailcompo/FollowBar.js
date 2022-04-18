@@ -5,8 +5,8 @@ import { BsFillFlagFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 const FollowBar = () => {
 
-  const post = useSelector(state => state.comment.list.post)
-  console.log(post)
+  const post = useSelector(state => state.comment.list.post[0])
+  
 
   return (
     <>

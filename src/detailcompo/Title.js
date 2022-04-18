@@ -5,7 +5,7 @@ import { FiShare } from "react-icons/fi";
 import { BiHeart } from "react-icons/bi";
 import {  useSelector } from "react-redux";
 const Title = (props) => {
-  const post = useSelector(state => state.comment.list.post)
+  const post = useSelector(state => state.comment.list.post[0])
 
 console.log(post)
 
