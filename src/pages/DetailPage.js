@@ -14,7 +14,7 @@ const dispatch = useDispatch()
 
 
 React.useEffect(() =>{
-  dispatch(commentActions.getCommentDB('625d0f12c0763d6e33351561'))
+  dispatch(commentActions.getCommentDB('625cc6e4fe68645e2855bca9'))
 
 })
 

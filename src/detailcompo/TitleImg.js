@@ -5,7 +5,7 @@ const TitleImg = (props) => {
   const post = useSelector(state => state.comment.list.post[0])
 
 console.log(post.postImg)
-
+if(!post)return
   return (
     <>
       <ImgBox>

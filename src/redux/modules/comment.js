@@ -13,7 +13,7 @@ const deleteComment = createAction(DEL_COMMENT, (comment) => ({ comment }));
 const initialState = {
   list: 
     {
-      post: {
+      post: [{
         postId: "",
         postTitle: "아이유가 운영하는 풀하우스",
         postDesc: "",
@@ -29,7 +29,7 @@ const initialState = {
           laundry: false,
           parkinglot: false,
         },
-      },
+      }],
 
       comment: [{
         postId: "고유id",
@@ -73,7 +73,7 @@ const addCommentDB = (contents, postId) => {
     //   await axios({
     //     method: "post",
     //     url: `/api/commentPost/:${postId}`,
-    //     data: comments,
+    //     data: contents,
     //     headers: {
     //       // authorization: `Bearer ${token}`,
     //     },

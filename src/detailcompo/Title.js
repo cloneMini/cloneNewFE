@@ -9,10 +9,11 @@ const Title = (props) => {
   const comment_list = useSelector(state => state.comment.list.comment)
 
 console.log(comment_list)
-
+  if(!post)return
   return (
     <>
       <Wrap>
+        
         <PostTitle>{post.postTitle}</PostTitle>
 
         <Btngroup>
