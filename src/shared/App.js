@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
+import Addhost from '../pages/Addhost';
 
 
 
@@ -20,7 +21,7 @@ function App() {
         <Route exact path='/detailpage/:postId' component={DetailPage}/>
         <Route exact path='/user/login' component={Login}></Route>
         <Route exact path='/user/signUp' component={SignUp}></Route>
-
+        <Route exact path='/addhost' component={Addhost}/>
       </BrowserRouter>
     </div>
   );
