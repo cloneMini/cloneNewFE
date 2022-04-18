@@ -67,7 +67,7 @@ const addCommentDB = (contents, postId) => {
       ...initialState.list.comment[0],
       contents:contents
     }
-    console.log(contents)
+    console.log(contents, postId)
    
     try {
       await axios({

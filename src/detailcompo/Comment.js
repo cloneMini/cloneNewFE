@@ -10,12 +10,12 @@ import { GoStar } from "react-icons/go";
 
 const Comment = (props) => {
   const dispatch = useDispatch();
-  const params = useParams();
   const [comment, setComment] = React.useState("");
   const post = useSelector((state) => state.comment.list.post);
   const comment_list = useSelector((state) => state.comment.list.comment);
+  const paramsId = useParams().postId
 
-  // console.log(post)
+  console.log(paramsId)
 
   const handleform = (e) => {
     setComment(e.target.value);
@@ -26,7 +26,7 @@ const Comment = (props) => {
       window.alert("내용을 입력해주세요!");
       return;
     }
-    dispatch(commentActions.addCommentDB(comment,'625cc6e4fe68645e2855bca9'));
+    dispatch(commentActions.addCommentDB(comment,paramsId));
     window.alert("작성이 완료 되었습니다!");
     setComment("");
   };
