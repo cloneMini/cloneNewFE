@@ -47,13 +47,13 @@ const getCommentDB = (postId) => {
     try {
       await axios({
         method: "get",
-        url: `/api/postDetail/:${postId}`,
+        url: `http://3.38.178.66/api/postDetail/${postId}`,
         headers: {
           // authorization: `Bearer ${token}`,
         },
       }).then((response) => {
         console.log(response);
-        dispatch(setComment(response));
+        dispatch(setComment(response.data));
       });
     } catch (err) {
       console.log(err);

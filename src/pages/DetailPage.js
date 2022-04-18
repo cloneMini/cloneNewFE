@@ -5,9 +5,18 @@ import TitleImg from "../detailcompo/TitleImg";
 import Introduce from "../detailcompo/Introduce";
 import Header from "../component/Header";
 import ScrollEffect from "../detailcompo/ScrollEffect";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
+
+
 const DetailPage = () => {
+const dispatch = useDispatch()
 
 
+React.useEffect(() =>{
+  dispatch(commentActions.getCommentDB('625cc6e4fe68645e2855bca9'))
+
+})
 
   return (
     <>
@@ -18,10 +27,7 @@ const DetailPage = () => {
         <TitleImg></TitleImg>
          <Introduce></Introduce>
         </Wrap>
-       
-     
- 
-   
+
     </>
   );
 };
