@@ -1,58 +1,273 @@
 import React from "react";
 import styled from "styled-components";
 import MainHeader from "../component/MainHeader";
+import {
+  curious,
+  seoul,
+  daegu,
+  daejun,
+  ulsan,
+  exotic,
+  dynamic,
+} from "../image/index";
 
-const Main = () => {
-    return (
-        <>
-        <WholeBody>
-            <MainHeader />
-                <Box1>
-                    <PinkBox>
-                    <Text>10만 명에 달하는 우크라이나 피란민에게 임시 숙소를 제공해주세요</Text>
-                    <PinkBtn>
-                        자세히 알아보기
-                    </PinkBtn>
-                    </PinkBox>
-                   
-                </Box1>
-        </WholeBody>
-        </>
-    )
-}
-const WholeBody = styled.body`
-background-color:black;
-`
+const Main = (props) => {
+  return (
+    <>
+      <MainHeader />
+      <Box2>
+        <PinkBox>
+          <Text0>
+            10만 명에 달하는 우크라이나 피란민에게 임시 숙소를 제공해주세요
+          </Text0>
+          <PinkBtn>자세히 알아보기</PinkBtn>
+        </PinkBox>
+      </Box2>
+      <Box3>
+        <Image1 src={curious} />
+        <Image1Div>
+          <CuriousDorm>호기심을 자극하는 숙소로 떠나보세요</CuriousDorm>
+          <FlexBtn>유연한 검색</FlexBtn>
+        </Image1Div>
+      </Box3>
+      <Box4>
+        <Excting>설레는 다음 여행을 위한 아이디어</Excting>
+      </Box4>
+      <Box5>
+        <CityBox>
+          <CityNameBox src={seoul} />
+          <CityName>
+            <City>서울</City>
+            <Distance>331km 거리</Distance>
+          </CityName>
+        </CityBox>
+        <CityBox>
+          <CityNameBox src={daegu} />
+          <CityName>
+            <City>대구</City>
+            <Distance>95km 거리</Distance>
+          </CityName>
+        </CityBox>
+        <CityBox>
+          <CityNameBox src={daejun} />
+          <CityName>
+            <City>울산</City>
+            <Distance>55km 거리</Distance>
+          </CityName>
+        </CityBox>
+        <CityBox>
+          <CityNameBox src={ulsan} />
+          <CityName>
+            <City>대전</City>
+            <Distance>204km 거리</Distance>
+          </CityName>
+        </CityBox>
+      </Box5>
+      <Excting>에어비앤비 체험 둘러보기</Excting>
+      <Box6>
+          <StreetDiv>
+              <Image2 src={exotic} />
+        <EnjoyableDiv>
+          <ExperienceTxt>여행 중 만나는<br/> 이색적인 즐길거리</ExperienceTxt>
+          <ExperienceBtn>체험</ExperienceBtn>
+        </EnjoyableDiv>
+          </StreetDiv>
+          <StreetDiv>
+          <Image2 src={dynamic} />
+        <EnjoyableDiv>
+          <ExperienceTxt>집에서 만나는<br/> 다양한 즐길 거리</ExperienceTxt>
+          <ExperienceBtn>온라인 체험</ExperienceBtn>
+        </EnjoyableDiv>
+        </StreetDiv>
+            
+        
+      </Box6>
+    </>
+  );
+};
 
-const Box1 = styled.div`
-margin-top:60px;
-`
+const Box2 = styled.div`
+  background-color: black;
+  margin: 0 auto;
+  padding: 20px 0;
+`;
 const PinkBox = styled.div`
-width:90vw;
-height:42vh;
-margin:0 10vh;
-background-color:#FF385C;
-display:grid;
-border-radius:10px;
-`
-const Text = styled.div`
-font-size:50px;
-font-weight:600;
-color:#ffffff;
-text-align:center;
-margin:auto 14vw;
-`
+  width: 90vw;
+  height: 42vh;
+  margin: 10vh;
+  background-color: #ff385c;
+  display: grid;
+  border-radius: 10px;
+`;
+const Text0 = styled.div`
+  font-size: 50px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  margin: auto 14vw;
+`;
 
 const PinkBtn = styled.button`
-background-color:transparent;
-width:120px;
-height:40px;
-margin:10px auto;
-font-size:16px;
-font-weight:500;
-color:white;
-border:1px white solid;
-border-radius:5px ;
+  background-color: transparent;
+  width: 120px;
+  height: 40px;
+  margin: 10px auto;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  border: 1px white solid;
+  border-radius: 5px;
+`;
+
+const Box3 = styled.div`
+  background-color: linear-gradient(90deg, black 50%, white 50%);
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  position: relative;
+  margin-bottom: 5vh;
+`;
+
+const CuriousDorm = styled.div`
+  font-size: 6vh;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+const FlexBtn = styled.button`
+  background-color: #ffffff;
+  color: linear-gradient(90deg, #6f019c 0%, #c6017e 135.12%);
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  left: 45%;
+  top: 70%;
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  border-radius: 30px;
+`;
+
+const Image1 = styled.img`
+  width: 90vw;
+  border-radius: 10px;
+  vertical-align: middle;
+  position: absolute;
+  margin: 10vh;
+`;
+const Image1Div = styled.div`
+  width: 90vw;
+  border-radius: 10px;
+`;
+
+const Box4 = styled.div`
+  background: white;
+  margin: auto;
+  width: 100%;
+  height: 10vh;
+`;
+const Excting = styled.div`
+  display: inline-block;
+  justify-content: space-between;
+  width: 90vw;
+  height: 8vh;
+  margin: 8vh auto;
+  font-size: 5vh;
+  font-weight: 600;
+  text-align: left;
+  margin: 10vh;
+`;
+const Box5 = styled.div`
+  margin: 10vh 4.5vw 0 4.5vw;
+  background-color: white;
+  display: flex;
+`;
+
+const CityBox = styled.div`
+  dixplay: flex;
+  margin: 1.9vh;
+`;
+
+const CityNameBox = styled.img`
+  width: 21vw;
+  height: 30vh;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+`;
+const CityName = styled.div`
+  width: 21vw;
+  height: 22vh;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background: #bc1a6e;
+  margin-top: -5px;
+`;
+
+const City = styled.div`
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  padding: 15px;
+`;
+
+const Distance = styled.div`
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 300;
+  text-align: left;
+  padding: 0 0 0 15px;
+`;
+
+const Box6 = styled.div`
+  margin: 0 4.5vw;
+  display:flex;
+`;
+
+const StreetDiv = styled.div`
+margin:0 1.5vw 0 0;
 `
+
+const Image2 = styled.img`
+  width: 44.5vw;
+  border-radius: 10px;
+`;
+const EnjoyableDiv = styled.div`
+  width: 45vw;
+  position: relative;
+`;
+const ExperienceTxt = styled.div`
+  font-size: 6vh;
+  font-weight: 600;
+  color: #ffffff;
+  position: relative;
+  top: 0%;
+  left: 40%;
+  bottom: 80vh;
+  transform: translate(-50%, -100%);
+  margin: 4vw;
+  text-align: left;
+`;
+const ExperienceBtn = styled.button`
+  color: #000000;
+  background: #ffffff;
+  border: none;
+  width: 10vw;
+  height: 5vh;
+  text-align: center;
+  position: relative;
+  top: 0%;
+  left: 10%;
+  bottom: 100vh;
+  transform: translate(-50%, -90%);
+  margin: 4vw;
+  border-radius: 10px;
+  font-size: 1.01rem;
+  font-weight: 500;
+`;
 
 export default Main;
