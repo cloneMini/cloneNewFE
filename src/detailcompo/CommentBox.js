@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-
+import { actionCreators as commentActions } from "../redux/modules/comment";
+import { useDispatch} from "react-redux";
 const CommentBox = (props) => {
 
-
-
+  console.log(props)
+const dispatch = useDispatch()
+const deleteCom = () => {
+ dispatch(commentActions.deleteCommentDB(props._id))
+}
 
   return (
     <>
@@ -19,7 +23,7 @@ const CommentBox = (props) => {
           </NameDate>
         </UserProfile>
         <CommentContent>
-          {props.contents}
+          {props.contents} <button onClick={deleteCom}>삭제</button>
         </CommentContent>
       </Comment>
     </>

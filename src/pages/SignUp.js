@@ -22,16 +22,16 @@ const SignUp = (props) => {
   const [pwdCheck2, setPwdCheck2] = React.useState("");
   const [emailCheck, setEmailCheck] = React.useState("");
 
-  console.log(email, password, nickName);
+  
 
   const onChange = useCallback(e => {
     setUserProfile(e.target.value)
   },[])
 
   const checkEmail = (e) => {
-    console.log(e);
+ 
     if (e.key === "Enter") {
-      console.log(e.target.value);
+     
       if (e.target.value === "") {
         setEmailCheck("아이디를 입력해주세요.");
         return;

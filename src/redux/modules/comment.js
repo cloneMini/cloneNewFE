@@ -69,19 +69,19 @@ const addCommentDB = (contents, postId) => {
     }
     console.log(contents)
    
-    // try {
-    //   await axios({
-    //     method: "post",
-    //     url: `/api/commentPost/:${postId}`,
-    //     data: contents,
-    //     headers: {
-    //       // authorization: `Bearer ${token}`,
-    //     },
-    //   });
-    //   dispatch(addComment());
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      await axios({
+        method: "post",
+        url: `http://3.38.178.66/api/commentPost/${postId}`,
+        data: {contents},
+        headers: {
+          // authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(addComment());
+    } catch (err) {
+      console.log(err);
+    }
     dispatch(addComment(_comments));
   };
 };
@@ -90,7 +90,7 @@ const deleteCommentDB = (commentId) => {
   return async function (dispatch, getState) {
     await axios({
       method: "DELETE",
-      url: `/api/commentDelete/:${commentId}`,
+      url: `http://3.38.178.66/api/commentDelete/${commentId}`,
       headers: {
         // authorization: `Bearer ${token}`,
       },
@@ -129,6 +129,7 @@ const actionCreators = {
   setComment,
   addCommentDB,
   getCommentDB,
+  deleteCommentDB,
 };
 
 export { actionCreators };

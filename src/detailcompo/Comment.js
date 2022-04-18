@@ -26,7 +26,7 @@ const Comment = (props) => {
       window.alert("내용을 입력해주세요!");
       return;
     }
-    dispatch(commentActions.addCommentDB(comment));
+    dispatch(commentActions.addCommentDB(comment,'625cc6e4fe68645e2855bca9'));
     window.alert("작성이 완료 되었습니다!");
     setComment("");
   };

@@ -183,6 +183,7 @@ const PinkButton = styled.button`
 
 const Fuck = styled.div`
   color: #717171;
+  text-align: center;
   font-size: 14px;
   margin: 24px 0px 0px 0px;
   font-weight: 600;

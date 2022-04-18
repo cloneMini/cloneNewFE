@@ -5,7 +5,7 @@ import { BsDoorOpen, BsKey } from "react-icons/bs";
 import { MdOutlinePlace } from "react-icons/md";
 import { BiBed } from "react-icons/bi";
 import { MdBed } from "react-icons/md";
-import Calendarss from '../component/Calender';
+import Calender1 from '../component/Calender'
 
 const IntroBox = () => {
 
@@ -125,7 +125,9 @@ const IntroBox = () => {
           </SleepP>
           <IntroP>여행 날짜를 입력하여 정확한 요금을 확인하세요.</IntroP>
         </div>
-        <Calendarss/>
+   
+              <Calender1></Calender1>
+
         <Cfooter>
           <div>달력 푸터</div>
           <div> 지우기 </div>
