@@ -14,7 +14,6 @@ const Login = () => {
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [userInfo, setUserInfo] = React.useState({ email: "", password: "" });
 
   return (
