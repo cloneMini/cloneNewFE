@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+
 const CommentBox = (props) => {
-  // const comment = useSelector((state) => state.comment.list.comment)
+
 
 
 
