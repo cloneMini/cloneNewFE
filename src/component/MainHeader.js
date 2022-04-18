@@ -22,7 +22,7 @@ const MainHeader = () => {
             <GlobeBtn>
               <Globe fill="white" />
             </GlobeBtn>
-            <ProfileBtn>
+            <ProfileBtn onClick="location.href=('/user/login')">
               <img src={profile1} width="30%" />
               <img src={profile2} width="55%" />
             </ProfileBtn>

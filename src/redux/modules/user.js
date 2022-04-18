@@ -25,6 +25,31 @@ const initialState = {
 };
 
 //Middleware Action
+const loginAction = (email, password) => {
+  return async function (dispatch, getState, {history}) {
+    try {
+      await axios({
+        method: "post",
+        url: "http://3.38.178.66/user/login",
+        data: {
+          email: email,
+          password: password,
+        },
+      }).then((res) => {
+        console.log(res);
+        const accessToken = res.data.token;
+        //쿠키에 토큰 저장
+        setCookie("ok", `${accessToken}`);
+        dispatch(setUser(res.data.token));
+        history.push("/");
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+
 const idCheck = (email, password, nickName, userProfile) => {
   return function (dispatch) {
     axios
@@ -119,6 +144,7 @@ export default handleActions(
 const actionCreators = {
   idCheck,
   signupDB,
+  loginAction,
 };
 
 export { actionCreators };

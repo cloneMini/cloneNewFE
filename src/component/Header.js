@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { logo, search, profile1, profile2, globe } from "../image/index";
-
+import {history} from "../redux/configureStore";
 
 const Header = () => {
   return (
@@ -20,7 +20,9 @@ const Header = () => {
         <div>
           <img src={globe} width="45%" />
         </div>
-        <ProfileBtn>
+        <ProfileBtn onClick={
+          history.push('/user/login')
+          }>
           <img src={profile1} width="30%" />
           <img src={profile2} width="55%" />
         </ProfileBtn>
