@@ -8,7 +8,7 @@ const Header = () => {
     <HeadDiv>
       <Center>
       <div>
-        <img src={logo} width="118px" style={{paddingLeft:" 15px"}} />
+        <img src={logo} width="125px" style={{paddingLeft:" 15px"}} />
       </div>
       <SearchBtn>
         <SearchTxt>검색 시작하기</SearchTxt>

@@ -1,56 +1,180 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Header from "../component/Header";
 
-const SignUp = () => {
-    const [email, setEmail] = useState('');
-    const [nickName, setNickName] = useState('');
-    const [userProfile, setUserProfile] = useState('');
-    const [password, setPassword] = useState('');
-    const [password2, setPassword2] = useState('');
+import { actionCreators as userActions } from "../redux/modules/user";
+import { idVal, pwdVal } from "../shared/validation";
 
- //password, userProfile
+const SignUp = (props) => {
+
+  const dispatch = useDispatch();
+
+  const dupState = useSelector((state) => state.user.is_check);
+  console.log(dupState);
+
+  const [email, setEmail] = React.useState("");
+  const [nickName, setNickName] = React.useState("");
+  const [nickCheck, setNickCheck] = React.useState("");
+  const [userProfile, setUserProfile] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [password2, setPassword2] = React.useState("");
+  const [pwdCheck, setPwdCheck] = React.useState("");
+  const [pwdCheck2, setPwdCheck2] = React.useState("");
+  const [emailCheck, setEmailCheck] = React.useState("");
+
+  const onKey = (e) => {
+    const value = e.target.value;
+  }; 
+
+  const checkEmail = (val) => {
+    if (val === "") {
+      setEmailCheck("아이디를 입력해주세요.");
+      return;
+    }
+    if (!idVal(val)) {
+      setEmailCheck("아이디가 형식에 맞지 않습니다.(알파벳4~20자)");
+      return;
+    }
+  };
+
+  const checkNN = (val) => {
+    if (val === "") {
+      setNickCheck("닉네임을 입력해주세요.");
+      return;
+    }
+    if (!idVal(val)) {
+      setNickCheck("닉네임이 형식에 맞지 않습니다.(알파벳4~20자)");
+      return;
+    }
+  };
+
+  const checkPW = (val) => {
+    if (val === "") {
+      setPwdCheck("패스워드를 입력해주세요.");
+      return;
+    }
+    if (val.length < 4) {
+      setPwdCheck("패스워드를 확인해주세요.");
+      return;
+    }
+    setPwdCheck("사용가능한 패스워드입니다.");
+  };
+
+  const checkPW2 = (val) => {
+    if (val === "") {
+      setPwdCheck2("패스워드를 한 번 더 입력해주세요.");
+      return;
+    }
+    if (val.length < 4) {
+      setPwdCheck2("패스워드를 한 번 더 확인해주세요.");
+      return;
+    }
+    if (val === password) {
+      setPwdCheck2("패스워드가 일치합니다!");
+    }
+    setPwdCheck2("패스워드가 일치하지 않습니다.");
+  };
 
 
-    return (
+  const checkDup = () => {
+    dispatch(userActions.checkID(email));
+    setEmailCheck("");
+  };
+
+  const signup = () => {
+    if (!(dupState))
+      return window.alert("입력한 내용을 다시 확인해주세요!");
+
+    dispatch(userActions.signupDB(email, password, password2));
+  };
+
+
+
+  return (
     <>
       <Header />
-    
       <LoginBody>
         <LoginBox>
-
           <UpperDiv>
-            <div>로그인 또는 회원가입</div>
+            <div>회원가입</div>
           </UpperDiv>
-          
           <DownDiv>
             <Welcome>에어비앤비에 오신 것을 환영합니다.</Welcome>
-
             <InputUpDiv>
-            <Input placeholder="Email" type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}}></Input>
+              <Input
+                name="Email"
+                placeholder="Email"
+                type="text"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                onKeyUp={onKey}
+                onKeyPress={checkEmail}
+              ></Input>
+              <P>{emailCheck}</P>
             </InputUpDiv>
             <InputMidDiv>
-            <Input placeholder="닉네임" label='닉네임' value={nickName} onChange={(e)=>{setNickName(e.target.value)}}></Input>
+              <Input
+                placeholder="닉네임"
+                value={nickName}
+                onChange={(e) => {
+                  setNickName(e.target.value);
+                }}
+                onKey={onKey}
+                onKeyPress={checkNN}
+              ></Input>
+              <P>{nickCheck}</P>
             </InputMidDiv>
             <InputMidDiv>
-            <Input placeholder="프로필이미지(URL) " label='프로필이미지' value={userProfile} onChange={(e)=>{setUserProfile(e.target.value)}}></Input>
+              <Input
+                placeholder="프로필이미지를 넣어주세요(URL)"
+                value={userProfile}
+                onChange={(e) => {
+                  setUserProfile(e.target.value);
+                }}
+                onKey={onKey}
+              ></Input>
             </InputMidDiv>
             <InputMidDiv>
-            <Input placeholder="비밀번호" label='비밀번호' value={password} onChange={(e)=>{setPassword(e.target.value)}}></Input>
+              <Input
+                placeholder="비밀번호"
+                type='password'
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                onKey={onKey}
+                onKeyPress={checkPW}
+              ></Input>
+              <P>{pwdCheck}</P>
             </InputMidDiv>
             <InputDownDiv>
-            <Input placeholder="비밀번호 확인" label='비밀번호 확인' value={password2} onChange={(e)=>{setPassword2(e.target.value)}}></Input>
-
+              <Input
+                placeholder="비밀번호 확인"
+                type='password'
+                value={password2}
+                onChange={(e) => {
+                  setPassword2(e.target.value);
+                }}
+                onKey={onKey}
+                onKeyPress={checkPW2}
+              ></Input>
+              <P>{pwdCheck2}</P>
             </InputDownDiv>
             <ContinueDiv>
-                <Continue>가입</Continue>
-                </ContinueDiv>
+              <Continue onClick={()=>{
+                signup()
+              }}>가입</Continue>
+            </ContinueDiv>
           </DownDiv>
         </LoginBox>
       </LoginBody>
     </>
   );
 };
+
 const LoginBody = styled.div`
   justify-content: center;
   display: flex;
@@ -58,7 +182,7 @@ const LoginBody = styled.div`
 `;
 
 const LoginBox = styled.div`
-  height: 650px;
+  height: 720px;
   width: 100%;
   max-width: 568px;
   border: 1.5px solid rgb(235, 235, 235);
@@ -80,6 +204,12 @@ const UpperDiv = styled.div`
   border-bottom: 1.5px solid rgb(235, 235, 235);
   font-weight: 800;
 `;
+const P = styled.p`
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #212121;
+`;
 
 const DownDiv = styled.div`
   padding: 24px;
@@ -88,72 +218,81 @@ const DownDiv = styled.div`
 `;
 
 const Welcome = styled.h3`
-font-size:22px;
-line-height:26px;
-color:rgb(34, 34, 34);
-font-weight:400px;
-margin-bottom:8px;
-margin-left:16px;
-text-align:left;
-`
+  font-size: 22px;
+  line-height: 26px;
+  color: rgb(34, 34, 34);
+  font-weight: 400px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  text-align: left;
+`;
 
 const InputUpDiv = styled.div`
-display:flex;
-box-sizing:border-box;
-border:1.5px solid rgb(235, 235, 235);
-border-top-left-radius:12px;
-border-top-right-radius:12px;
-border-bottom:none;
-`
-
+  display: grid;
+  box-sizing: border-box;
+  border: 1.5px solid rgb(235, 235, 235);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: none;
+`;
 
 const InputMidDiv = styled.div`
-display:flex;
-box-sizing:border-box;
-border-left:1.5px solid rgb(235, 235, 235);
-border-top:1.5px solid rgb(235, 235, 235);
-border-right:1.5px solid rgb(235, 235, 235);
-`
+  display: grid;
+  box-sizing: border-box;
+  border-left: 1.5px solid rgb(235, 235, 235);
+  border-top: 1.5px solid rgb(235, 235, 235);
+  border-right: 1.5px solid rgb(235, 235, 235);
+`;
 
 const InputDownDiv = styled.div`
-display:flex;
-box-sizing:border-box;
-border:1.5px solid rgb(235, 235, 235);
-border-bottom-left-radius:12px;
-border-bottom-right-radius:12px;
-`
+  display: grid;
+  box-sizing: border-box;
+  border: 1.5px solid rgb(235, 235, 235);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+`;
 
 const Input = styled.input`
-width:100%;
-border:none;
-outline:none;
-padding:0px;
-margin:26px;
-min-height:1px;
-background-color:transparent;
-text-align:start;
-display:inline-block;
-`
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0px;
+  margin: 26px;
+  min-height: 1px;
+  background-color: transparent;
+  text-align: start;
+  display: inline-block;
+`;
 
 const ContinueDiv = styled.div`
-margin-top:16px;
-margin-bottom:24px;
-`
+  margin-top: 16px;
+  margin-bottom: 24px;
+`;
 
 const Continue = styled.button`
-background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
-cursor:pointer;
-display:inline-block;
-margin-top:40px;
-text-align:center;
-font-size:16px;
-width:100%;
-color:#ffffff;
-border:none;
-outline:none;
-height:50px;
-border-radius:12px;
-font-weight:700;
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  height: 50px;
+  border-radius: 12px;
+  font-weight: 700;
 `
+  
+
 
 export default SignUp;

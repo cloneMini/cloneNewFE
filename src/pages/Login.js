@@ -1,38 +1,67 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Header from "../component/Header";
 
+import { actionCreators as userActions } from "../redux/modules/user";
+
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
- //password, userProfile
+  const login = () => {
+    if (!(userInfo.id && userInfo.password)) return window.alert('로그인 실패');
+    dispatch(userActions.loginAction(userInfo));
+  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const [userInfo, setUserInfo] = React.useState({ email: "", password: "" });
 
-    return (
+  return (
     <>
       <Header />
-    
+
       <LoginBody>
         <LoginBox>
-
           <UpperDiv>
             <div>로그인 또는 회원가입</div>
           </UpperDiv>
-          
+
           <DownDiv>
             <Welcome>에어비앤비에 오신 것을 환영합니다.</Welcome>
 
             <InputUpDiv>
-            <Input placeholder="Email" type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}}></Input>
+              <Input
+                placeholder="Email"
+                type="text"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                onkeyPress={(e)=>{
+                  setUserInfo({...userInfo, email:e.target.value})
+                }}
+              ></Input>
             </InputUpDiv>
             <InputDownDiv>
-            <Input placeholder="비밀번호" label='비밀번호 확인' value={password} onChange={(e)=>{setPassword(e.target.value)}}></Input>
-
+              <Input
+                placeholder="비밀번호"
+                type="password"
+                label="비밀번호 확인"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                onkeyPress={(e)=>{
+                  setUserInfo({...userInfo, password:e.target.value})
+                }}
+              ></Input>
             </InputDownDiv>
             <ContinueDiv>
-                <Continue>로그인</Continue>
-                </ContinueDiv>
+              <Continue onClick={()=> {
+                login()
+              }}>로그인</Continue>
+            </ContinueDiv>
           </DownDiv>
         </LoginBox>
       </LoginBody>
@@ -76,63 +105,71 @@ const DownDiv = styled.div`
 `;
 
 const Welcome = styled.h3`
-font-size:22px;
-line-height:26px;
-color:rgb(34, 34, 34);
-font-weight:400px;
-margin-bottom:8px;
-margin-left:16px;
-text-align:left;
-`
+  font-size: 22px;
+  line-height: 26px;
+  color: rgb(34, 34, 34);
+  font-weight: 400px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  text-align: left;
+`;
 
 const InputUpDiv = styled.div`
-display:flex;
-box-sizing:border-box;
-border:1.5px solid rgb(235, 235, 235);
-border-top-left-radius:12px;
-border-top-right-radius:12px;
-border-bottom:none;
-`
+  display: flex;
+  box-sizing: border-box;
+  border: 1.5px solid rgb(235, 235, 235);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: none;
+`;
 
 const InputDownDiv = styled.div`
-display:flex;
-box-sizing:border-box;
-border:1.5px solid rgb(235, 235, 235);
-border-bottom-left-radius:12px;
-border-bottom-right-radius:12px;
-`
+  display: flex;
+  box-sizing: border-box;
+  border: 1.5px solid rgb(235, 235, 235);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+`;
 
 const Input = styled.input`
-width:100%;
-border:none;
-outline:none;
-padding:0px;
-margin:26px;
-min-height:1px;
-background-color:transparent;
-text-align:start;
-display:inline-block;
-`
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0px;
+  margin: 26px;
+  min-height: 1px;
+  background-color: transparent;
+  text-align: start;
+  display: inline-block;
+`;
 
 const ContinueDiv = styled.div`
-margin-top:16px;
-margin-bottom:24px;
-`
+  margin-top: 16px;
+  margin-bottom: 24px;
+`;
 
 const Continue = styled.button`
-background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
-cursor:pointer;
-display:inline-block;
-margin-top:40px;
-text-align:center;
-font-size:16px;
-width:100%;
-color:#ffffff;
-border:none;
-outline:none;
-height:50px;
-border-radius:12px;
-font-weight:700;
-`
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  height: 50px;
+  border-radius: 12px;
+  font-weight: 700;
+`;
 
 export default Login;
