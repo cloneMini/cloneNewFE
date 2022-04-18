@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { GoStar } from "react-icons/go";
-
+import { BsFillFlagFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 const FollowBar = () => {
 
+  const post = useSelector(state => state.comment.list.post)
+  console.log(post)
 
   return (
     <>
@@ -14,22 +17,24 @@ const FollowBar = () => {
         <NavBox>
           <NavContent>
             <P>요금을 확인하려면 날짜를 입력하세요.</P>
-
-            <p style={{ margin: "3px 5px 24px 0px", fontWeight: "500" }}>
-              <span style={{ marginBottom: "5px" }}>
-                <GoStar style={{ color: "#ff385c", width: "13px" }} />
+              <Ctext>
+              <span style={{ marginTop: '3px' }}>
+                <GoStar style={{ color: "#ff385c", width: "13px" , marginRight:"3px", paddingTop:"3px" }} />
               </span>
-              4.76 ·
+            <p style={{ margin: "3px 5px 24px 0px", fontWeight: "500" }}>
+             <span> 4.76 ·</span>
               <span
                 style={{
                   fontWeight: "500",
                   textDecoration: "underline",
                   marginLeft: "4px",
+                  fontSize:"14px",
+                  
                 }}
               >
-                comment.length
+                후기{post.postCommentCnt}개
               </span>
-            </p>
+            </p></Ctext>
 
             <BoxWrap>
               <NavSbox>
@@ -47,9 +52,12 @@ const FollowBar = () => {
                 <BoxText2>게스트 1명</BoxText2>
               </NavSbox1>
             </BoxWrap>
-            <PinkButton>예약 가능 여부 보기</PinkButton>
+            <PinkButton onClick={()=> { window.alert("어디가.. 항해 해야지...")}}>예약 가능 여부 보기</PinkButton>
           </NavContent>
         </NavBox>
+        <Fuck onClick={()=> { window.alert("봐주세요...")}}>
+          <span style={{marginRight:" 16px", paddingTop:"15"}}><BsFillFlagFill /></span>
+          숙소 신고하기</Fuck>
       </NavBar>
     </BarContainer>
     </>
@@ -57,12 +65,19 @@ const FollowBar = () => {
 };
 
 export default FollowBar;
+const Ctext = styled.div`
+flex-direction: row;
+display: flex;
+`
+
 
 const BarContainer = styled.div`
   min-width: 500px;
   width: 100%;
-  height: 100%;
+  height: 1800px;
   align-items: stretch;
+  
+  
 `;
 
 const NavBar = styled.div`
@@ -73,6 +88,9 @@ const NavBar = styled.div`
   height: 328px;
 
   padding: 24px;
+  position: sticky;
+  top: 100px;
+ 
 `;
 
 const NavBox = styled.div`
@@ -83,6 +101,8 @@ const NavBox = styled.div`
   border-radius: 12px;
   text-align: left;
   border: 1px solid rgb(221, 221, 221);
+  
+ 
 `;
 
 const NavContent = styled.div`
@@ -105,6 +125,7 @@ const NavSbox = styled.div`
   flex-direction: row;
   width: 100%;
   height: 56px;
+  
 `;
 const NavSbox1 = styled.div`
   width: 100%;
@@ -155,4 +176,17 @@ const PinkButton = styled.button`
   font-size: 16px;
   font-weight: 550;
   align-items: center;
+  cursor: pointer;
+
 `;
+
+const Fuck = styled.div`
+  color: #717171;
+  font-size: 14px;
+  margin: 24px 0px 0px 0px;
+  font-weight: 600;
+  text-decoration: underline black;
+  cursor: pointer;
+
+  
+`

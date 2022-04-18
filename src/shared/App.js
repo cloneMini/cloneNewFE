@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Route exact path='/' component={Main}></Route>
         <Route exact path='/listpage' component={ListPage}></Route>
-        <Route exact path='/detailpage' component={DetailPage}/>
+        <Route exact path='/detailpage/:postId' component={DetailPage}/>
         <Route exact path='/user/login' component={Login}></Route>
         <Route exact path='/user/signUp' component={SignUp}></Route>
 

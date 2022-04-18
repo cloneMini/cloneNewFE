@@ -8,10 +8,11 @@ import { MdBed } from "react-icons/md";
 const IntroBox = () => {
   return (
     <>
+      {/* 추가 설명 */}
       <Wrap>
         <TextWrap>
           <TextBox>
-            <BsDoorOpen style={{ fontSize: "24px", paddingTop: "12px" }} />
+            <BsDoorOpen style={{ fontSize: "28px", paddingTop: "12px" }} />
             <Pgroup>
               <TitleP>셀프 체크인</TitleP>
               <IntroP>키패드를 이용해 체크인하세요.</IntroP>
@@ -39,7 +40,7 @@ const IntroBox = () => {
           </TextBox1>
         </TextWrap>
       </Wrap>
-
+      {/* 작성자 게시글 내용 */}
       <Wrap>
         <TextWrap1>
           이 방은 코엑스, 도심공항 터미널, 현대백화점, 삼성역 근처에 위치합니다.
@@ -62,14 +63,14 @@ const IntroBox = () => {
           </span>
         </TextWrap1>
       </Wrap>
-
+      {/* 숙박 장소 */}
       <Wrap style={{ padding: "48px 0px 100px" }}>
         <SleepZone>
           <SleepP>숙박 장소</SleepP>
           <BadBox>
             <BadContent style={{ marginBottom: "16px" }}>
-              <BiBed style={{fontSize:"26px"}}/>
-              <MdBed style={{fontSize:"26px", marginLeft:"6px"}}/>
+              <BiBed style={{ fontSize: "26px" }} />
+              <MdBed style={{ fontSize: "26px", marginLeft: "6px" }} />
             </BadContent>
             <BadContent
               style={{
@@ -86,8 +87,50 @@ const IntroBox = () => {
           </BadBox>
         </SleepZone>
       </Wrap>
-
-      <Wrap></Wrap>
+      {/* 숙소 편의 시설 */}
+      <Wrap style={{ paddingTop: "48px" }}>
+        <SleepP> 편의 시설 추가될 공간 </SleepP>
+        <Facilities>
+          <HalfFac>
+            <ImotiText>
+              <span> 이모티</span>
+              <div>아무거나</div>
+            </ImotiText>
+            <ImotiText>
+              <span> 이모티</span>
+              <div>아무거나</div>
+            </ImotiText>
+            <ImotiText>
+              <span> 이모티</span>
+              <div>아무거나</div>
+            </ImotiText>
+          </HalfFac>
+          <HalfFac>
+            <ImotiText>
+              <span> 이모티</span>
+              <div>아무거나</div>
+            </ImotiText>
+            <ImotiText>
+              <span> 이모티</span>
+              <div>아무거나</div>
+            </ImotiText>
+          </HalfFac>
+        </Facilities>
+      </Wrap>
+      {/* 달력 들어가야 되는데 이미지로 할지 고민중  */}
+      <Wrap style={{ paddingTop: "48px" }}>
+        <div>
+          <SleepP style={{ padding: "0px 0px 0px 0px", lineHeight: "25px" }}>
+            체크인 날짜를 선택해주세요.
+          </SleepP>
+          <IntroP>여행 날짜를 입력하여 정확한 요금을 확인하세요.</IntroP>
+        </div>
+        <Calender> 달력 이미지?</Calender>
+        <Cfooter>
+          <div>달력 푸터</div>
+          <div> 지우기 </div>
+        </Cfooter>
+      </Wrap>
     </>
   );
 };
@@ -99,9 +142,8 @@ const Wrap = styled.div`
 
   padding: 32px 0px;
   text-align: left;
-
+  width: 650px;
   align-items: center;
-  display: flex;
 `;
 
 const TextBox = styled.div`
@@ -138,6 +180,9 @@ const TextWrap1 = styled.span`
   line-height: 24px;
   max-width: 450px;
   padding-bottom: 16px;
+  flex-direction: column;
+  display: flex;
+  min-height: 182px;
 `;
 const TextWrap = styled.span``;
 
@@ -146,7 +191,6 @@ const SleepZone = styled.div`
   flex-direction: column;
   width: 207px;
   height: 163px;
-  
 `;
 
 const SleepP = styled.div`
@@ -162,5 +206,32 @@ const BadBox = styled.div`
   border-radius: 10px;
 `;
 
-const BadContent = styled.div`
+const BadContent = styled.div``;
+
+const Facilities = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
+
+const HalfFac = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+`;
+
+const ImotiText = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Calender = styled.div`
+  background-color: #e7e7e7;
+  width: 680px;
+  height: 315px;
+`;
+
+const Cfooter = styled.div`
+justify-content: space-between;
+display: flex;
+`

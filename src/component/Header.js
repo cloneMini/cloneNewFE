@@ -87,6 +87,10 @@ const PostWriteBtn = styled.button`
   }
 `;
 
+const MyPageBtn = styled.img`
+  width: 77px;
+`;
+
 const SearchTxt = styled.div`
   padding-left: 15px;
   font-size: 14px;
