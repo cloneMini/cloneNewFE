@@ -4,7 +4,7 @@ import airprotect from "./Imagegroup/airprotect.PNG"
 import { GoStar } from "react-icons/go";
 import { RiShieldCheckFill } from "react-icons/ri";
 const Host = (props) => {
-  console.log(props);
+
   return (
     <>
 

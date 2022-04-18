@@ -28,17 +28,38 @@ const ScrollEffect = () => {
       {ScrollActive ? (
         <FixedNav>
           <FixdeNavtextBox>
-            <NavMenu>사진</NavMenu>
-            <NavMenu>편의시설</NavMenu>
-            <NavMenu>후기</NavMenu>
-            <NavMenu>위치</NavMenu>
+            <NavMenu
+              onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              }}
+            >
+              사진
+            </NavMenu>
+            <NavMenu
+              onClick={() => {
+                window.scrollTo({ top: 1550, left: 0, behavior: "smooth" });
+              }}
+            >
+              편의시설
+            </NavMenu>
+            <NavMenu     onClick={() => {
+                window.scrollTo({ top: 2455, left: 0, behavior: "smooth" });
+              }}
+           
+            >
+              후기
+            </NavMenu>
+            <NavMenu
+               onClick={() => {
+                window.scrollTo({ top: 3362, left: 0, behavior: "smooth" });
+              }}>위치</NavMenu>
           </FixdeNavtextBox>
         </FixedNav>
       ) : null}
     </div>
   );
 };
-
+// 2962
 export default ScrollEffect;
 
 const FixedNav = styled.div`
@@ -58,8 +79,8 @@ const FixdeNavtextBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  margin:auto;
- 
+  margin: auto;
+
   height: 80px;
 `;
 
@@ -73,10 +94,7 @@ const NavMenu = styled.div`
   margin-right: 25px;
   padding: 30px 0px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     border-bottom: 4px solid #222222;
-    
-
   }
-
 `;

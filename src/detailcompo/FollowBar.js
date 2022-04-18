@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { GoStar } from "react-icons/go";
 import { BsFillFlagFill } from "react-icons/bs";
-
+import { useSelector } from "react-redux";
 const FollowBar = () => {
 
+  const post = useSelector(state => state.comment.list.post)
+  console.log(post)
 
   return (
     <>
@@ -15,22 +17,24 @@ const FollowBar = () => {
         <NavBox>
           <NavContent>
             <P>요금을 확인하려면 날짜를 입력하세요.</P>
-
-            <p style={{ margin: "3px 5px 24px 0px", fontWeight: "500" }}>
-              <span style={{ marginBottom: "5px" }}>
-                <GoStar style={{ color: "#ff385c", width: "13px" }} />
+              <Ctext>
+              <span style={{ marginTop: '3px' }}>
+                <GoStar style={{ color: "#ff385c", width: "13px" , marginRight:"3px", paddingTop:"3px" }} />
               </span>
-              4.76 ·
+            <p style={{ margin: "3px 5px 24px 0px", fontWeight: "500" }}>
+             <span> 4.76 ·</span>
               <span
                 style={{
                   fontWeight: "500",
                   textDecoration: "underline",
                   marginLeft: "4px",
+                  fontSize:"14px",
+                  
                 }}
               >
-                comment.length
+                후기{post.postCommentCnt}개
               </span>
-            </p>
+            </p></Ctext>
 
             <BoxWrap>
               <NavSbox>
@@ -61,6 +65,11 @@ const FollowBar = () => {
 };
 
 export default FollowBar;
+const Ctext = styled.div`
+flex-direction: row;
+display: flex;
+`
+
 
 const BarContainer = styled.div`
   min-width: 500px;

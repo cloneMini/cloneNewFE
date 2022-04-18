@@ -2,7 +2,7 @@ import React from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import styled from "styled-components";
 function KakaoMap(props) {
-  console.log(props);
+  
   return (
     <>
       <div>

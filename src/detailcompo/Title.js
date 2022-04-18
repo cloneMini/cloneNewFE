@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { GoStar } from "react-icons/go";
 import { FiShare } from "react-icons/fi";
 import { BiHeart } from "react-icons/bi";
-
+import {  useSelector } from "react-redux";
 const Title = (props) => {
+  const post = useSelector(state => state.comment.list.post)
+
+console.log(post)
+
   return (
     <>
       <Wrap>
-        <PostTitle>아이유가 운영하는 풀하우스</PostTitle>
+        <PostTitle>{post.postTitle}</PostTitle>
 
         <Btngroup>
           <CommentLocal>
@@ -16,8 +20,8 @@ const Title = (props) => {
               <GoStar style={{ color: "#ff385c", width: "14px", marginRight:"2px" }} />
             
             </span>
-            <p style={{ margin: "0px 5px 3px 0px" }}> 4.82 · 후기x개 ·</p>
-            <p style={{ color: "gray", margin:"0px 0px 3px 0px" }}>post.adress</p>
+            <p style={{ margin: "0px 5px 3px 0px" }}> 4.76 · 후기{post.postCommentCnt}개 ·</p>
+            <p style={{ color: "gray", margin:"0px 0px 3px 0px" }}>{post.address}</p>
           </CommentLocal>
 
           <Btn onClick={() => {window.alert("comming soon")}}>

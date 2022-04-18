@@ -15,13 +15,13 @@ const initialState = {
     {
       post: {
         postId: "",
-        postTitle: "",
+        postTitle: "아이유가 운영하는 풀하우스",
         postDesc: "",
         postImg: "이미지",
         postCharge: "요금",
         address: "송파구, 서울, 한국",
         postCommentCnt: "32",
-        nickName: "별명",
+        nickName: "아이유",
         userProfile: "https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2020/10/PS20100800026.jpg",
         category: {
           room: 1,
@@ -35,7 +35,7 @@ const initialState = {
         postId: "고유id",
         commentId: "댓글 고유 아이디",
         contents: "아 오늘도 역시나 밤을 새는구나 ㅎㅎㅎ 리덕스 연결 완료!",
-        nickName: "아이유",
+        nickName: "아니유",
         userProfile: "https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg",
         commentDate: "2022년 4월",
       }],       
