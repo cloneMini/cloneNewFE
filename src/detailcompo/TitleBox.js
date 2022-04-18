@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import {  useSelector } from "react-redux";
+
+
+
 const TitleBox = () => {
   
+  const post = useSelector(state => state.comment.list.post[0])
   return (
     <>
       <HostWrap>
         <TextWrap>
-          <TextWho>아이유님이 호스팅하는 공동 주택 전체</TextWho>
+          <TextWho>{post.nickName}님이 호스팅하는 공동 주택 전체</TextWho>
           <TextInfo>최대 인원2명 · 침실 1개 · 침대1개 · 욕실 1개</TextInfo>
         </TextWrap>
 
-        <HostImage src="https://cdn.gukjenews.com/news/photo/202201/2388626_2381760_1339.jpg"></HostImage>
+        <HostImage src={post.userProfile}   onClick={() => {
+                window.scrollTo({ top: 9999, left: 0, behavior: "smooth" });
+              }}></HostImage>
       </HostWrap>
     </>
   );
@@ -45,6 +52,7 @@ const HostImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 `;
 
 const TextWrap = styled.div`
