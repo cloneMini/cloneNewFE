@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import Geocode from 'react-geocode';
 import axios from "axios";
+import { getCookie } from "../../shared/Cookie";
 
 const SET_POST = "SET_POST";
 const GET_POST = 'GET_POST'
@@ -14,7 +15,9 @@ const initialState = {
   }
   
 const addPostDB = (data, fileInput) => {
-    return async function(dispatch, getState){
+   let token = getCookie("ok")
+
+       return async function(dispatch, getState){
       let lati = 0;
       let long = 0;
 
@@ -44,8 +47,8 @@ const addPostDB = (data, fileInput) => {
             formData.append('wifi', data.wifi)
             formData.append('laundry', data.laundry)
             formData.append('parkinglot', data.parking)
-            // formData.append('latitude', lati)
-            // formData.append('longtitue', long)
+            formData.append('latitude', lati)
+            formData.append('longitude', long)
             for (var pair of formData.entries()){
                 console.log(pair);
              }
@@ -53,12 +56,12 @@ const addPostDB = (data, fileInput) => {
           }
       axios({
         method : 'post',
-        url : 'http://3.38.178.66/api/hostAdd',
+        url : 'http://52.78.211.107/api/hostAdd',
         data : formData,
-        // headers : {
-        //   Authorization : `Bearer${token}`,
-        //   'Content-Type': 'multipart/form-data',
-        //     },
+        headers : {
+          Authorization : `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+            },
         })
           .then(response=>{
             console.log(response)
@@ -76,7 +79,7 @@ const addPostDB = (data, fileInput) => {
       console.log(manCnt)
       axios({
         method : 'get',
-        url : 'http://3.38.178.66/api/listPage',
+        url : 'http://52.78.211.107/api/listPage',
       })
       .then(response => {
         let post = response.data.post;
