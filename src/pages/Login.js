@@ -9,13 +9,11 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const login = () => {
-    if (!(userInfo.id && userInfo.password)) return window.alert('로그인 실패');
-    dispatch(userActions.loginAction(userInfo));
+    if (!(email && password)) return window.alert('로그인 실패');
+    dispatch(userActions.loginAction(email, password));
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userInfo, setUserInfo] = React.useState({ email: "", password: "" });
-
   return (
     <>
       <Header />
@@ -37,9 +35,6 @@ const Login = () => {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                onkeyPress={(e)=>{
-                  setUserInfo({...userInfo, email:e.target.value})
-                }}
               ></Input>
             </InputUpDiv>
             <InputDownDiv>
@@ -50,9 +45,6 @@ const Login = () => {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
-                }}
-                onkeyPress={(e)=>{
-                  setUserInfo({...userInfo, password:e.target.value})
                 }}
               ></Input>
             </InputDownDiv>
