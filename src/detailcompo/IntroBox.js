@@ -5,11 +5,12 @@ import { BsDoorOpen, BsKey } from "react-icons/bs";
 import { MdOutlinePlace } from "react-icons/md";
 import { BiBed } from "react-icons/bi";
 import { MdBed } from "react-icons/md";
-import Calender1 from '../component/Calender'
+import { GoKeyboard } from "react-icons/go";
+import Calender1 from "../component/Calender";
 
 const IntroBox = () => {
-
-  const post = useSelector(state => state.comment.list.post[0])
+  const post = useSelector((state) => state.comment.list.post[0]);
+  console.log(post)
   return (
     <>
       {/* 추가 설명 */}
@@ -47,8 +48,8 @@ const IntroBox = () => {
       {/* 작성자 게시글 내용 */}
       <Wrap>
         <TextWrap1>
-          {post.postDesc} 
-           
+          {post.postDesc}
+
           <span
             style={{
               fontWeight: "600",
@@ -125,12 +126,14 @@ const IntroBox = () => {
           </SleepP>
           <IntroP>여행 날짜를 입력하여 정확한 요금을 확인하세요.</IntroP>
         </div>
-   
-              <Calender1></Calender1>
+
+        <Calender1></Calender1>
 
         <Cfooter>
-          <div>달력 푸터</div>
-          <div> 지우기 </div>
+          <div style={{ marginLeft: "24px", width: "16px" }}>
+            <GoKeyboard style={{ fontSize: "22px" }} />
+          </div>
+          <Del> 날짜 지우기 </Del>
         </Cfooter>
       </Wrap>
     </>
@@ -234,6 +237,15 @@ const Calender = styled.div`
 `;
 
 const Cfooter = styled.div`
-justify-content: space-between;
-display: flex;
+  justify-content: space-between;
+  display: flex;
+  width: 695px;
+`;
+
+const Del = styled.div`
+margin-right: 10px; 
+font-size :14px;
+text-decoration: underline;
+font-weight: 600;
+
 `

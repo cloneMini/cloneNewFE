@@ -8,7 +8,7 @@ const Title = (props) => {
   const post = useSelector(state => state.comment.list.post[0])
   const comment_list = useSelector(state => state.comment.list.comment)
 
-console.log(comment_list)
+
   if(!post)return
   return (
     <>

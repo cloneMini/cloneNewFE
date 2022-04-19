@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const TitleImg = (props) => {
   const post = useSelector(state => state.comment.list.post[0])
 
-console.log(post.postImg)
+
 if(!post)return
   return (
     <>
@@ -57,6 +57,10 @@ const BigImg = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
+  &:hover{
+  cursor: pointer;
+  filter: brightness(90%);
+}
 `;
 
 const PieceImg = styled.div`
@@ -66,6 +70,10 @@ const PieceImg = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  &:hover{
+  cursor: pointer;
+  filter: brightness(90%);
+}
 `;
 
 const PieceImgR = styled.div`
@@ -76,6 +84,10 @@ const PieceImgR = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 0px 20px 0px 0px;
+  &:hover{
+  cursor: pointer;
+  filter: brightness(90%);
+}
 `;
 
 const PieceImgRd = styled.div`
@@ -86,6 +98,10 @@ const PieceImgRd = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 0px 0px 20px 0px;
+  &:hover{
+  cursor: pointer;
+  filter: brightness(90%);
+}
 `;
 
 

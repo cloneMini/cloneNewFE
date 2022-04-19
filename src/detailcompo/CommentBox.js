@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { useDispatch} from "react-redux";
-
-
-
-
+import { useDispatch } from "react-redux";
+import { MdClose } from "react-icons/md";
 
 const CommentBox = (props) => {
-  
-  
-  console.log(props)
-  
-const dispatch = useDispatch()
-const deleteCom = () => {
- dispatch(commentActions.deleteCommentDB(props._id))
-}
+  const dispatch = useDispatch();
+  const deleteCom = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(commentActions.deleteCommentDB(props._id));
+      window.alert("댓글이 삭제되었습니다.");
+    } else {
+      return;
+    }
+  };
 
+  if (!props.date) {
+    return;
+  }
+  const date1 = props.date?.split(",")[0].split("/");
   return (
     <>
       <Comment>
@@ -26,11 +28,12 @@ const deleteCom = () => {
           </div>
           <NameDate 이름이랑 날짜 싸기>
             <UserName> {props.nickName}</UserName>
-            <Date> {props.commentDate}</Date>
+            <Date> {`${date1[2]}년 ${date1[0]}월`}</Date>
           </NameDate>
         </UserProfile>
         <CommentContent>
-          {props.contents} <button onClick={deleteCom}>삭제</button>
+          {props.contents}{" "}
+          <MdClose onClick={deleteCom } style ={{cursor:"pointer", marginLeft:"15px"}} ></MdClose>
         </CommentContent>
       </Comment>
     </>
