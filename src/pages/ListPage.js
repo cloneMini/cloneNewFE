@@ -6,9 +6,13 @@ import homeIcon from '../elements/home.png';
 import Header from "../component/Header";
 import { useDispatch, useSelector } from "react-redux";
 import {actionCreators as postActions} from '../redux/modules/post';
+import { useHistory } from "react-router-dom";
 
 function ListPage(){
+    const history = useHistory()
     const post_list = useSelector(state => state.post.list);
+    console.log(post_list.postId)
+
     const dispatch = useDispatch();
     const mapRef = useRef(null);
     const [getLot, setLot] = useState(false);
@@ -83,7 +87,11 @@ function ListPage(){
             <RoomList>
                 {
                     post_list.map((element, idx) =>{
-                        return <Room element={element} idx={idx}/>
+                        console.log(post_list[idx].postId)
+                        return <Room element={element} idx={idx}  onClick={()=>{
+                            history.push('/detailpage/'+post_list[idx].postId)
+                          
+                        }} />
                     })
                 }
             </RoomList>

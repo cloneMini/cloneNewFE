@@ -14,9 +14,9 @@ const Calendar = () => {
     const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
     const nextMonthFirstWeek = nextMonth.startOf('month').week()
     const nextMonthLastWeek = nextMonth.endOf('month').week() === 1 ? 53 : nextMonth.endOf('month').week();
-    console.log(getMoment)
+    
     let dateColor = {
-        background : getCheck == true ? 'green' : 'none'
+        
     }
     const clicked = (date) => {
         setCheck(!getCheck);
@@ -83,7 +83,8 @@ const Calendar = () => {
         return result;
     }
     return (
-        <React.Fragment>
+       <React.Fragment> 
+           <Container>
             <Wrap>
                 <Left>
                 <LeftMonth>
@@ -97,12 +98,12 @@ const Calendar = () => {
                     {today.format('YYYY 년 MM 월')}
                     <br/>
                     <br/>     
-                    <text style={{fontWeight: "600" ,color: "gray" ,fontSize : "12px", letterSpacing : "14.5px"}}>일 월 화 수 목 금 토</text>    
+                    <text style={{fontWeight: "600" ,color: "gray" ,fontSize : "12px", letterSpacing : "15px", paddingLeft:"27px"}}>일 월 화 수 목 금 토</text>    
                     </span>
                 </LeftMonth>
                     <LeftCalendar>
                         <Day>
-                            <tbody>
+                            <tbody style={{paddingRight:""}}>
                             {calenderArr()}
                             </tbody>   
                         </Day>
@@ -110,7 +111,7 @@ const Calendar = () => {
                 </Left>
                 <Right>
                 <RightMonth>
-                    <span style={{textAlign: "center"}}>
+                    <span style={{textAlign: "center", }}>
                     {nextMonth.format('YYYY 년 MM 월')}
                     <RightArrow 
                         onClick={()=>{setMoment(getMoment.clone().add(1, 'month'))}}>
@@ -118,7 +119,7 @@ const Calendar = () => {
                     </RightArrow>
                     <br/>
                     <br/>
-                    <text style={{fontWeight: "600" ,color: "gray" ,fontSize : "12px", letterSpacing : "14.5px"}}>일 월 화 수 목 금 토</text>
+                    <text style={{fontWeight: "600" ,color: "gray" ,fontSize : "12px", letterSpacing : "15px" , paddingLeft:"10px"}}>일 월 화 수 목 금 토</text>
                     </span>      
                 </RightMonth>
                 <RightCalendar>
@@ -130,15 +131,22 @@ const Calendar = () => {
                 </RightCalendar>
                 </Right>
             </Wrap>
+        </Container>
         </React.Fragment>
     )
 
 }
+const Container = styled.div`
+margin-top: 24px;
 
+`
 const Wrap = styled.div`
     display: flex;
     font-weight: 500;
     transition: .35s linear;
+    font-size: 14px;
+    margin-bottom: 15px;
+    
 `
 const Right = styled.div`
     padding-left: 13px;
@@ -149,6 +157,7 @@ const RightMonth = styled.div`
     justify-content: center;
 `
 const RightCalendar = styled.div`
+
 `
 const Left = styled.div`
     padding-right: 13px;
@@ -156,7 +165,8 @@ const Left = styled.div`
 const LeftMonth = styled.div`
     display: flex;
     color: black;
-    justify-content: center;
+    
+
 
 `
 const LeftCalendar = styled.div`
@@ -187,8 +197,11 @@ const LeftArrow = styled.button`
 `
 const Day = styled.table`
     border-collapse: separate;
-    border-spacing: 1.5rem 1.5rem;
+    border-spacing: 1.7rem 1.7rem;
     cursor: pointer;
+    align-items: center;
+    text-align: center;
+    
 `
 
 export default Calendar;

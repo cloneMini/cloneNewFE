@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 function Room(props){
     const post = props.element;
-
+    console.log(props)
     return(
         <>
-        <Rooms>
+        <Rooms onClick={props.onClick}>
             <Imgbox>
                 <Imgset  
                 src={post.postImg[0]}/>

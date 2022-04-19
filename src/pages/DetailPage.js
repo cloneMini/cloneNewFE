@@ -7,14 +7,13 @@ import Header from "../component/Header";
 import ScrollEffect from "../detailcompo/ScrollEffect";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-
+import { useParams } from "react-router-dom";
 
 const DetailPage = () => {
 const dispatch = useDispatch()
-
-
+const paramsId = useParams().postId
 React.useEffect(() =>{
-  dispatch(commentActions.getCommentDB('625cc6e4fe68645e2855bca9'))
+  dispatch(commentActions.getCommentDB(paramsId))
 
 })
 

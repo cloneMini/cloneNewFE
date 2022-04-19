@@ -13,7 +13,7 @@ const deleteComment = createAction(DEL_COMMENT, (comment) => ({ comment }));
 const initialState = {
   list: 
     {
-      post: {
+      post: [{
         postId: "",
         postTitle: "아이유가 운영하는 풀하우스",
         postDesc: "",
@@ -29,7 +29,7 @@ const initialState = {
           laundry: false,
           parkinglot: false,
         },
-      },
+      }],
 
       comment: [{
         postId: "고유id",
@@ -37,7 +37,7 @@ const initialState = {
         contents: "아 오늘도 역시나 밤을 새는구나 ㅎㅎㅎ 리덕스 연결 완료!",
         nickName: "아니유",
         userProfile: "https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg",
-        commentDate: "2022년 4월",
+        date: "",
       }],       
     },  
 };
@@ -63,26 +63,26 @@ const getCommentDB = (postId) => {
 
 const addCommentDB = (contents, postId) => {
   return async function (dispatch, getState) {
-    const _comments = {
-      ...initialState.list.comment[0],
-      contents:contents
-    }
-    console.log(contents)
-   
-    // try {
-    //   await axios({
-    //     method: "post",
-    //     url: `/api/commentPost/:${postId}`,
-    //     data: comments,
-    //     headers: {
-    //       // authorization: `Bearer ${token}`,
-    //     },
-    //   });
-    //   dispatch(addComment());
-    // } catch (err) {
-    //   console.log(err);
+    // const _comments = {
+    //   
+    //   contents:contents
     // }
-    dispatch(addComment(_comments));
+    // console.log(contents, postId)
+   
+    try {
+      await axios({
+        method: "post",
+        url: `http://3.38.178.66/api/commentPost/${postId}`,
+        data: {contents},
+        headers: {
+          // authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(addComment());
+    } catch (err) {
+      console.log(err);
+    }
+    dispatch(addComment(contents));
   };
 };
 
@@ -90,7 +90,7 @@ const deleteCommentDB = (commentId) => {
   return async function (dispatch, getState) {
     await axios({
       method: "DELETE",
-      url: `/api/commentDelete/:${commentId}`,
+      url: `http://3.38.178.66/api/commentDelete/${commentId}`,
       headers: {
         // authorization: `Bearer ${token}`,
       },
@@ -117,9 +117,8 @@ export default handleActions(
       }),
     [DEL_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = draft.list.filter(
-          (d) => d.id !== action.payload.commentId
-        );
+        draft.list.comment = draft.list.comment.filter(item => item.commentId !== action.payload.comment)
+      
       }),
   },
   initialState
@@ -129,6 +128,7 @@ const actionCreators = {
   setComment,
   addCommentDB,
   getCommentDB,
+  deleteCommentDB,
 };
 
 export { actionCreators };
