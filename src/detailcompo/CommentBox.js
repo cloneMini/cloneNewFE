@@ -32,7 +32,7 @@ const CommentBox = (props) => {
           </NameDate>
         </UserProfile>
         <CommentContent>
-          {props.contents}{" "}
+          {props.contents}
           <MdClose onClick={deleteCom } style ={{cursor:"pointer", marginLeft:"15px"}} ></MdClose>
         </CommentContent>
       </Comment>

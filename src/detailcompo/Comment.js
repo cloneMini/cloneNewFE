@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CommentBox from "./CommentBox";
 import KakaoMap from "./KakadMap";
 import Host from "./Host";
+import Modal from "./Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useParams } from "react-router-dom";
@@ -13,12 +14,20 @@ import { MdError} from "react-icons/md";
 
 const Comment = (props) => {
   const dispatch = useDispatch();
-  const [comment, setComment] = React.useState("");
   const post = useSelector((state) => state.comment.list.post);
   const comment_list = useSelector((state) => state.comment.list.comment);
   const paramsId = useParams().postId;
-
+  
+  const [comment, setComment] = React.useState("");
+  const [comModalOn, setcomModalOn] = React.useState(false)
  
+  const closecomModal = (e) =>{
+    e.preventDefault();
+    setcomModalOn(false)
+
+  }
+
+
 
   const handleform = (e) => {
     setComment(e.target.value);
@@ -36,6 +45,7 @@ const Comment = (props) => {
 
   return (
     <>
+    <Modal comModalOn ={comModalOn} closecomModal ={closecomModal} />
       {/* 코맨트 */}
       <Wrap>
         <CommentTitle>
@@ -53,10 +63,10 @@ const Comment = (props) => {
 
         <CommentWrap 댓글들만 싸기>
           {comment_list.map((c, index) => {
-            if (index < 6) return <CommentBox {...c} />;
+             if(index<6)return <CommentBox {...c} />;
           })}
         </CommentWrap>
-        <OverComment>
+        <OverComment onClick={() => setcomModalOn(true)}>
           <p style={{ margin: "0px", padding: "13px 23px" }}>
             후기 {comment_list.length}개 모두 보기
           </p>
@@ -70,13 +80,15 @@ const Comment = (props) => {
       <Wrap>
         <Host {...post} />
       </Wrap>
+      
+       {/* 이용규칙 */}
       <Wrap>
         <CommentCnt style={{ margin: "0px 0px", paddingBottom: "24px" }}>
           알아두어야 할 사항
         </CommentCnt>
         <RuleFlex>
          
-         {/* 이용규칙 */}
+        
           <RuleBox>
             <Rule>숙소 이용규칙</Rule>
             <RuleFlex>

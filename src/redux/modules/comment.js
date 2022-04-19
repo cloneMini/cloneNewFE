@@ -59,8 +59,8 @@ const getCommentDB = (postId) => {
           authorization: `Bearer ${token}`,
         },
       }).then((response) => {
-        console.log(response);
         dispatch(setComment(response.data));
+        
       });
     } catch (err) {
       console.log(err);
@@ -70,13 +70,6 @@ const getCommentDB = (postId) => {
 
 const addCommentDB = (contents, postId) => {
   return async function (dispatch, getState) {
-   console.log(getState())
-    const _comments = {
-    
-      contents:contents
-    }
-    console.log(contents, postId)
-
     try {
       await axios({
         method: "post",
@@ -85,12 +78,14 @@ const addCommentDB = (contents, postId) => {
         headers: {
           authorization: `Bearer ${token}`,
         },
-      });
-      dispatch(addComment());
+      }).then((res)=> {
+        console.log(res)
+        dispatch(addComment(res.data.comment));
+      })
+     
     } catch (err) {
       console.log(err);
     }
-    dispatch(addComment(contents));
   };
 };
 
@@ -100,7 +95,7 @@ const deleteCommentDB = (commentId) => {
       method: "DELETE",
       url: `http://52.78.211.107/api/commentDelete/${commentId}`,
       headers: {
-        // authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
