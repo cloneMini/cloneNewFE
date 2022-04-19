@@ -5,14 +5,14 @@ import axios from "axios";
 import { getCookie } from '../../shared/Cookie';
 
 const SET_POST = "SET_POST";
-const GET_POST = 'GET_POST'
+const GET_POST = 'GET_POST';
 
 const setPost = createAction(SET_POST, (post) => ({post}));
 const getPost = createAction(GET_POST, (post_list) => ({post_list}));
 
 const initialState = {
-    list: [],
-  }
+  list: [],
+}
   
 const addPostDB = (data, fileInput) => {
     return async function(dispatch, getState){
@@ -110,7 +110,7 @@ const addPostDB = (data, fileInput) => {
       }),
       [GET_POST] : (state, action) => produce(state,(draft) => {
         draft.list = action.payload.post_list;
-      })
+      }),
     }, initialState
   );
   
