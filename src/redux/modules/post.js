@@ -71,8 +71,9 @@ const addPostDB = (data, fileInput) => {
     }
   }
 
-  const getPostDB = (getLot, getDry, getWfi) => {
+  const getPostDB = (getLot, getDry, getWfi, manCnt) => {
     return async function(dispatch){
+      console.log(manCnt)
       axios({
         method : 'get',
         url : 'http://3.38.178.66/api/listPage',
@@ -80,6 +81,9 @@ const addPostDB = (data, fileInput) => {
       .then(response => {
         let post = response.data.post;
         let something = [];
+          if(manCnt == '1인실') something = post.filter(post => post.category.includes(manCnt))
+          if(manCnt == '2인실') something = post.filter(post => post.category.includes(manCnt))
+          if(manCnt == '3인실') something = post.filter(post => post.category.includes(manCnt))
           if(getLot) something = post.filter(post => post.category.includes('주차공간 있음'))
           if(getDry) something = post.filter(post => post.category.includes('세탁기 있음'))
           if(getWfi) something = post.filter(post => post.category.includes('와이파이 있음'))
