@@ -1,8 +1,16 @@
 import React from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 function KakaoMap(props) {
+   const location = useSelector(state => state.comment.list.post[0])
+console.log(location)
+
+React.useEffect(()=>
+{
   
+})
+
   return (
     <>
       <div>
