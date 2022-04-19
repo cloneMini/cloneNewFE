@@ -9,12 +9,11 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const login = () => {
-    if (!(userInfo.id && userInfo.password)) return window.alert('로그인 실패');
-    dispatch(userActions.loginAction(userInfo));
+    if (!(email && password)) return window.alert('로그인 실패');
+    dispatch(userActions.loginAction(email, password));
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userInfo, setUserInfo] = React.useState({ email: "", password: "" });
 
   return (
     <>
@@ -23,12 +22,11 @@ const Login = () => {
       <LoginBody>
         <LoginBox>
           <UpperDiv>
-            <div>로그인 또는 회원가입</div>
+            <div>로그인</div>
           </UpperDiv>
 
           <DownDiv>
             <Welcome>에어비앤비에 오신 것을 환영합니다.</Welcome>
-
             <InputUpDiv>
               <Input
                 placeholder="Email"
@@ -36,9 +34,6 @@ const Login = () => {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                }}
-                onkeyPress={(e)=>{
-                  setUserInfo({...userInfo, email:e.target.value})
                 }}
               ></Input>
             </InputUpDiv>
@@ -50,9 +45,6 @@ const Login = () => {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
-                }}
-                onkeyPress={(e)=>{
-                  setUserInfo({...userInfo, password:e.target.value})
                 }}
               ></Input>
             </InputDownDiv>

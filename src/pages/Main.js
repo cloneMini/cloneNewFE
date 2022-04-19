@@ -9,6 +9,7 @@ import {
   ulsan,
   exotic,
   dynamic,
+  background,
 } from "../image/index";
 
 const Main = (props) => {
@@ -65,23 +66,32 @@ const Main = (props) => {
       </Box5>
       <Excting>에어비앤비 체험 둘러보기</Excting>
       <Box6>
-          <StreetDiv>
-              <Image2 src={exotic} />
-        <EnjoyableDiv>
-          <ExperienceTxt>여행 중 만나는<br/> 이색적인 즐길거리</ExperienceTxt>
-          <ExperienceBtn>체험</ExperienceBtn>
-        </EnjoyableDiv>
-          </StreetDiv>
-          <StreetDiv>
-          <Image2 src={dynamic} />
-        <EnjoyableDiv>
-          <ExperienceTxt>집에서 만나는<br/> 다양한 즐길 거리</ExperienceTxt>
-          <ExperienceBtn>온라인 체험</ExperienceBtn>
-        </EnjoyableDiv>
+        <StreetDiv>
+          <Image2 src={exotic} />
+          <EnjoyableDiv>
+            <ExperienceTxt>
+              여행 중 만나는
+              <br /> 이색적인 즐길거리
+            </ExperienceTxt>
+            <ExperienceBtn>체험</ExperienceBtn>
+          </EnjoyableDiv>
         </StreetDiv>
-            
-        
+        <StreetDiv>
+          <Image2 src={dynamic} />
+          <EnjoyableDiv>
+            <ExperienceTxt>
+              집에서 만나는
+              <br /> 다양한 즐길 거리
+            </ExperienceTxt>
+            <ExperienceBtn>온라인 체험</ExperienceBtn>
+          </EnjoyableDiv>
+        </StreetDiv>
       </Box6>
+      <Box7>
+        <Image1 src={background} />
+        <Image1Div>
+        </Image1Div>
+      </Box7>
     </>
   );
 };
@@ -225,12 +235,12 @@ const Distance = styled.div`
 
 const Box6 = styled.div`
   margin: 0 4.5vw;
-  display:flex;
+  display: flex;
 `;
 
 const StreetDiv = styled.div`
-margin:0 1.5vw 0 0;
-`
+  margin: 0 1.5vw 0 0;
+`;
 
 const Image2 = styled.img`
   width: 44.5vw;
@@ -270,4 +280,7 @@ const ExperienceBtn = styled.button`
   font-weight: 500;
 `;
 
+const Box7 = styled.div`
+
+`
 export default Main;

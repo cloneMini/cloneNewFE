@@ -7,11 +7,13 @@ import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 const GET_USER = "GET_USER";
 const SET_USER = "SET_USER";
 const CHECK_DUP = "CHECK_DUP";
+const LOG_OUT = "LOG_OUT";
 
 //Action Creators
 const getUser = createAction(GET_USER, (token) => ({ token }));
 const setUser = createAction(SET_USER, (token) => ({ token }));
 const checkDup = createAction(CHECK_DUP, (id) => ({ id }));
+const logOut = createAction(LOG_OUT, (email) => ({email}));
 
 //initialState
 const initialState = {
@@ -25,6 +27,38 @@ const initialState = {
 };
 
 //Middleware Action
+const loginAction = (email, password) => {
+  return async function (dispatch, getState, {history}) {
+    try {
+      await axios({
+        method: "post",
+        url: "http://3.38.178.66/user/login",
+        data: {
+          email: email,
+          password: password,
+        },
+      }).then((res) => {
+        console.log(res);
+        const accessToken = res.data.token;
+        //쿠키에 토큰 저장
+        setCookie("ok", `${accessToken}`);
+        dispatch(setUser(res.data.token));
+        document.location.href = "/";
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+const logOutAction = () => {
+  return function (dispatch, {history}) {
+    dispatch(logOut());
+    document.location.href = "/";
+  }
+}
+
+
 const idCheck = (email, password, nickName, userProfile) => {
   return function (dispatch) {
     axios
@@ -63,6 +97,7 @@ const signupDB = (email, password, nickName) => {
         },
       }).then((response) => {
         console.log(response);
+        document.location.href = "/";
       });
     } catch (err) {
       console.log(err);
@@ -111,6 +146,11 @@ export default handleActions(
         draft.is_check = action.payload.email;
         console.log(action.payload.id);
       }),
+      [LOG_OUT]: (state, action)=>
+      produce(state, (draft)=> {
+        draft.user = null;
+        draft.is_login=false;
+      })
   },
   initialState
 );
@@ -119,6 +159,12 @@ export default handleActions(
 const actionCreators = {
   idCheck,
   signupDB,
+  loginAction,
+  getUserDB,
+  getUser,
+  setUser,
+  logOutAction,
+  logOut,
 };
 
 export { actionCreators };

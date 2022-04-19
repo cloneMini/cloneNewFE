@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { search, profile1, profile2, globe } from "../image/index";
 import { ReactComponent as Logo } from "../image/logo.svg";
 import { ReactComponent as Globe } from "../image/globe.svg";
-
+import { useHistory } from 'react-router-dom'
 const MainHeader = () => {
+
+  const history = useHistory();
   return (
     <>
       <HeadDiv>
@@ -22,7 +24,7 @@ const MainHeader = () => {
             <GlobeBtn>
               <Globe fill="white" />
             </GlobeBtn>
-            <ProfileBtn>
+            <ProfileBtn onClick={()=> history.replace('/user/login')}>
               <img src={profile1} width="30%" />
               <img src={profile2} width="55%" />
             </ProfileBtn>
