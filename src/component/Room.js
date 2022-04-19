@@ -62,11 +62,11 @@ const Imgset = styled.img`
     border-radius:20px;
     @media screen and (max-width: 1300px) {
         width:80%;
-        margin-left:-15%;
+        margin-left:0%;
     }
     @media screen and (max-width: 650px) {
         width:95%;
-        margin-left:-5%;
+        margin-left:0%;
     }
     
 `

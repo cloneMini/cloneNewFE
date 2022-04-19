@@ -14,6 +14,8 @@ function ListPage(){
     const [getLot, setLot] = useState(false);
     const [getDry, setDry] = useState(false);
     const [getWfi, setWfi] = useState(false);
+    const [getCnt, setCnt] = useState(0);
+    const manCnt = useRef();
     const calculate = (data) => {
         let latitude = 0;
         let longitude = 0;
@@ -25,7 +27,6 @@ function ListPage(){
         longitude = longitude/data.length;
         return {latitude, longitude}
     }
-
     console.log(post_list);
     const initMap = useCallback(() => {
         
@@ -64,9 +65,13 @@ function ListPage(){
       ];
       
     useEffect(() => {
-        dispatch(postActions.getPostDB(getLot, getDry, getWfi));
+        dispatch(postActions.getPostDB(getLot, getDry, getWfi, getCnt));
         //initMap();
-      }, [getLot, getDry, getWfi]); // getLot이 변ㅕ시마다 useEffect 작동
+      }, [getLot, getDry, getWfi, getCnt]); // getLot이 변ㅕ시마다 useEffect 작동
+
+    const onChange = () => {
+        setCnt(manCnt.current.value)
+    }
 
     return(
         <>
@@ -74,6 +79,12 @@ function ListPage(){
         <Upper>
            
             <Botbox>
+                <Select onChange={onChange} ref={manCnt}>
+                    <option>전체</option>
+                    <option>1인실</option>
+                    <option>2인실</option>
+                    <option>3인실</option>
+                </Select>
                 <Filter onClick={()=>{setWfi(!getWfi)}}>무선 인터넷</Filter>
                 <Filter onClick={()=>{setLot(!getLot)}}>주차공간</Filter>
                 <Filter onClick={()=>{setDry(!getDry)}}>세탁기</Filter>
@@ -148,14 +159,15 @@ const Filter = styled.button`
         border: 1px solid black;
     }
 `
-const Infodiv = styled.button`
+const Select = styled.select`
     width:100px;
     height:40px;
     border:0.5px solid #d2d2d2;
     border-radius:25px;
-    float:right;
-    margin-right:3%;
+    margin-right:20px;
     background:white;
+    font-size:15px;
+    padding-left:3%;
     &:hover{
         border: 1px solid black;
     }

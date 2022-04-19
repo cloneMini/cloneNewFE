@@ -101,7 +101,6 @@ const SignUp = (props) => {
     || nickCheck!=="닉네임이 형식에 맞습니다."
     || pwdCheck!=="사용가능한 패스워드입니다."
     || pwdCheck2!=="패스워드가 일치합니다.")
-    return;
 
     dispatch(userActions.signupDB(email, password, nickName));
   };
