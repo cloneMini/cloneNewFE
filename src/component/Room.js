@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 function Room(props){
     const post = props.element;
-    console.log(props)
+    console.log(post)
     return(
         <>
         <Rooms onClick={props.onClick}>
             <Imgbox>
-                <Imgset  
-                src={post.postImg[0]}/>
+                <Imgset />
             </Imgbox>
             <Contentbox>
                 <Textbox>
@@ -18,7 +17,7 @@ function Room(props){
                     <p>{post.postDesc}</p>
                 </Textbox>
                 <Textbox>
-                    <p>{post.category.join(' ')}</p>
+                    <p>{post.postTitle}</p>
                 </Textbox>
                 <Textbox></Textbox>
             </Contentbox>

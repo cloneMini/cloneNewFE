@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 function ListPage(){
     const history = useHistory()
     const post_list = useSelector(state => state.post.list);
-    console.log(post_list.postId)
+    console.log(post_list)
 
     const dispatch = useDispatch();
     const mapRef = useRef(null);
@@ -31,7 +31,6 @@ function ListPage(){
         longitude = longitude/data.length;
         return {latitude, longitude}
     }
-    console.log(post_list);
     const initMap = useCallback(() => {
         
         const map = new window.google.maps.Map(mapRef.current, {
@@ -175,7 +174,7 @@ const Select = styled.select`
     margin-right:20px;
     background:white;
     font-size:15px;
-    padding-left:3%;
+    padding-left:1.4%;
     &:hover{
         border: 1px solid black;
     }

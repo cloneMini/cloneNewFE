@@ -32,7 +32,7 @@ const loginAction = (email, password) => {
     try {
       await axios({
         method: "post",
-        url: "http://3.38.178.66/user/login",
+        url: "http://52.78.211.107/user/login",
         data: {
           email: email,
           password: password,
@@ -63,7 +63,7 @@ const idCheck = (email, password, nickName, userProfile) => {
   return function (dispatch) {
     axios
       .post(
-        "http://3.38.178.66/user/signUp",
+        "http://52.78.211.107/user/signUp",
         JSON.stringify({
           email: email,
           password: password,
@@ -83,17 +83,18 @@ const idCheck = (email, password, nickName, userProfile) => {
   };
 };
 
-const signupDB = (email, password, nickName) => {
-  console.log(email, nickName, password);
+const signupDB = (email, password, nickName, profile) => {
+  console.log(email, nickName, password, profile);
   return async function (dispatch, getState) {
     try {
       await axios({
         method: "post",
-        url: "http://3.38.178.66/user/signUp",
+        url: "http://52.78.211.107/user/signUp",
         data: {
           email: email,
           nickName: nickName,
           password: password,
+          userProfile : profile,
         },
       }).then((response) => {
         console.log(response);

@@ -47,7 +47,7 @@ const getCommentDB = (postId) => {
     try {
       await axios({
         method: "get",
-        url: `http://3.38.178.66/api/postDetail/${postId}`,
+        url: `http://13.125.9.44/api/postDetail/${postId}`,
         headers: {
           // authorization: `Bearer ${token}`,
         },
@@ -72,7 +72,7 @@ const addCommentDB = (contents, postId) => {
     try {
       await axios({
         method: "post",
-        url: `http://3.38.178.66/api/commentPost/${postId}`,
+        url: `http://13.125.9.44/api/commentPost/${postId}`,
         data: {contents},
         headers: {
           // authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ const deleteCommentDB = (commentId) => {
   return async function (dispatch, getState) {
     await axios({
       method: "DELETE",
-      url: `http://3.38.178.66/api/commentDelete/${commentId}`,
+      url: `http://13.125.9.44/api/commentDelete/${commentId}`,
       headers: {
         // authorization: `Bearer ${token}`,
       },

@@ -51,7 +51,7 @@ function Addhost(){
             }
         }
     }
-
+    console.log(getInputs)
     const {roomName, address, desc, price, manCnt, wifi, parking, laundry} = getInputs;
     const onChange = (e) => {
         const {name, value} = e.target;
@@ -75,7 +75,7 @@ function Addhost(){
         <div style={{width:'100vw', height:'100vh',display:'flex',float:'left'}}>
             <ScreenLeft>
                 <DaumPostCode style={postCodeStyle}  onComplete={onComplete}/>
-                <img style={{width:'125px', height:'50px', margin:'5% 80% 10px 10px'}} src={Logo}/>
+                <img onClick={()=>{history.push('/listPage')}} style={{width:'125px', height:'50px', margin:'5% 80% 10px 10px'}} src={Logo}/>
                 <p style={{fontSize:'45px', fontWeight:'bold', color:'white', margin:'30% 0% 0 0'}}>여러분의 집을 호스팅 해보세요!</p>
             </ScreenLeft>
             <ScreenRight>
