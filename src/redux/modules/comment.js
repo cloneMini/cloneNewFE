@@ -1,19 +1,23 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { getCookie } from "../../shared/Cookie";
 
 const SET_COMMENT = "SET_COMMENT";
 const ADD_COMMENT = "ADD_COMMENT";
 const DEL_COMMENT = "DEL_COMMENT";
 
-const setComment = createAction(SET_COMMENT, (comment_list) => ({comment_list}));
+const setComment = createAction(SET_COMMENT, (comment_list) => ({
+  comment_list,
+}));
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
 const deleteComment = createAction(DEL_COMMENT, (comment) => ({ comment }));
 
+let token = getCookie("ok");
 const initialState = {
-  list: 
-    {
-      post: [{
+  list: {
+    post: [
+      {
         postId: "",
         postTitle: "아이유가 운영하는 풀하우스",
         postDesc: "",
@@ -22,24 +26,27 @@ const initialState = {
         address: "송파구, 서울, 한국",
         postCommentCnt: "32",
         nickName: "아이유",
-        userProfile: "https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2020/10/PS20100800026.jpg",
-        category: {
-          room: 1,
-          wifi: false,
-          laundry: false,
-          parkinglot: false,
-        },
-      }],
+        userProfile:
+          "https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2020/10/PS20100800026.jpg",
+        room: 1,
+        wifi: false,
+        laundry: false,
+        parkinglot: false,
+      },
+    ],
 
-      comment: [{
+    comment: [
+      {
         postId: "고유id",
         commentId: "댓글 고유 아이디",
         contents: "아 오늘도 역시나 밤을 새는구나 ㅎㅎㅎ 리덕스 연결 완료!",
         nickName: "아니유",
-        userProfile: "https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg",
+        userProfile:
+          "https://file.mk.co.kr/meet/neds/2022/02/image_readtop_2022_159433_16452258234951534.jpg",
         date: "",
-      }],       
-    },  
+      },
+    ],
+  },
 };
 
 const getCommentDB = (postId) => {
@@ -47,9 +54,9 @@ const getCommentDB = (postId) => {
     try {
       await axios({
         method: "get",
-        url: `http://3.38.178.66/api/postDetail/${postId}`,
+        url: `http://52.78.211.107/api/postDetail/${postId}`,
         headers: {
-          // authorization: `Bearer ${token}`,
+          authorization: `Bearer ${token}`,
         },
       }).then((response) => {
         console.log(response);
@@ -63,19 +70,20 @@ const getCommentDB = (postId) => {
 
 const addCommentDB = (contents, postId) => {
   return async function (dispatch, getState) {
-    // const _comments = {
-    //   
-    //   contents:contents
-    // }
-    // console.log(contents, postId)
-   
+   console.log(getState())
+    const _comments = {
+    
+      contents:contents
+    }
+    console.log(contents, postId)
+
     try {
       await axios({
         method: "post",
-        url: `http://3.38.178.66/api/commentPost/${postId}`,
-        data: {contents},
+        url: `http://52.78.211.107/api/commentPost/${postId}`,
+        data: { contents },
         headers: {
-          // authorization: `Bearer ${token}`,
+          authorization: `Bearer ${token}`,
         },
       });
       dispatch(addComment());
@@ -90,7 +98,7 @@ const deleteCommentDB = (commentId) => {
   return async function (dispatch, getState) {
     await axios({
       method: "DELETE",
-      url: `http://3.38.178.66/api/commentDelete/${commentId}`,
+      url: `http://52.78.211.107/api/commentDelete/${commentId}`,
       headers: {
         // authorization: `Bearer ${token}`,
       },
@@ -117,8 +125,9 @@ export default handleActions(
       }),
     [DEL_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.comment = draft.list.comment.filter(item => item.commentId !== action.payload.comment)
-      
+        draft.list.comment = draft.list.comment.filter(
+          (item) => item.commentId !== action.payload.comment
+        );
       }),
   },
   initialState

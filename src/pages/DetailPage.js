@@ -14,8 +14,9 @@ const dispatch = useDispatch()
 const paramsId = useParams().postId
 React.useEffect(() =>{
   dispatch(commentActions.getCommentDB(paramsId))
-
 })
+const user = useSelector(state => state.user)
+console.log(user)
 
   return (
     <>

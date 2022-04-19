@@ -46,9 +46,9 @@ const SignUp = (props) => {
   };
 
   const checkNN = (e) => {
-    console.log(e);
+
     if (e.key === "Enter") {
-      console.log(e.target.value);
+  
       if (e.target.value === "") {
         setNickCheck("닉네임을 입력해주세요.");
         return;
@@ -102,7 +102,7 @@ const SignUp = (props) => {
     || pwdCheck!=="사용가능한 패스워드입니다."
     || pwdCheck2!=="패스워드가 일치합니다.");
 
-    dispatch(userActions.signupDB(email, password, nickName));
+    dispatch(userActions.signupDB(email, nickName,userProfile, password));
   };
 
   return (
