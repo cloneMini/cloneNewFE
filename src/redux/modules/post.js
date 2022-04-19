@@ -77,7 +77,6 @@ const addPostDB = (data, fileInput) => {
 
   const getPostDB = (getLot, getDry, getWfi, manCnt) => {
     return async function(dispatch){
-      console.log(manCnt)
       await axios({
         method : 'get',
         url : 'http://52.78.211.107/api/listPage',
@@ -85,13 +84,13 @@ const addPostDB = (data, fileInput) => {
       .then(response => {
         let post = response.data.post;
         let something = [];
-          if(manCnt == '1인실') something = post.filter(post => post.category.includes(manCnt))
-          if(manCnt == '2인실') something = post.filter(post => post.category.includes(manCnt))
-          if(manCnt == '3인실') something = post.filter(post => post.category.includes(manCnt))
-          if(getLot) something = post.filter(post => post.category.includes('주차공간 있음'))
-          if(getDry) something = post.filter(post => post.category.includes('세탁기 있음'))
-          if(getWfi) something = post.filter(post => post.category.includes('와이파이 있음'))
-        if(something.length > 0){
+          if(manCnt == '1인실') something = post.filter(post => post.room == '1인실')
+          if(manCnt == '2인실') something = post.filter(post => post.room == '2인실')
+          if(manCnt == '3인실') something = post.filter(post => post.room == '3인실')
+          if(getLot) something = post.filter(post => post.parkinglot == '주차공간 있음')
+          if(getDry) something = post.filter(post => post.laundry == '세탁기 있음')
+          if(getWfi) something = post.filter(post => post.wifi == '와이파이 있음')
+          if(something.length > 0){
           dispatch(getPost(something))
         } else {
           dispatch(getPost(response.data.post))

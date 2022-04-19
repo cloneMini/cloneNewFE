@@ -35,7 +35,7 @@ function ListPage(){
         
         const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: calculate(locations).latitude, lng: calculate(locations).longitude },
-        zoom: 12,
+        zoom: 11,
         });
         const infoWindow = new window.google.maps.InfoWindow({
             content: "",
@@ -60,21 +60,62 @@ function ListPage(){
           }); 
         new MarkerClusterer({ markers, map });
     }, [mapRef]);
-    const locations = [
-        { lat: 37.523234, lng: 127.034181 },
-        { lat: 37.519111, lng: 127.035124 },
-        { lat: 37.515988, lng: 127.039834 },
-        { lat: 37.515702, lng: 127.029968 },
-      ];
-      
+    // const locations = [
+    //     { lat: 37.523234, lng: 127.034181 },
+    //     { lat: 37.519111, lng: 127.035124 },
+    //     { lat: 37.515988, lng: 127.039834 },
+    //     { lat: 37.515702, lng: 127.029968 },
+    //   ];
+    let locations = [];
+    post_list.forEach((e, i)=>{
+        locations.push({lat : e.latitude, lng : e.longitude});
+    })
+    console.log(locations)
     useEffect(() => {
         dispatch(postActions.getPostDB(getLot, getDry, getWfi, getCnt));
-        //initMap();
+        initMap();
       }, [getLot, getDry, getWfi, getCnt]); // getLot이 변ㅕ시마다 useEffect 작동
 
     const onChange = () => {
         setCnt(manCnt.current.value)
     }
+
+    const Filter1 = styled.button`
+    width:100px;
+    height:40px;
+    border:0.5px solid #d2d2d2;
+    border-radius:25px;
+    margin-right:20px;
+    background:${getWfi == true ? '#eee' : 'white'};
+    font-size:15px;
+    &:hover{
+        border: 1px solid black;
+    }
+    `
+    const Filter2 = styled.button`
+    width:100px;
+    height:40px;
+    border:0.5px solid #d2d2d2;
+    border-radius:25px;
+    margin-right:20px;
+    background:${getLot == true ? '#eee' : 'white'};
+    font-size:15px;
+    &:hover{
+        border: 1px solid black;
+    }
+`
+const Filter3 = styled.button`
+    width:100px;
+    height:40px;
+    border:0.5px solid #d2d2d2;
+    border-radius:25px;
+    margin-right:20px;
+    background:${getDry == true ? '#eee' : 'white'};
+    font-size:15px;
+    &:hover{
+        border: 1px solid black;
+    }
+`
 
     return(
         <>
@@ -88,16 +129,15 @@ function ListPage(){
                     <option>2인실</option>
                     <option>3인실</option>
                 </Select>
-                <Filter onClick={()=>{setWfi(!getWfi)}}>무선 인터넷</Filter>
-                <Filter onClick={()=>{setLot(!getLot)}}>주차공간</Filter>
-                <Filter onClick={()=>{setDry(!getDry)}}>세탁기</Filter>
+                <Filter1 getWfi={getWfi} onClick={()=>{setWfi(!getWfi)}}>무선 인터넷</Filter1>
+                <Filter2 onClick={()=>{setLot(!getLot)}}>주차공간</Filter2>
+                <Filter3 onClick={()=>{setDry(!getDry)}}>세탁기</Filter3>
             </Botbox>
         </Upper>
         <ListBox>
             <RoomList>
                 {
                     post_list.map((element, idx) =>{
-                        console.log(post_list[idx].postId)
                         return <Room element={element} idx={idx}  onClick={()=>{
                             history.push('/detailpage/'+post_list[idx].postId)
                           
@@ -154,18 +194,8 @@ const Mapbox = styled.div`
         display : none;
     }
 `
-const Filter = styled.button`
-    width:100px;
-    height:40px;
-    border:0.5px solid #d2d2d2;
-    border-radius:25px;
-    margin-right:20px;
-    background:white;
-    font-size:15px;
-    &:hover{
-        border: 1px solid black;
-    }
-`
+
+
 const Select = styled.select`
     width:100px;
     height:40px;

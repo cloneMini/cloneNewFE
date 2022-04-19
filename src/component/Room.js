@@ -2,24 +2,28 @@ import styled from "styled-components";
 
 function Room(props){
     const post = props.element;
-    console.log(post)
     return(
         <>
         <Rooms onClick={props.onClick}>
             <Imgbox>
-                <Imgset />
+                <Imgset src={post.postImg[0]}/>
             </Imgbox>
             <Contentbox>
                 <Textbox>
                     <p>{post.address}</p>
                 </Textbox>
                 <Textbox>
+                    <p>{post.postTitle}</p>
+                </Textbox>
+                <Textbox>
                     <p>{post.postDesc}</p>
                 </Textbox>
                 <Textbox>
-                    <p>{post.postTitle}</p>
+                    <span>{post.room}</span>{" "}
+                    <span>{post.laundry}</span>{" "}
+                    <span>{post.parkinglot}</span>{" "}
+                    <span>{post.wifi}</span>
                 </Textbox>
-                <Textbox></Textbox>
             </Contentbox>
         </Rooms>
         </>
