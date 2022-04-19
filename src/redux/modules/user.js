@@ -7,11 +7,13 @@ import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 const GET_USER = "GET_USER";
 const SET_USER = "SET_USER";
 const CHECK_DUP = "CHECK_DUP";
+const LOG_OUT = "LOG_OUT";
 
 //Action Creators
 const getUser = createAction(GET_USER, (token) => ({ token }));
 const setUser = createAction(SET_USER, (token) => ({ token }));
 const checkDup = createAction(CHECK_DUP, (id) => ({ id }));
+const logOut = createAction(LOG_OUT, (email) => ({email}));
 
 //initialState
 const initialState = {
@@ -41,13 +43,20 @@ const loginAction = (email, password) => {
         //쿠키에 토큰 저장
         setCookie("ok", `${accessToken}`);
         dispatch(setUser(res.data.token));
-        history.push("/");
+        document.location.href = "/";
       });
     } catch (err) {
       console.log(err);
     }
   };
 };
+
+const logOutAction = () => {
+  return function (dispatch, {history}) {
+    dispatch(logOut());
+    document.location.href = "/";
+  }
+}
 
 
 const idCheck = (email, password, nickName, userProfile) => {
@@ -88,6 +97,7 @@ const signupDB = (email, password, nickName) => {
         },
       }).then((response) => {
         console.log(response);
+        document.location.href = "/";
       });
     } catch (err) {
       console.log(err);
@@ -136,6 +146,11 @@ export default handleActions(
         draft.is_check = action.payload.email;
         console.log(action.payload.id);
       }),
+      [LOG_OUT]: (state, action)=>
+      produce(state, (draft)=> {
+        draft.user = null;
+        draft.is_login=false;
+      })
   },
   initialState
 );
@@ -145,6 +160,11 @@ const actionCreators = {
   idCheck,
   signupDB,
   loginAction,
+  getUserDB,
+  getUser,
+  setUser,
+  logOutAction,
+  logOut,
 };
 
 export { actionCreators };

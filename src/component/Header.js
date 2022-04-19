@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { logo, search, profile1, profile2, globe } from "../image/index";
-import {history} from "../redux/configureStore";
+import {useHistory} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = () => {
+  const history = useHistory();
+  const [is_login, setIsLogin] = React.useState();
+  const dispatch = useDispatch();
   return (
     <HeadDiv>
       <Center>
@@ -20,9 +25,12 @@ const Header = () => {
         <div>
           <img src={globe} width="45%" />
         </div>
-        <ProfileBtn onClick={
-          history.push('/user/login')
+        <ProfileBtn onClick={()=>
+          {dispatch(userActions.logOutAction())}
           }>
+        {/* // <ProfileBtn onClick={()=> */}
+        {/* //   {history.push('/user/login')}
+        //   }> */}
           <img src={profile1} width="30%" />
           <img src={profile2} width="55%" />
         </ProfileBtn>

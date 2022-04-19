@@ -11,6 +11,7 @@ import ulsan from './ulsan.jpeg';
 import daejun from './daejun.jpeg';
 import exotic from './exotic.jpeg';
 import dynamic from './dynamic.jpeg'
+import background from './background.jpeg';
 
 
-export {logo, mine, search, profile1, profile2, globe, curious,seoul, daegu, ulsan, daejun,exotic, dynamic};
+export {logo, mine, search, profile1, background, profile2, globe, curious,seoul, daegu, ulsan, daejun,exotic, dynamic};
