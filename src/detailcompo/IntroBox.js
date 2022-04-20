@@ -91,9 +91,9 @@ const IntroBox = () => {
       </Wrap>
       {/* 숙소 편의 시설 */}
       <Wrap style={{ padding: "48px 0px"  }}>
-        <SleepP> 편의 시설 추가될 공간 </SleepP>
+        <SleepP> 편의 시설 </SleepP>
         <Facilities>
-          <HalfFac>
+          {/* <HalfFac>
             <ImotiText>
               <span> 이모티</span>
               <div>방 개수</div>
@@ -114,7 +114,7 @@ const IntroBox = () => {
               <div>와이파이 없음</div>
             </ImotiText>
             
-          </HalfFac>
+          </HalfFac> */}
           
         </Facilities>
         <img src={goods}></img>

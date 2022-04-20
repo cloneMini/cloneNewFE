@@ -79,8 +79,8 @@ const idCheck = (email) => {
   };
 };
 
-const signupDB = (email, password, nickName, profile) => {
-  console.log(email, nickName, password, profile);
+const signupDB = (email, password, nickName, userProfile) => {
+
   return async function (dispatch, getState) {
     try {
       await axios({
@@ -90,8 +90,7 @@ const signupDB = (email, password, nickName, profile) => {
           email: email,
           nickName: nickName,
           userProfile:userProfile,
-          password: password,
-          userProfile : profile,
+          password: password,    
         },
       }).then((response) => {
         console.log(response);
