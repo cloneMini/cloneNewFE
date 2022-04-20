@@ -10,8 +10,6 @@ import SignUp from '../pages/SignUp';
 import Addhost from '../pages/Addhost';
 
 
-
-
 function App() {
   return (
     <div className="App">

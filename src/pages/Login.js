@@ -58,6 +58,7 @@ const Login = () => {
     </>
   );
 };
+
 const LoginBody = styled.div`
   justify-content: center;
   display: flex;

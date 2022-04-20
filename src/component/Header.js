@@ -1,42 +1,80 @@
 import React from "react";
 import styled from "styled-components";
 import { logo, search, profile1, profile2, globe } from "../image/index";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = () => {
   const history = useHistory();
-  const [is_login, setIsLogin] = React.useState();
+  const [ok, setOk] = React.useState(false);
   const dispatch = useDispatch();
+  React.useEffect(()=>{
+    let cookie = document.cookie;
+    console.log(cookie);
+    if(cookie) {
+      setOk(true);
+    }else {
+      setOk(false);
+    }
+  },[])
+  if (ok) {
+    return (
+      <HeadDiv>
+        <Center>
+          <div>
+            <img src={logo} width="125px" style={{ paddingLeft: " 15px" }} />
+          </div>
+          <SearchBtn>
+            <SearchTxt>검색 시작하기</SearchTxt>
+            <SearchIcon src={search} />
+          </SearchBtn>
+
+          <LeftDiv>
+            <PostWriteBtn>게시물 작성</PostWriteBtn>
+            <div>
+              <img src={globe} width="45%" />
+            </div>
+            <ProfileBtn
+              onClick={() => {
+                dispatch(userActions.logOutAction());
+                console.log('로그아웃');
+              }}
+            >
+              <img src={profile1} width="30%" />
+              <img src={profile2} width="55%" />
+            </ProfileBtn>
+          </LeftDiv>
+        </Center>
+      </HeadDiv>
+    );
+  }
   return (
     <HeadDiv>
-      <Center>
-      <div>
-        <img src={logo} width="125px" style={{paddingLeft:" 15px"}} />
-      </div>
-      <SearchBtn>
-        <SearchTxt>검색 시작하기</SearchTxt>
-        <SearchIcon src={search} />
-      </SearchBtn>
+        <Center>
+          <div>
+            <img src={logo} width="125px" style={{ paddingLeft: " 15px" }} />
+          </div>
+          <SearchBtn>
+            <SearchTxt>검색 시작하기</SearchTxt>
+            <SearchIcon src={search} />
+          </SearchBtn>
 
-      <LeftDiv>
-      <PostWriteBtn>게시물 작성</PostWriteBtn>
-        <div>
-          <img src={globe} width="45%" />
-        </div>
-        <ProfileBtn onClick={()=>
-          {dispatch(userActions.logOutAction())}
-          }>
-        {/* // <ProfileBtn onClick={()=> */}
-        {/* //   {history.push('/user/login')}
-        //   }> */}
-          <img src={profile1} width="30%" />
-          <img src={profile2} width="55%" />
-        </ProfileBtn>
-      </LeftDiv></Center>
-    </HeadDiv>
-  );
+          <LeftDiv>
+            <PostWriteBtn>게시물 작성</PostWriteBtn>
+            <div>
+              <img src={globe} width="45%" />
+            </div>
+            <ProfileBtn
+              onClick={()=> history.push('/user/login')}
+            >
+              <img src={profile1} width="30%" />
+              <img src={profile2} width="55%" />
+            </ProfileBtn>
+          </LeftDiv>
+        </Center>
+      </HeadDiv>
+  )
 };
 
 const HeadDiv = styled.div`
@@ -48,15 +86,15 @@ const HeadDiv = styled.div`
 
 const SearchBtn = styled.div`
   background-color: #ffffff;
-    margin-left: 45px;
+  margin-left: 45px;
   display: flex;
   height: 48px;
   width: 300px;
-   
+
   align-items: center;
   padding: 0px 4px;
   justify-content: space-between;
-    
+
   border: 1px solid #ededed;
   padding-left: 8px;
   border-radius: 24px;
@@ -75,7 +113,7 @@ const SearchIcon = styled.img`
 const LeftDiv = styled.div`
   height: 80px;
   display: flex;
-  align-items: center ;
+  align-items: center;
   padding-right: 15px;
 `;
 
@@ -90,7 +128,7 @@ const PostWriteBtn = styled.button`
   align-items: center;
   padding: 0px;
   margin: 0px;
-  
+
   :hover {
     background: #f7f7f7;
   }
@@ -109,7 +147,7 @@ const SearchTxt = styled.div`
 const Center = styled.div`
   min-width: 1150px;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center !important;
   margin: auto;

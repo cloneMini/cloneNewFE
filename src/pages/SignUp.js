@@ -11,7 +11,6 @@ const SignUp = (props) => {
 
   const dupState = useSelector((state) => state.user.is_login);
 
-
   const [email, setEmail] = React.useState("");
   const [nickName, setNickName] = React.useState("");
   const [nickCheck, setNickCheck] = React.useState("");
@@ -22,16 +21,12 @@ const SignUp = (props) => {
   const [pwdCheck2, setPwdCheck2] = React.useState("");
   const [emailCheck, setEmailCheck] = React.useState("");
 
-  
-
-  const onChange = useCallback(e => {
-    setUserProfile(e.target.value)
-  },[])
+  const onChange = useCallback((e) => {
+    setUserProfile(e.target.value);
+  }, []);
 
   const checkEmail = (e) => {
- 
     if (e.key === "Enter") {
-     
       if (e.target.value === "") {
         setEmailCheck("아이디를 입력해주세요.");
         return;
@@ -41,7 +36,7 @@ const SignUp = (props) => {
         console.log("아이디입력 실패");
         return;
       }
-      setEmailCheck("아이디가 형식에 맞습니다.");
+      setEmailCheck("아이디가 형식에 맞습니다.")
     }
   };
 
@@ -59,6 +54,7 @@ const SignUp = (props) => {
         return;
       }
       setNickCheck("닉네임이 형식에 맞습니다.");
+      setEmailCheck("");
     }
   };
 
@@ -76,35 +72,54 @@ const SignUp = (props) => {
         setPwdCheck("패스워드를 확인해주세요.");
       }
     }
-    setPwdCheck("사용가능한 패스워드입니다.")
+    setPwdCheck("사용가능한 패스워드입니다.");
   };
 
   const checkPW2 = (e) => {
     if (e.key === "Enter") {
-    if (e.target.value === "") {
-      setPwdCheck2("패스워드를 한 번 더 입력해주세요.");
-      return;
+      if (e.target.value === "") {
+        setPwdCheck2("패스워드를 한 번 더 입력해주세요.");
+        return;
+      }
+      if (e.target.value.length < 4) {
+        setPwdCheck2("패스워드를 한 번 더 확인해주세요.");
+        return;
+      }
+      if (e.target.value !== password) {
+        setPwdCheck2("패스워드가 일치하지 않습니다!");
+      }
+      setPwdCheck2("패스워드가 일치합니다.");
     }
-    if (e.target.value.length < 4) {
-      setPwdCheck2("패스워드를 한 번 더 확인해주세요.");
-      return;
-    }
-    if (e.target.value !== password) {
-      setPwdCheck2("패스워드가 일치하지 않습니다!");
-    }
-    setPwdCheck2("패스워드가 일치합니다.");
-  }
-}
-
-  const signup = () => {
-    if (emailCheck!=="아이디가 형식에 맞습니다."
-    || nickCheck!=="닉네임이 형식에 맞습니다."
-    || pwdCheck!=="사용가능한 패스워드입니다."
-    || pwdCheck2!=="패스워드가 일치합니다.");
-
-    dispatch(userActions.signupDB(email, nickName,userProfile, password));
   };
 
+  const signup = () => {
+    if (
+      emailCheck !== "아이디가 형식에 맞습니다." ||
+      nickCheck !== "닉네임이 형식에 맞습니다." ||
+      pwdCheck !== "사용가능한 패스워드입니다." ||
+      pwdCheck2 !== "패스워드가 일치합니다."
+    );
+
+    dispatch(userActions.signupDB(email, password, nickName, userProfile));
+  };
+
+  const checkDup = (e) => {
+    dispatch(userActions.idCheck(email));
+    setEmailCheck("");
+  };
+  const [ok, setOk] = React.useState(false);
+  React.useEffect(()=>{
+    let cookie = document.cookie;
+    console.log(cookie);
+    if(cookie) {
+      setOk(true);
+    }else {
+      setOk(false);
+    }
+  },[])
+  if(ok){
+    return;
+  }
   return (
     <>
       <Header />
