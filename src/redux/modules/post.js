@@ -6,12 +6,17 @@ import { getCookie } from '../../shared/Cookie';
 
 const SET_POST = "SET_POST";
 const GET_POST = 'GET_POST';
+const GET_MAP = 'GET_MAP'
 
 const setPost = createAction(SET_POST, (post) => ({post}));
 const getPost = createAction(GET_POST, (post_list) => ({post_list}));
+const getMap = createAction(GET_MAP, (loc, title, center) => ({loc, title, center}));
 
 const initialState = {
   list: [],
+  loc : [],
+  title : [],
+  center : [],
 }
   
 const addPostDB = (data, fileInput) => {
@@ -75,33 +80,53 @@ const addPostDB = (data, fileInput) => {
     }
   }
 
-  const getPostDB = (getLot, getDry, getWfi, manCnt) => {
-    return async function(dispatch){
-      await axios({
-        method : 'get',
-        url : 'http://52.78.211.107/api/listPage',
-      })
-      .then(response => {
-        let post = response.data.post;
-        let something = [];
-          if(manCnt == '1인실') something = post.filter(post => post.room == '1인실')
-          if(manCnt == '2인실') something = post.filter(post => post.room == '2인실')
-          if(manCnt == '3인실') something = post.filter(post => post.room == '3인실')
-          if(getLot) something = post.filter(post => post.parkinglot == '주차공간 있음')
-          if(getDry) something = post.filter(post => post.laundry == '세탁기 있음')
-          if(getWfi) something = post.filter(post => post.wifi == '와이파이 있음')
-          if(something.length > 0){
-          dispatch(getPost(something))
-        } else {
-          dispatch(getPost(response.data.post))
-        }
+  // const getPostDB = (getLot, getDry, getWfi, manCnt) => {
+  //   return async function(dispatch){
+  //     await axios({
+  //       method : 'get',
+  //       url : 'http://52.78.211.107/api/listPage',
+  //     })
+  //     .then(response => {
+  //       let post = response.data.post;
+  //       let something = [];
+  //         if(manCnt == '1인실') something = post.filter(post => post.room == '1인실')
+  //         if(manCnt == '2인실') something = post.filter(post => post.room == '2인실')
+  //         if(manCnt == '3인실') something = post.filter(post => post.room == '3인실')
+  //         if(getLot) something = post.filter(post => post.parkinglot == '주차공간 있음')
+  //         if(getDry) something = post.filter(post => post.laundry == '세탁기 있음')
+  //         if(getWfi) something = post.filter(post => post.wifi == '와이파이 있음')
+  //         if(something.length > 0){
+  //         dispatch(getPost(something))
+  //       } else {
+  //         let locations = [];
+  //         post.forEach((e, i)=>{
+  //           locations.push({lat : e.latitude, lng : e.longitude});
+  //         })
+  //         let titleArray = [];
+  //         post.forEach(e => {
+  //           titleArray.push(e.postTitle)
+  //         })
+  //         const calculate = (data) => {
+  //           let latitude = 0;
+  //           let longitude = 0;
+  //           for(let i = 0; i < data.length; i++){
+  //               latitude += data[i].lat
+  //               longitude += data[i].lng
+  //           }
+  //           latitude = latitude/data.length;
+  //           longitude = longitude/data.length;
+  //           return {latitude, longitude}
+  //         }
+  //         dispatch(getPost(post))
+  //         dispatch(getMap(locations, titleArray, calculate(locations)))
+  //       }
         
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
-  }
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //     })
+  //   }
+  // }
 
   export default handleActions(
     {
@@ -110,6 +135,11 @@ const addPostDB = (data, fileInput) => {
       }),
       [GET_POST] : (state, action) => produce(state,(draft) => {
         draft.list = action.payload.post_list;
+      }),
+      [GET_MAP] : (state, action) => produce(state, (draft)=> {
+        draft.loc = action.payload.loc;
+        draft.title = action.payload.title;
+        draft.center = action.payload.center;
       }),
     }, initialState
   );
