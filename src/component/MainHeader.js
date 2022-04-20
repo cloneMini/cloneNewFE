@@ -1,20 +1,53 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+
 import styled from "styled-components";
-import { search, profile1, profile2, globe } from "../image/index";
+import { profile1, profile2 } from "../image/index";
 import { ReactComponent as Logo } from "../image/logo.svg";
 import { ReactComponent as Globe } from "../image/globe.svg";
+import MainSearch from "./MainSearch";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory } from "react-router-dom";
 
+const throttle = function (callback, waitTime) {
+  let timerId = null;
+  return (e) => {
+    if (timerId) return;
+    timerId = setTimeout(() => {
+      callback.call(this, e);
+      timerId = null;
+    }, waitTime);
+  };
+};
+
 const MainHeader = () => {
+  const [hide, setHide] = useState(false);
+  const [pageY, setPageY] = useState(0);
+  const documentRef = useRef(document);
+
+  const handleScroll = () => {
+    const { pageYOffset } = window;
+    const deltaY = pageYOffset - pageY;
+    const hide = pageYOffset !== 0 && deltaY >= 0;
+    setHide(hide);
+    setPageY(pageYOffset);
+  };
+
+  const throttleScroll = throttle(handleScroll, 50);
+
+  useEffect(() => {
+    documentRef.current.addEventListener("scroll", throttleScroll);
+    return () =>
+      documentRef.current.removeEventListener("scroll", throttleScroll);
+  }, [pageY]);
+
   const history = useHistory();
   const [ok, setOk] = React.useState(false);
   const dispatch = useDispatch();
   React.useEffect(() => {
     let cookie = document.cookie;
-    console.log((cookie));
+    console.log(cookie);
     if (cookie) {
       setOk(true);
     } else {
@@ -25,134 +58,92 @@ const MainHeader = () => {
   if (ok) {
     return (
       <>
-        <HeadDiv>
-          <Center>
-            <div display="inline-block">
-              <Logo fill="white" />
-            </div>
-            <List>
-              <ListItem>숙소</ListItem>
-              <ListItem>체험</ListItem>
-              <ListItem>온라인 체험</ListItem>
-            </List>
-            <LeftDiv>
-              <PostWriteBtn>게시물 작성</PostWriteBtn>
-              <GlobeBtn>
-                <Globe fill="white" />
-              </GlobeBtn>
-              <ProfileBtn
-                onClick={() => {
-                  dispatch(userActions.logOutAction());
-                }}
-              >
-                <img src={profile1} width="30%" />
-                <img src={profile2} width="55%" />
-              </ProfileBtn>
-            </LeftDiv>
-          </Center>
-        </HeadDiv>
-
-        <Whole>
-          <Second>
-            <SearchTblLeft>
-              <DivForHoverLeft/>
-              <DivForLine>
-                <Bold>위치</Bold>
-                <NotBold>어디로 여행가세요?</NotBold>
-              </DivForLine>
-            </SearchTblLeft>
-            <SearchTbl>
-            <DivForHover/>
-              <DivForLine>
-                <Bold>체크인</Bold>
-                <NotBold>날짜 입력</NotBold>
-              </DivForLine>
-            </SearchTbl>
-            <SearchTbl>
-            <DivForHover/>
-              <DivForLine>
-                <Bold>체크아웃</Bold>
-                <NotBold>날짜 입력</NotBold>
-              </DivForLine>
-            </SearchTbl>
-            <SearchTbl>
-            <DivForHover/>
-              <Bold>인원</Bold>
-              <NotBold>게스트 추가</NotBold>
-            </SearchTbl>
-            <SearchTblRight>
-            <DivForHover/>
-              <div margin-left="10px">
-                <img src={search} width="70%"></img>
-              </div>
-            </SearchTblRight>
-          </Second>
-        </Whole>
+        <HeadArea>
+          <HeadDiv className={hide && "hide"}>
+            <Center>
+              <LogoDiv>
+                <Logo fill="white" />
+              </LogoDiv>
+              <List>
+                <ListItem>숙소</ListItem>
+                <ListItem>체험</ListItem>
+                <ListItem>온라인 체험</ListItem>
+              </List>
+              <LeftDiv>
+                <PostWriteBtn>게시물 작성</PostWriteBtn>
+                <GlobeBtn>
+                  <Globe fill="white" />
+                </GlobeBtn>
+                <ProfileBtn
+                  onClick={() => {
+                    dispatch(userActions.logOutAction());
+                  }}>
+                  <img src={profile1} width="30%" />
+                  <img src={profile2} width="55%" />
+                </ProfileBtn>
+              </LeftDiv>
+            </Center>
+            <MainSearch />
+          </HeadDiv>
+        </HeadArea>
       </>
     );
   } else
     return (
       <>
-        <HeadDiv>
-          <Center>
-            <div display="inline-block">
-              <Logo fill="white" />
-            </div>
-            <List>
-              <ListItem>숙소</ListItem>
-              <ListItem>체험</ListItem>
-              <ListItem>온라인 체험</ListItem>
-            </List>
-            <LeftDiv>
-              <PostWriteBtn>게시물 작성</PostWriteBtn>
-              <GlobeBtn>
-                <Globe fill="white" />
-              </GlobeBtn>
-              <ProfileBtn onClick={() => history.push("/user/login")}>
-                <img src={profile1} width="30%" />
-                <img src={profile2} width="55%" />
-              </ProfileBtn>
-            </LeftDiv>
-          </Center>
-        </HeadDiv>
-
-        <Whole>
-          <Second>
-            <SearchTblLeft>
-              <Bold>위치</Bold>
-              <NotBold>어디로 여행가세요?</NotBold>
-            </SearchTblLeft>
-            <SearchTbl>
-              <Bold>체크인</Bold>
-              <NotBold>날짜 입력</NotBold>
-            </SearchTbl>
-            <SearchTbl>
-              <Bold>체크아웃</Bold>
-              <NotBold>날짜 입력</NotBold>
-            </SearchTbl>
-            <SearchTbl>
-              <Bold>인원</Bold>
-              <NotBold>게스트 추가</NotBold>
-            </SearchTbl>
-            <SearchTblRight>
-              <div margin-left="10px">
-                <img src={search} width="70%"></img>
-              </div>
-            </SearchTblRight>
-          </Second>
-        </Whole>
+        <HeadArea>
+          <HeadDiv className={hide && "hide"}>
+            <Center>
+              <LogoDiv>
+                <Logo fill="white" />
+              </LogoDiv>
+              <List>
+                <ListItem>숙소</ListItem>
+                <ListItem>체험</ListItem>
+                <ListItem>온라인 체험</ListItem>
+              </List>
+              <LeftDiv>
+                <PostWriteBtn>게시물 작성</PostWriteBtn>
+                <GlobeBtn>
+                  <Globe fill="white" onClick={() => history.push("/user/signUp")}/>
+                </GlobeBtn>
+                <ProfileBtn onClick={() => history.push("/user/login")}>
+                  <img src={profile1} width="30%" />
+                  <img src={profile2} width="55%" />
+                </ProfileBtn>
+              </LeftDiv>
+            </Center>
+            <MainSearch onClick={() => history.push("/listpage")}/>
+          </HeadDiv>
+        </HeadArea>
       </>
     );
 };
 
+const HeadArea = styled.div`
+  position: relative;
+  width: 100%;
+  height: 180px;
+`;
+
 const HeadDiv = styled.div`
   width: 100%;
-  height: 80px;
-  display: flex;
+  height: 180px;
+  display: grid;
   border-bottom: solid 0.2px #eeeeee;
   background: black;
+  box-sizing: border-box;
   margin: 10px 0px -10px 0px;
   padding: 0px;
+  border-bottom-style: hidden;
+  transition: 0.2s ease;
+  &.hide {
+    transform: translateY(-80px);
+    position: fixed;
+  }
+`;
+const LogoDiv = styled.div`
+  display: inline-block;
 `;
 
 const List = styled.ul`
@@ -161,6 +152,7 @@ const List = styled.ul`
   padding: 0px;
   color: #ffffff;
   font-weight: 400;
+  cursor:pointer;
 `;
 const ListItem = styled.li`
   display: inline-block;
@@ -168,21 +160,7 @@ const ListItem = styled.li`
   padding: 0px;
   margin: 0px 16px;
 `;
-const DivForHoverLeft = styled.div`
-width:100%;
-min-width:220px;
-&:hover{
-  background: #343434;
-}
-`
 
-const DivForHover = styled.div`
-width:100%;
-min-width:220px;
-`
-const DivForLine = styled.div`
-border-right:1px solid rgb(34,34,34);
-`
 const LeftDiv = styled.div`
   height: 80px;
   display: flex;
@@ -203,8 +181,16 @@ const PostWriteBtn = styled.button`
   align-items: center;
   padding: 0px;
   margin: 0px;
+  cursor:pointer;
   :hover {
-    background: #343434;
+    background: #393939;
+    width: 100px;
+    height: 42px;
+    border-radius: 21px;
+  }
+  &.hide {
+    transform: translateY(-80px);
+    position: fixed;
   }
 `;
 
@@ -215,6 +201,14 @@ const GlobeBtn = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 21px;
+  cursor:pointer;
+  :hover {
+    background: #393939;
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    margin: 0px 20px;
+  }
 `;
 
 const Center = styled.div`
@@ -224,6 +218,10 @@ const Center = styled.div`
   justify-content: space-between;
   align-items: center !important;
   margin: auto;
+  &.hide {
+    transform: translateY(180px);
+    position: fixed;
+  }
 `;
 
 const ProfileBtn = styled.button`
@@ -244,65 +242,4 @@ const ProfileBtn = styled.button`
   cursor: pointer;
 `;
 
-const Whole = styled.div`
-  background: black;
-  height: 80px;
-  display: flex;
-`;
-
-const Second = styled.div`
-  margin: 0 auto;
-  display: flex;
-  vertical-align: middle;
-`;
-
-const SearchTblLeft = styled.div`
-  background: #ffffff;
-  width: 100%;
-  min-width: 220px;
-  height: 60px;
-  display: inline-block;
-  align-items: center;
-  border-top-left-radius: 40px;
-  border-bottom-left-radius: 40px;
-  &:hover{
-    background:#DDDDDD;
-    border-radius:40px;
-    min-width:260px;
-  }
-`;
-
-const SearchTbl = styled.div`
-  background: #ffffff;
-  width: 100%;
-  min-width: 200px;
-  height: 60px;
-  display: inline-block;
-  align-items: center;
-`;
-
-const SearchTblRight = styled.div`
-  background: #ffffff;
-  width: 100%;
-  min-width: 100px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  border-top-right-radius: 40px;
-  border-bottom-right-radius: 40px;
-  position: relative;
-`;
-
-const Bold = styled.div`
-  font-weight: 500;
-  font-size: 14px;
-  margin: 10px 50px;
-  text-align: left;
-`;
-const NotBold = styled.div`
-  font-weight: 400px;
-  font-size: 15px;
-  margin: 10px 0px 10px 50px;
-  text-align: left;
-`;
 export default MainHeader;

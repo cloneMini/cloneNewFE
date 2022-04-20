@@ -38,28 +38,28 @@ const Main = (props) => {
       <Box5>
         <CityBox>
           <CityNameBox src={seoul} />
-          <CityName>
+          <CityName color="#D93B30">
             <City>서울</City>
             <Distance>331km 거리</Distance>
           </CityName>
         </CityBox>
         <CityBox>
           <CityNameBox src={daegu} />
-          <CityName>
+          <CityName color="#CC2D4A">
             <City>대구</City>
             <Distance>95km 거리</Distance>
           </CityName>
         </CityBox>
         <CityBox>
           <CityNameBox src={daejun} />
-          <CityName>
+          <CityName color="#D70466">
             <City>울산</City>
             <Distance>55km 거리</Distance>
           </CityName>
         </CityBox>
         <CityBox>
           <CityNameBox src={ulsan} />
-          <CityName>
+          <CityName color="#FF385C">
             <City>대전</City>
             <Distance>204km 거리</Distance>
           </CityName>
@@ -102,7 +102,7 @@ const Main = (props) => {
 
 const Box2 = styled.div`
   background-color: black;
-  margin: 0 auto;
+  margin: auto;
   padding: 20px 0;
 `;
 const PinkBox = styled.div`
@@ -216,7 +216,7 @@ const CityName = styled.div`
   height: 22vh;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  background: #bc1a6e;
+  background: ${props=>props.color};
   margin-top: -5px;
 `;
 
