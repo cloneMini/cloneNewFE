@@ -1,12 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdClose } from "react-icons/md";
+import { getCookie } from "../shared/Cookie";
 
 const CommentBox = (props) => {
   const dispatch = useDispatch();
-  console.log(props)
+  const cookie = getCookie('ok');
+  const parseToken = (token = 'null') => {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+      } catch (e) {
+        return null;
+      }
+  }
   const deleteCom = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteCommentDB(props._id));
@@ -34,7 +42,11 @@ const CommentBox = (props) => {
         </UserProfile>
         <CommentContent>
           {props.contents}
-          <MdClose onClick={deleteCom } style ={{cursor:"pointer", marginLeft:"15px"}} ></MdClose>
+          {
+            props.email == parseToken(cookie).email
+            ? <MdClose onClick={deleteCom } style ={{cursor:"pointer", marginLeft:"15px"}} ></MdClose>
+            : null
+          }
         </CommentContent>
       </Comment>
     </>

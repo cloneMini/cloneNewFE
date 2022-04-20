@@ -8,16 +8,27 @@ import ScrollEffect from "../detailcompo/ScrollEffect";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useParams } from "react-router-dom";
+import { getCookie } from "../shared/Cookie";
 
 const DetailPage = () => {
-const dispatch = useDispatch()
-const paramsId = useParams().postId
-React.useEffect(() =>{
-  dispatch(commentActions.getCommentDB(paramsId))
-})
-const user = useSelector(state => state.user)
-console.log(user)
+  const dispatch = useDispatch()
+  const paramsId = useParams().postId
+  React.useEffect(() =>{
+    dispatch(commentActions.getCommentDB(paramsId))
+  })
+  const user = useSelector(state => state.user)
+  console.log(user);
 
+  const cookie = getCookie('ok')
+  const parseToken = (token = 'null') => {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+      } catch (e) {
+        return null;
+      }
+  }
+  console.log(parseToken(cookie));
+  
   return (
     <>
     <Header />

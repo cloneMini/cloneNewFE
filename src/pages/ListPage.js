@@ -163,7 +163,7 @@ const Filter3 = styled.button`
             <RoomList>
                 {
                     getPost.map((element, idx) =>{
-                        return <Room element={element} idx={idx}  onClick={()=>{
+                        return <Room key={element.postId} element={element} idx={idx}  onClick={()=>{
                             history.push(`/detailpage/${element.postId}`)
                           
                         }} />
