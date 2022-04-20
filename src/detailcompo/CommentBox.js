@@ -22,11 +22,11 @@ const CommentBox = (props) => {
   return (
     <>
       <Comment>
-        <UserProfile 이름 날짜 이미지>
+        <UserProfile >
           <div>
             <UserImage src={props.userProfile} />
           </div>
-          <NameDate 이름이랑 날짜 싸기>
+          <NameDate >
             <UserName> {props.nickName}</UserName>
             <Date> {`${date1[2]}년 ${date1[0]}월`}</Date>
           </NameDate>
