@@ -250,6 +250,7 @@ const OverComment = styled.div`
   cursor: pointer;
   &:hover{
     text-decoration: underline;
+    background-color: #f7f7f7;
   }
 `;
 
