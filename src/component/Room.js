@@ -18,7 +18,7 @@ function Room(props){
                     <p>{post.postDesc}</p>
                 </Textbox>
                 <Textbox>
-                    <p>{post.category.join(' ')}</p>
+                    {/* <p>{post.category.join(' ')}</p> */}
                 </Textbox>
                 <Textbox></Textbox>
             </Contentbox>

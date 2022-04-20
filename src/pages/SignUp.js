@@ -41,9 +41,9 @@ const SignUp = (props) => {
   };
 
   const checkNN = (e) => {
-    console.log(e);
+
     if (e.key === "Enter") {
-      console.log(e.target.value);
+  
       if (e.target.value === "") {
         setNickCheck("닉네임을 입력해주세요.");
         return;

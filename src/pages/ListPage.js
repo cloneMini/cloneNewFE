@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 function ListPage(){
     const history = useHistory()
     const post_list = useSelector(state => state.post.list);
-    console.log(post_list.postId)
+   
 
     const dispatch = useDispatch();
     const mapRef = useRef(null);

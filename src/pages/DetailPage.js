@@ -14,8 +14,9 @@ const dispatch = useDispatch()
 const paramsId = useParams().postId
 React.useEffect(() =>{
   dispatch(commentActions.getCommentDB(paramsId))
-
 })
+const user = useSelector(state => state.user)
+console.log(user)
 
   return (
     <>
@@ -42,6 +43,7 @@ flex-direction: column;
 margin: auto;
 color:#222222;
 padding: 24px 80px 0px 80px;
+
 
 `;
 
