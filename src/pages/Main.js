@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MainHeader from "../component/MainHeader";
+import Footer from '../component/Footer';
 import {
   curious,
   seoul,
@@ -89,9 +90,12 @@ const Main = (props) => {
       </Box6>
       <Box7>
         <Image1 src={background} />
-        <Image1Div>
-        </Image1Div>
+        <HostingDiv>
+          <Hosting>호스팅에 관해<br /> 궁금하신 점이<br /> 있나요?</Hosting>
+        <SuperHost>슈퍼호스트에게 물어보세요</SuperHost>
+        </HostingDiv>
       </Box7>
+      <Footer />
     </>
   );
 };
@@ -167,7 +171,7 @@ const Image1 = styled.img`
   border-radius: 10px;
   vertical-align: middle;
   position: absolute;
-  margin: 10vh;
+  margin: 0 10vh;
 `;
 const Image1Div = styled.div`
   width: 90vw;
@@ -185,14 +189,13 @@ const Excting = styled.div`
   justify-content: space-between;
   width: 90vw;
   height: 8vh;
-  margin: 8vh auto;
   font-size: 5vh;
   font-weight: 600;
   text-align: left;
-  margin: 10vh;
+  margin: 4vh 10vh;
 `;
 const Box5 = styled.div`
-  margin: 10vh 4.5vw 0 4.5vw;
+  margin: 0vh 4.5vw 0 4.5vw;
   background-color: white;
   display: flex;
 `;
@@ -248,7 +251,6 @@ const Image2 = styled.img`
 `;
 const EnjoyableDiv = styled.div`
   width: 45vw;
-  position: relative;
 `;
 const ExperienceTxt = styled.div`
   font-size: 6vh;
@@ -259,7 +261,7 @@ const ExperienceTxt = styled.div`
   left: 40%;
   bottom: 80vh;
   transform: translate(-50%, -100%);
-  margin: 4vw;
+  margin: 4vw 4vw -32vw 4vw;
   text-align: left;
 `;
 const ExperienceBtn = styled.button`
@@ -272,15 +274,46 @@ const ExperienceBtn = styled.button`
   position: relative;
   top: 0%;
   left: 10%;
-  bottom: 100vh;
+  bottom: 35vh;
   transform: translate(-50%, -90%);
-  margin: 4vw;
+  margin: 6vw 4vw;
   border-radius: 10px;
   font-size: 1.01rem;
   font-weight: 500;
 `;
 
 const Box7 = styled.div`
+height:inherit;
+`
+const HostingDiv = styled.div`
+width: 90vw;
+  border-radius: 10px;
+  vertical-align: middle;
+  position: relative;
+  margin: 0 10vh;
+`
 
+const Hosting = styled.div`
+font-size: 9vh;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: left;
+  position:relative;
+  margin:0 10vh;
+  padding:5vh 0;
+`
+
+const SuperHost = styled.div`
+color: #000000;
+font-weight:600;
+  background: #ffffff;
+  border: none;
+  width: 10vw;
+  height: 5vh;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 1.01rem;
+  margin:35vh 0vh 10vh 10vh;
+  line-height:5vh;
 `
 export default Main;
