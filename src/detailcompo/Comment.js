@@ -19,9 +19,7 @@ const Comment = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.comment.list.post);
   const comment_list = useSelector((state) => state.comment.list.comment);
-  const userInfo = useSelector((state) => state.user)
-  console.log(userInfo)
-  
+ 
   const paramsId = useParams().postId;
 
   const [comment, setComment] = React.useState("");
