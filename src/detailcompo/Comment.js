@@ -3,23 +3,40 @@ import styled from "styled-components";
 import CommentBox from "./CommentBox";
 import KakaoMap from "./KakadMap";
 import Host from "./Host";
+import Modal from "./Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useParams } from "react-router-dom";
-import { GoStar, } from "react-icons/go";
-import { BsClockFill,BsFillDoorOpenFill, BsFillCheckCircleFill} from "react-icons/bs";
-import { GiHolyWater} from "react-icons/gi";
-import { MdError} from "react-icons/md";
+import { GoStar } from "react-icons/go";
+import {
+  BsClockFill,
+  BsFillDoorOpenFill,
+  BsFillCheckCircleFill,
+} from "react-icons/bs";
+import { GiHolyWater } from "react-icons/gi";
+import { MdError } from "react-icons/md";
 
 const Comment = (props) => {
   const dispatch = useDispatch();
-  const [comment, setComment] = React.useState("");
   const post = useSelector((state) => state.comment.list.post);
   const comment_list = useSelector((state) => state.comment.list.comment);
   const paramsId = useParams().postId;
 
- 
+  const [comment, setComment] = React.useState("");
+  const [comModalOn, setcomModalOn] = React.useState(false);
 
+  const openModal =() =>{
+    setcomModalOn(true)
+    document.body.style.overflow ="hidden"
+  }
+  
+  const closecomModal = (e) => {
+    e.preventDefault();
+    setcomModalOn(false);
+    document.body.style.overflow ="unset"
+  };
+
+  
   const handleform = (e) => {
     setComment(e.target.value);
   };
@@ -36,6 +53,11 @@ const Comment = (props) => {
 
   return (
     <>
+      <Modal
+        comModalOn={comModalOn}
+        closecomModal={closecomModal}
+        comment_list={comment_list}
+      />
       {/* 코맨트 */}
       <Wrap>
         <CommentTitle>
@@ -56,7 +78,8 @@ const Comment = (props) => {
             if (index < 6) return <CommentBox {...c} />;
           })}
         </CommentWrap>
-        <OverComment>
+        <OverComment onClick={openModal
+        }>
           <p style={{ margin: "0px", padding: "13px 23px" }}>
             후기 {comment_list.length}개 모두 보기
           </p>
@@ -70,53 +93,71 @@ const Comment = (props) => {
       <Wrap>
         <Host {...post} />
       </Wrap>
+
+      {/* 이용규칙 */}
       <Wrap>
         <CommentCnt style={{ margin: "0px 0px", paddingBottom: "24px" }}>
           알아두어야 할 사항
         </CommentCnt>
         <RuleFlex>
-         
-         {/* 이용규칙 */}
           <RuleBox>
             <Rule>숙소 이용규칙</Rule>
             <RuleFlex>
-              <Iconz><BsClockFill style={{fontSize:"15px"}}/></Iconz>
+              <Iconz>
+                <BsClockFill style={{ fontSize: "15px" }} />
+              </Iconz>
               <RuleText>체크인: 오후 4:00 - 오전 12:00 </RuleText>
             </RuleFlex>
             <RuleFlex>
-              <Iconz><BsClockFill style={{fontSize:"15px"}}/></Iconz>
+              <Iconz>
+                <BsClockFill style={{ fontSize: "15px" }} />
+              </Iconz>
               <RuleText> 체크아웃 시간: 오전11:00</RuleText>
             </RuleFlex>
             <RuleFlex>
-              <Iconz><BsFillDoorOpenFill/></Iconz>
+              <Iconz>
+                <BsFillDoorOpenFill />
+              </Iconz>
               <RuleText> 키패드(으)로 셀프 체크인</RuleText>
             </RuleFlex>
             <SeeMore> 더 보기 {">"}</SeeMore>
           </RuleBox>
           <RuleBox>
-
-          {/* 건강과 안전 */}
+            {/* 건강과 안전 */}
             <Rule>건강과 안전</Rule>
             <RuleFlex>
-              <Iconz><GiHolyWater style={{fontSize:"18px"}}/></Iconz>
-              <RuleText style={{lineHeight:"20px",marginBottom:"3px"}}>에어비앤비의 사회적 거리 두기 및 관련<br/>가이드라인이 적용됩니다. </RuleText>
+              <Iconz>
+                <GiHolyWater style={{ fontSize: "18px" }} />
+              </Iconz>
+              <RuleText style={{ lineHeight: "20px", marginBottom: "3px" }}>
+                에어비앤비의 사회적 거리 두기 및 관련
+                <br />
+                가이드라인이 적용됩니다.{" "}
+              </RuleText>
             </RuleFlex>
             <RuleFlex>
-              <Iconz><MdError style={{fontSize:"18px", marginTop:"5px"}}/></Iconz>
+              <Iconz>
+                <MdError style={{ fontSize: "18px", marginTop: "5px" }} />
+              </Iconz>
               <RuleText> 화재경보기 없음</RuleText>
             </RuleFlex>
             <RuleFlex>
-              <Iconz><BsFillCheckCircleFill/></Iconz>
+              <Iconz>
+                <BsFillCheckCircleFill />
+              </Iconz>
               <RuleText> 일산화탄소 경보기 필요 없음</RuleText>
             </RuleFlex>
             <SeeMore> 더 보기 {">"}</SeeMore>
           </RuleBox>
           <RuleBox>
-
             {/* 환불정책 */}
             <Rule>환불 정책</Rule>
             <RuleFlex>
-              <RuleText style={{lineHeight:"22px"}}>이 숙박에 대한 취소 세부 내역을 확인하려면 여행<br/>날짜를 입력하세요.</RuleText>
+              <RuleText style={{ lineHeight: "22px" }}>
+                이 숙박에 대한 취소 세부 내역을 확인하려면 여행
+                <br />
+                날짜를 입력하세요.
+              </RuleText>
             </RuleFlex>
             <SeeMore> 더 보기 {">"}</SeeMore>
           </RuleBox>
@@ -136,7 +177,7 @@ const Wrap = styled.div`
 `;
 const RuleBox = styled.div`
   padding: 0px 8px;
-  width:378px;
+  width: 378px;
 `;
 
 const RuleText = styled.div`
@@ -206,6 +247,11 @@ const OverComment = styled.div`
   font-size: 16px;
   font-weight: 600;
   display: inline-block;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+    background-color: #f7f7f7;
+  }
 `;
 
 const InputCom = styled.input`

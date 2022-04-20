@@ -6,6 +6,7 @@ import { MdClose } from "react-icons/md";
 
 const CommentBox = (props) => {
   const dispatch = useDispatch();
+  console.log(props)
   const deleteCom = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteCommentDB(props._id));
@@ -22,17 +23,17 @@ const CommentBox = (props) => {
   return (
     <>
       <Comment>
-        <UserProfile 이름 날짜 이미지>
+        <UserProfile >
           <div>
             <UserImage src={props.userProfile} />
           </div>
-          <NameDate 이름이랑 날짜 싸기>
+          <NameDate >
             <UserName> {props.nickName}</UserName>
             <Date> {`${date1[2]}년 ${date1[0]}월`}</Date>
           </NameDate>
         </UserProfile>
         <CommentContent>
-          {props.contents}{" "}
+          {props.contents}
           <MdClose onClick={deleteCom } style ={{cursor:"pointer", marginLeft:"15px"}} ></MdClose>
         </CommentContent>
       </Comment>

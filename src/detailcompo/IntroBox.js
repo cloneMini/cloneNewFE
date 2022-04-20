@@ -7,6 +7,7 @@ import { BiBed } from "react-icons/bi";
 import { MdBed } from "react-icons/md";
 import { GoKeyboard } from "react-icons/go";
 import Calender1 from "../component/Calender";
+import goods from "./Imagegroup/goods.PNG"
 
 const IntroBox = () => {
   const post = useSelector((state) => state.comment.list.post[0]);
@@ -89,34 +90,37 @@ const IntroBox = () => {
         </SleepZone>
       </Wrap>
       {/* 숙소 편의 시설 */}
-      <Wrap style={{ paddingTop: "48px" }}>
+      <Wrap style={{ padding: "48px 0px"  }}>
         <SleepP> 편의 시설 추가될 공간 </SleepP>
         <Facilities>
           <HalfFac>
             <ImotiText>
               <span> 이모티</span>
-              <div>아무거나</div>
+              <div>방 개수</div>
             </ImotiText>
             <ImotiText>
               <span> 이모티</span>
-              <div>아무거나</div>
+              <div>주차공간 있음</div>
             </ImotiText>
-            <ImotiText>
-              <span> 이모티</span>
-              <div>아무거나</div>
-            </ImotiText>
+            
           </HalfFac>
           <HalfFac>
             <ImotiText>
               <span> 이모티</span>
-              <div>아무거나</div>
+              <div>세탁기 없음</div>
             </ImotiText>
             <ImotiText>
               <span> 이모티</span>
-              <div>아무거나</div>
+              <div>와이파이 없음</div>
             </ImotiText>
+            
           </HalfFac>
+          
         </Facilities>
+        <img src={goods}></img>
+              <OverComment> <p style={{ margin: "0px", padding: "13px 23px" }}>
+            편의시설35개 모두 보기
+          </p></OverComment>
       </Wrap>
       {/* 달력 들어가야 되는데 이미지로 할지 고민중  */}
       <Wrap style={{ paddingTop: "48px" }}>
@@ -222,18 +226,12 @@ const HalfFac = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 300px;
+ 
 `;
 
 const ImotiText = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const Calender = styled.div`
-  background-color: #e7e7e7;
-  width: 680px;
-  height: 315px;
 `;
 
 const Cfooter = styled.div`
@@ -249,3 +247,19 @@ text-decoration: underline;
 font-weight: 600;
 
 `
+
+const OverComment = styled.div`
+  border-radius: 8px;
+  border: 1px solid black;
+  margin-top: 32px;
+  min-width: 180px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-block;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+    background-color: #f7f7f7;
+  }
+`;
