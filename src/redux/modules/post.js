@@ -21,7 +21,7 @@ const initialState = {
   
 const addPostDB = (data, fileInput) => {
    let token = getCookie("ok")
-       return async function(dispatch, getState){
+       return async function(dispatch, getState, {history}){
       let lati = 0;
       let long = 0;
       console.log(token)
@@ -70,6 +70,7 @@ const addPostDB = (data, fileInput) => {
         })
           .then(response=>{
             console.log(response)
+            history.push('/listPage')
         })
           .catch(error =>{
             console.log(error)

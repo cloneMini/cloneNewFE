@@ -55,16 +55,16 @@ function ListPage(){
             })
             .then(response => {
                 const post = response.data.post
+                let people = manCnt.current.value
                 let something = [];
-                if (manCnt == '1인실') something = post.filter(post => post.room == '1인실')
-                if (manCnt == '2인실') something = post.filter(post => post.room == '2인실')
-                if (manCnt == '3인실') something = post.filter(post => post.room == '3인실')
+                if (people == '1인실') something = post.filter(post => post.room == '1인실')
+                if (people == '2인실') something = post.filter(post => post.room == '2인실')
+                if (people == '3인실') something = post.filter(post => post.room == '3인실')
                 if (getLot) something = post.filter(post => post.parkinglot == '주차공간 있음')
                 if (getDry) something = post.filter(post => post.laundry == '세탁기 있음')
                 if (getWfi) something = post.filter(post => post.wifi == '와이파이 있음')
-                
+                console.log(getLot, getDry, getWfi)
                 if (something.length > 0) {
-
                     let locations = [];
                     for(let i = 0; i < something.length; i++){
                         locations.push({ lat: something[i].latitude, lng: something[i].longitude });
@@ -106,7 +106,6 @@ function ListPage(){
                         longitude = longitude / data.length;
                         return { latitude, longitude }
                     }
-                    console.log(post)
                     setPost(post)
                     initMap(locations, titleArray, calculate(locations));
                 }
@@ -143,7 +142,6 @@ const Filter3 = styled.button`
     font-size:15px;
     &:hover{ border: 1px solid black;}
 `
-
     return(
         <>
         <Header/>
@@ -159,7 +157,6 @@ const Filter3 = styled.button`
                 <Filter1 getWfi={getWfi} onClick={()=>{setWfi(!getWfi)}}>무선 인터넷</Filter1>
                 <Filter2 onClick={()=>{setLot(!getLot)}}>주차공간</Filter2>
                 <Filter3 onClick={()=>{setDry(!getDry)}}>세탁기</Filter3>
-                <button onClick={()=>{initMap()}}>wdfwd</button>
             </Botbox>
         </Upper>
         <ListBox>
@@ -167,7 +164,7 @@ const Filter3 = styled.button`
                 {
                     getPost.map((element, idx) =>{
                         return <Room element={element} idx={idx}  onClick={()=>{
-                            // history.push('/detailpage/'+post_list[idx].postId)
+                            history.push(`/detailpage/${element.postId}`)
                           
                         }} />
                     })

@@ -11,7 +11,6 @@ const Header = () => {
   const dispatch = useDispatch();
   React.useEffect(()=>{
     let cookie = document.cookie;
-    console.log(cookie);
     if(cookie) {
       setOk(true);
     }else {
@@ -31,7 +30,7 @@ const Header = () => {
           </SearchBtn>
 
           <LeftDiv>
-            <PostWriteBtn>게시물 작성</PostWriteBtn>
+            <PostWriteBtn onClick={()=>{history.push('/addhost')}}>게시물 작성</PostWriteBtn>
             <div>
               <img src={globe} width="45%" />
             </div>
