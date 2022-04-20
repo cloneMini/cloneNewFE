@@ -16,8 +16,8 @@ const handleform = (e)=> {
   return comModalOn ? (
     <>
       <Overlay comModalOn={comModalOn}>
-        <Container>
-          <Contents>
+        <Container onClick={closecomModal}>
+          <Contents >
           <Close onClick={closecomModal}>X</Close>
             <Search type="text" value={searchbar} onChange={handleform} placeholder="후기 검색"/>
         
@@ -55,6 +55,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   
+  
  
 `;
 
@@ -74,7 +75,7 @@ const Contents = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   background-color: white;
   text-align: center;
-  width: 35%;
+  width: 30%;
   height: 600px;
   overflow: auto;
 `;
