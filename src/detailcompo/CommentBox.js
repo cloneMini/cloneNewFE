@@ -6,6 +6,7 @@ import { MdClose } from "react-icons/md";
 
 const CommentBox = (props) => {
   const dispatch = useDispatch();
+  console.log(props)
   const deleteCom = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteCommentDB(props._id));

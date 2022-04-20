@@ -26,6 +26,8 @@ const initialState = {
         address: "송파구, 서울, 한국",
         postCommentCnt: "32",
         nickName: "아이유",
+        lat:'',
+        lng: '',
         userProfile:
           "https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2020/10/PS20100800026.jpg",
         room: 1,
@@ -59,6 +61,7 @@ const getCommentDB = (postId) => {
           authorization: `Bearer ${token}`,
         },
       }).then((response) => {
+        
         dispatch(setComment(response.data));
         
       });
@@ -79,7 +82,7 @@ const addCommentDB = (contents, postId) => {
           authorization: `Bearer ${token}`,
         },
       }).then((res)=> {
-        console.log(res)
+        console.log(res.data)
         dispatch(addComment(res.data.comment));
       })
      
