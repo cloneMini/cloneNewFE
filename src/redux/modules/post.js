@@ -2,24 +2,29 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import Geocode from 'react-geocode';
 import axios from "axios";
-import { getCookie } from "../../shared/Cookie";
+import { getCookie } from '../../shared/Cookie';
 
 const SET_POST = "SET_POST";
-const GET_POST = 'GET_POST'
+const GET_POST = 'GET_POST';
+const GET_MAP = 'GET_MAP'
 
 const setPost = createAction(SET_POST, (post) => ({post}));
 const getPost = createAction(GET_POST, (post_list) => ({post_list}));
+const getMap = createAction(GET_MAP, (loc, title, center) => ({loc, title, center}));
 
 const initialState = {
-    list: [],
-  }
+  list: [],
+  loc : [],
+  title : [],
+  center : [],
+}
   
 const addPostDB = (data, fileInput) => {
    let token = getCookie("ok")
-
        return async function(dispatch, getState){
       let lati = 0;
       let long = 0;
+      console.log(token)
 
       await Geocode.fromAddress(data.address).then(
         response => {
@@ -54,7 +59,7 @@ const addPostDB = (data, fileInput) => {
              }
             }
           }
-      axios({
+      await axios({
         method : 'post',
         url : 'http://52.78.211.107/api/hostAdd',
         data : formData,
@@ -69,39 +74,9 @@ const addPostDB = (data, fileInput) => {
           .catch(error =>{
             console.log(error)
         })
-      
-        // dispatch(setPost(data1, data2))
     }
   }
 
-  const getPostDB = (getLot, getDry, getWfi, manCnt) => {
-    return async function(dispatch){
-      console.log(manCnt)
-      axios({
-        method : 'get',
-        url : 'http://52.78.211.107/api/listPage',
-      })
-      .then(response => {
-        let post = response.data.post;
-        let something = [];
-          if(manCnt == '1인실') something = post.filter(post => post.category.includes(manCnt))
-          if(manCnt == '2인실') something = post.filter(post => post.category.includes(manCnt))
-          if(manCnt == '3인실') something = post.filter(post => post.category.includes(manCnt))
-          if(getLot) something = post.filter(post => post.category.includes('주차공간 있음'))
-          if(getDry) something = post.filter(post => post.category.includes('세탁기 있음'))
-          if(getWfi) something = post.filter(post => post.category.includes('와이파이 있음'))
-        if(something.length > 0){
-          dispatch(getPost(something))
-        } else {
-          dispatch(getPost(response.data.post))
-        }
-        
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
-  }
 
   export default handleActions(
     {
@@ -110,7 +85,12 @@ const addPostDB = (data, fileInput) => {
       }),
       [GET_POST] : (state, action) => produce(state,(draft) => {
         draft.list = action.payload.post_list;
-      })
+      }),
+      [GET_MAP] : (state, action) => produce(state, (draft)=> {
+        draft.loc = action.payload.loc;
+        draft.title = action.payload.title;
+        draft.center = action.payload.center;
+      }),
     }, initialState
   );
   
@@ -118,7 +98,6 @@ const addPostDB = (data, fileInput) => {
     setPost,
     addPostDB,
     getPost,
-    getPostDB,
   }
   
   export {actionCreators};

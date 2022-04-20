@@ -2,25 +2,31 @@ import styled from "styled-components";
 
 function Room(props){
     const post = props.element;
-    console.log(props)
     return(
         <>
         <Rooms onClick={props.onClick}>
             <Imgbox>
-                <Imgset  
-                src={post.postImg[0]}/>
+                <Imgset src={post.postImg[0]}/>
             </Imgbox>
             <Contentbox>
                 <Textbox>
-                    <p>{post.address}</p>
+                    <p style={{color:'#gray'}}>{post.address}</p>
+                </Textbox>
+                <Textbox>
+                    <p style={{fontWeight:'bold', marginTop:'-5px', fontSize:'20px', borderBottom:'0.5px solid #d2d2d2', width:'60%'}}
+                    >{post.postTitle}</p>
                 </Textbox>
                 <Textbox>
                     <p>{post.postDesc}</p>
                 </Textbox>
                 <Textbox>
-                    {/* <p>{post.category.join(' ')}</p> */}
+                    <div style={{color:'gray'}}>
+                    <span >{post.room}</span>{" "}
+                    <span>{post.laundry}</span>{" "}
+                    <span>{post.parkinglot}</span>{" "}
+                    <span>{post.wifi}</span>
+                    </div>
                 </Textbox>
-                <Textbox></Textbox>
             </Contentbox>
         </Rooms>
         </>

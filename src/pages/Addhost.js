@@ -51,7 +51,7 @@ function Addhost(){
             }
         }
     }
-
+    console.log(getInputs)
     const {roomName, address, desc, price, manCnt, wifi, parking, laundry} = getInputs;
     const onChange = (e) => {
         const {name, value} = e.target;
@@ -75,14 +75,10 @@ function Addhost(){
         <div style={{width:'100vw', height:'100vh',display:'flex',float:'left'}}>
             <ScreenLeft>
                 <DaumPostCode style={postCodeStyle}  onComplete={onComplete}/>
-                <img style={{width:'125px', height:'50px', margin:'5% 80% 10px 10px'}} src={Logo}/>
+                <img onClick={()=>{history.push('/listPage')}} style={{width:'125px', height:'50px', margin:'5% 80% 10px 10px'}} src={Logo}/>
                 <p style={{fontSize:'45px', fontWeight:'bold', color:'white', margin:'30% 0% 0 0'}}>여러분의 집을 호스팅 해보세요!</p>
             </ScreenLeft>
             <ScreenRight>
-                <InputBox>
-                    <Textarea >당신의 숙소 이름을 정해보세요!</Textarea>
-                    <Inputarea name='roomName' value={roomName} onChange={onChange}/>
-                </InputBox>
                 <InputBox>
                     <Textarea>숙소 주소를 입력해주세요</Textarea>
                     <Inputarea name='address' value={address} onChange={onChange}/>
@@ -91,6 +87,11 @@ function Addhost(){
                 <button onClick={()=>{setOpen(!getOpen)}} style={{fontSize:'16px',border:'none', borderRadius:'10px', 
                 width:'150px', height:'40px'}}>주소찾기</button>
                 </InputBox>
+                <InputBox>
+                    <Textarea >당신의 숙소 이름을 정해보세요!</Textarea>
+                    <Inputarea name='roomName' value={roomName} onChange={onChange}/>
+                </InputBox>
+                
                 <InputBox><Textarea>5개의 사진을 올려주세요!</Textarea>
                     <label for='file'><p style={{ padding: '6px 25px', backgroundColor:'#FF6600', borderRadius: '10px', color: 'white', width:'110px'}}>사진 업로드하기</p></label>
                     <input style={{marginTop:'0px', height:'40px', width:'0px'}}
@@ -106,6 +107,7 @@ function Addhost(){
                 </InputBox>
                 <InputBox>
                     <Select name='manCnt' value={manCnt} onChange={onChange}>
+                        <option>몇명?</option>
                         <option>1인실</option>
                         <option>2인실</option>
                         <option>3인실</option>
