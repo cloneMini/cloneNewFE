@@ -126,7 +126,7 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.token = action.payload.token;
-        draft.is_login = true;
+        draft.ok = true;
       }),
     [GET_USER]: (state, action) =>//여기서, aPp,js에서 실행
       produce(state, (draft) => {
