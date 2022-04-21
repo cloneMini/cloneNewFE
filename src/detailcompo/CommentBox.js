@@ -15,6 +15,18 @@ const CommentBox = (props) => {
         return null;
       }
   }
+  const judged = (commentor, current) => {
+    if(!current){
+      return false;
+    } else {
+      current = current.email;
+      if(commentor == current){
+        return true
+      } else {
+        return false;
+      }
+    }
+  }
   const deleteCom = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteCommentDB(props._id));
@@ -23,7 +35,6 @@ const CommentBox = (props) => {
       return;
     }
   };
-
   if (!props.date) {
     return;
   }
@@ -43,8 +54,8 @@ const CommentBox = (props) => {
         <CommentContent>
           {props.contents}
           {
-            props.email == parseToken(cookie).email
-            ? <MdClose onClick={deleteCom } style ={{cursor:"pointer", marginLeft:"15px"}} ></MdClose>
+            judged(props.email, parseToken(cookie)) == true 
+            ? <MdClose onClick={deleteCom} style ={{cursor:"pointer", marginLeft:"15px"}} ></MdClose>
             : null
           }
         </CommentContent>
