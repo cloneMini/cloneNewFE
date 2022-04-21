@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import Geocode from 'react-geocode';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {actionCreators as postActions} from '../redux/modules/post';
 import Logo from '../elements/airbnb.png';
 import DaumPostCode from 'react-daum-postcode';
@@ -64,9 +64,9 @@ function Addhost(){
         })
     }
     const submit = () => {
+        console.log(checked(getInputs))
         if(checked(getInputs) == true){
             dispatch(postActions.addPostDB(getInputs, fileInput))
-            history.push('/listPage');
         }
     }
     

@@ -20,7 +20,7 @@ function ListPage(){
     const initMap = (loc, title, center) => {
         const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: center.latitude, lng: center.longitude },
-        zoom: 9,
+        zoom: 8,
         });
         const infoWindow = new window.google.maps.InfoWindow({
             content: "",

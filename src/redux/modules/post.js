@@ -3,6 +3,8 @@ import { produce } from "immer";
 import Geocode from 'react-geocode';
 import axios from "axios";
 import { getCookie } from '../../shared/Cookie';
+import { useHistory } from "react-router-dom";
+
 
 const SET_POST = "SET_POST";
 const GET_POST = 'GET_POST';
@@ -18,6 +20,7 @@ const initialState = {
 }
   
 const addPostDB = (data, fileInput) => {
+  
    let token = getCookie("ok")
        return async function(dispatch, getState, {history}){
       let lati = 0;
@@ -66,7 +69,7 @@ const addPostDB = (data, fileInput) => {
             },
         })
           .then(response=>{
-            history.push('/listPage')
+            alert('작성이 완료되었습니다')
         })
           .catch(error =>{
             console.log(error)
@@ -83,6 +86,7 @@ const addPostDB = (data, fileInput) => {
       [GET_POST] : (state, action) => produce(state,(draft) => {
         draft.list = action.payload.post_list;
       }),
+      
     }, initialState
   );
   
