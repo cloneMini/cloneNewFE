@@ -4,6 +4,7 @@ import Title from "../detailcompo/Title";
 import TitleImg from "../detailcompo/TitleImg";
 import Introduce from "../detailcompo/Introduce";
 import Header from "../component/Header";
+import DFooter from "../detailcompo/Dfooter"
 import ScrollEffect from "../detailcompo/ScrollEffect";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
@@ -15,8 +16,8 @@ const paramsId = useParams().postId
 React.useEffect(() =>{
   dispatch(commentActions.getCommentDB(paramsId))
 })
-const user = useSelector(state => state.user)
-console.log(user)
+
+
 
   return (
     <>
@@ -27,6 +28,8 @@ console.log(user)
         <TitleImg></TitleImg>
          <Introduce></Introduce>
         </Wrap>
+         <DFooter/>
+        
 
     </>
   );
