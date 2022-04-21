@@ -6,11 +6,9 @@ import { getCookie } from '../../shared/Cookie';
 
 const SET_POST = "SET_POST";
 const GET_POST = 'GET_POST';
-const GET_MAP = 'GET_MAP'
 
 const setPost = createAction(SET_POST, (post) => ({post}));
 const getPost = createAction(GET_POST, (post_list) => ({post_list}));
-const getMap = createAction(GET_MAP, (loc, title, center) => ({loc, title, center}));
 
 const initialState = {
   list: [],
@@ -84,11 +82,6 @@ const addPostDB = (data, fileInput) => {
       }),
       [GET_POST] : (state, action) => produce(state,(draft) => {
         draft.list = action.payload.post_list;
-      }),
-      [GET_MAP] : (state, action) => produce(state, (draft)=> {
-        draft.loc = action.payload.loc;
-        draft.title = action.payload.title;
-        draft.center = action.payload.center;
       }),
     }, initialState
   );

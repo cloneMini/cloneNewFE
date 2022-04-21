@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Header from "../component/Header";
 
@@ -8,9 +8,6 @@ import { idVal, idVal1 } from "../shared/validation";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
-
-  const dupState = useSelector((state) => state.user.is_login);
-
   const [email, setEmail] = React.useState("");
   const [nickName, setNickName] = React.useState("");
   const [nickCheck, setNickCheck] = React.useState("");
@@ -100,11 +97,7 @@ const SignUp = (props) => {
 
     dispatch(userActions.signupDB(email, password, nickName, userProfile));
   };
-
-  const checkDup = (e) => {
-    dispatch(userActions.idCheck(email));
-    setEmailCheck("");
-  };
+  
   const [ok, setOk] = React.useState(false);
   React.useEffect(()=>{
     let cookie = document.cookie;
