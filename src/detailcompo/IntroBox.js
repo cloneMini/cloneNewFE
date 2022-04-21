@@ -101,7 +101,7 @@ const IntroBox = () => {
           </p></OverComment>
       </Wrap>
       {/* 달력 들어가야 되는데 이미지로 할지 고민중  */}
-      <Wrap style={{ paddingTop: "48px" }}>
+      <Wrap1>
         <div>
           <SleepP style={{ padding: "0px 0px 0px 0px", lineHeight: "25px" }}>
             체크인 날짜를 선택해주세요.
@@ -117,13 +117,18 @@ const IntroBox = () => {
           </div>
           <Del> 날짜 지우기 </Del>
         </Cfooter>
-      </Wrap>
+      </Wrap1>
     </>
   );
 };
 
 export default IntroBox;
-
+const Wrap1 = styled.div`
+  padding-top:48px;
+  @media screen and (max-width: 1000px) {
+    display:none;
+  }
+`
 const Wrap = styled.div`
   border-top: 1px solid rgb(221, 221, 221);
 

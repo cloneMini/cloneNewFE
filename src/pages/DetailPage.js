@@ -48,6 +48,7 @@ color:#222222;
 padding: 24px 80px 0px 80px;
 
 
+
 `;
 
 // const Container = styled.div`

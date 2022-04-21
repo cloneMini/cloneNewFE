@@ -28,8 +28,8 @@ export default Introduce;
 
 const IntroContainer = styled.div`
   justify-content: space-between;
-
   flex-direction: row;
   display: flex;
+  
  
 `;
