@@ -14,7 +14,7 @@ const LOG_OUT = "LOG_OUT";
 const getUser = createAction(GET_USER, (userInfo) => ({ userInfo }));
 const setUser = createAction(SET_USER, (token) => ({ token }));
 const checkDup = createAction(CHECK_DUP, (email) => ({ email }));
-const logOut = createAction(LOG_OUT, (email) => ({ email }));
+const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
 //initialState
 const initialState = {
@@ -80,7 +80,6 @@ const idCheck = (email) => {
 };
 
 const signupDB = (email, password, nickName, userProfile) => {
-
   return async function (dispatch, getState) {
     try {
       await axios({
@@ -146,8 +145,8 @@ export default handleActions(
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        draft.user = null;
-        draft.is_login = false;
+        deleteCookie('ok');
+        draft.ok = false;
       }),
   },
   initialState
