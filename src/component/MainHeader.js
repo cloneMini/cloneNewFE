@@ -20,6 +20,7 @@ const MainHeader = () => {
       setOk(false);
     }
   }, []);
+  console.log(ok);
 
   if (ok) {
     return (
@@ -35,7 +36,7 @@ const MainHeader = () => {
               <ListItem>온라인 체험</ListItem>
             </List>
             <LeftDiv>
-              <PostWriteBtn>게시물 작성</PostWriteBtn>
+              <PostWriteBtn onClick={()=>{history.push('/addhost')}}>게시물 작성</PostWriteBtn>
               <GlobeBtn>
                 <Globe fill="white" />
               </GlobeBtn>
@@ -52,7 +53,7 @@ const MainHeader = () => {
         </HeadDiv>
 
         <Whole>
-          <Second>
+          <Second onClick={()=>{history.push('/listpage')}}>
             <SearchTblLeft>
               <DivForHoverLeft/>
               <DivForLine>
@@ -82,7 +83,7 @@ const MainHeader = () => {
             <SearchTblRight>
             <DivForHover/>
               <div margin-left="10px">
-                <img src={search} width="70%"></img>
+                <img src={search} width="100%"></img>
               </div>
             </SearchTblRight>
           </Second>
@@ -116,7 +117,7 @@ const MainHeader = () => {
         </HeadDiv>
 
         <Whole>
-          <Second>
+          <Second onClick={()=>{history.push('/listpage')}}>
             <SearchTblLeft>
               <Bold>위치</Bold>
               <NotBold>어디로 여행가세요?</NotBold>

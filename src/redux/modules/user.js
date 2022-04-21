@@ -38,7 +38,6 @@ const loginAction = (email, password) => {
         const accessToken = res.data.token;
         //쿠키에 토큰 저장
         setCookie("ok", `${accessToken}`);
-        console.log(res.data);
         dispatch(setUser(res.data.token)); //여기수정 키밸류맞춰서
         document.location.href = "/";
       });
@@ -69,7 +68,6 @@ const idCheck = (email) => {
         { header: { "Content-Type": "application/json" } }
       )
       .then((res) => {
-        console.log(res);
         dispatch(checkDup(true));
       })
       .catch((err) => {
@@ -93,7 +91,6 @@ const signupDB = (email, password, nickName, userProfile) => {
           userProfile : userProfile,
         },
       }).then((response) => {
-        console.log(response);
         document.location.href = "/";
       });
     } catch (err) {
@@ -130,19 +127,16 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.token = action.payload.token;
-        console.log(draft.token);
         draft.is_login = true;
       }),
     [GET_USER]: (state, action) =>//여기서, aPp,js에서 실행
       produce(state, (draft) => {
         draft.userInfo = action.payload.userInfo;
         draft.ok = true;
-        console.log(draft.data);
       }),
     [CHECK_DUP]: (state, action) =>
       produce(state, (draft) => {
         draft.is_check = action.payload.email;
-        console.log(action.payload.id);
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {

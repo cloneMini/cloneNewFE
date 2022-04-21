@@ -80,7 +80,7 @@ function Addhost(){
             <ScreenLeft>
                 <DaumPostCode style={postCodeStyle}  onComplete={onComplete}/>
                 <img onClick={()=>{history.push('/listPage')}} style={{width:'125px', height:'50px', margin:'5% 80% 10px 10px'}} src={Logo}/>
-                <p style={{fontSize:'45px', fontWeight:'bold', color:'white', margin:'30% 0% 0 0'}}>여러분의 집을 호스팅 해보세요!</p>
+                <p style={{fontSize:'45px', fontWeight:'bold', color:'white', margin:'30% 10% 0 0'}}>여러분의 집을 호스팅 해보세요!</p>
             </ScreenLeft>
             <ScreenRight>
                 <InputBox>
@@ -106,7 +106,7 @@ function Addhost(){
                     <Inputarea name='price' value={price} onChange={onChange}/>
                 </InputBox>
                 <InputBox>
-                    <Textarea>여러분의 숙소를 간략하게 소개해주세요!</Textarea>
+                    <Textarea>여러분의 숙소를 소개해주세요!</Textarea>
                     <Inputarea name='desc' value={desc} onChange={onChange}/>
                 </InputBox>
                 <InputBox>
@@ -143,6 +143,7 @@ function Addhost(){
 const ScreenLeft = styled.div`
     width:50vw;
     height:100vh;
+    text-align:center;
     background:linear-gradient(to right, blue, pink);
     @media screen and (max-width: 1200px) {
         display: none;

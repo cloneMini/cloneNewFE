@@ -5,8 +5,6 @@ import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import homeIcon from '../elements/houseticon.png';
 import Header from "../component/Header";
 import { useDispatch, useSelector } from "react-redux";
-import {actionCreators as postActions} from '../redux/modules/post';
-import {actionCreators as mapActions} from '../redux/modules/map';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -24,7 +22,7 @@ function ListPage(){
     const initMap = (loc, title, center) => {
         const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: center.latitude, lng: center.longitude },
-        zoom: 11,
+        zoom: 9,
         });
         const infoWindow = new window.google.maps.InfoWindow({
             content: "",
@@ -63,7 +61,6 @@ function ListPage(){
                 if (getLot) something = post.filter(post => post.parkinglot == '주차공간 있음')
                 if (getDry) something = post.filter(post => post.laundry == '세탁기 있음')
                 if (getWfi) something = post.filter(post => post.wifi == '와이파이 있음')
-                console.log(getLot, getDry, getWfi)
                 if (something.length > 0) {
                     let locations = [];
                     for(let i = 0; i < something.length; i++){
@@ -209,6 +206,10 @@ const RoomList = styled.div`
     @media screen and (max-width: 1300px) {
         width:100%;
     }
+    @media screen and (max-width: 650px) {
+        width:100%;
+        height:100%;
+    }
     
 `
 const Mapbox = styled.div`
@@ -228,9 +229,10 @@ const Select = styled.select`
     border:0.5px solid #d2d2d2;
     border-radius:25px;
     margin-right:20px;
+    margin-left:-10px;
     background:white;
     font-size:15px;
-    padding-left:1.4%;
+    padding-left:30px;
     &:hover{
         border: 1px solid black;
     }

@@ -24,7 +24,6 @@ const addPostDB = (data, fileInput) => {
        return async function(dispatch, getState, {history}){
       let lati = 0;
       let long = 0;
-      console.log(token)
 
       await Geocode.fromAddress(data.address).then(
         response => {
@@ -54,9 +53,9 @@ const addPostDB = (data, fileInput) => {
             formData.append('parkinglot', data.parking)
             formData.append('latitude', lati)
             formData.append('longitude', long)
-            for (var pair of formData.entries()){
-                console.log(pair);
-             }
+            // for (var pair of formData.entries()){
+            //     console.log(pair);
+            //  }
             }
           }
       await axios({
@@ -69,7 +68,6 @@ const addPostDB = (data, fileInput) => {
             },
         })
           .then(response=>{
-            console.log(response)
             history.push('/listPage')
         })
           .catch(error =>{

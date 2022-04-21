@@ -33,7 +33,6 @@ const SignUp = (props) => {
       }
       if (!idVal1(e.target.value)) {
         setEmailCheck("아이디가 형식에 맞지 않습니다.(알파벳4~20자)");
-        console.log("아이디입력 실패");
         return;
       }
       setEmailCheck("아이디가 형식에 맞습니다.")
@@ -50,7 +49,6 @@ const SignUp = (props) => {
       }
       if (!idVal(e.target.value)) {
         setNickCheck("닉네임이 형식에 맞지 않습니다.(알파벳4~20자)");
-        console.log("아이디입력 실패");
         return;
       }
       setNickCheck("닉네임이 형식에 맞습니다.");
@@ -110,7 +108,6 @@ const SignUp = (props) => {
   const [ok, setOk] = React.useState(false);
   React.useEffect(()=>{
     let cookie = document.cookie;
-    console.log(cookie);
     if(cookie) {
       setOk(true);
     }else {

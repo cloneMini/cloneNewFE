@@ -22,7 +22,7 @@ const Header = () => {
       <HeadDiv>
         <Center>
           <div>
-            <img src={logo} width="125px" style={{ paddingLeft: " 15px" }} />
+            <img onClick={()=>{history.push('/')}} src={logo} width="125px" style={{ paddingLeft: " 15px" }} />
           </div>
           <SearchBtn>
             <SearchTxt>검색 시작하기</SearchTxt>
@@ -60,7 +60,7 @@ const Header = () => {
           </SearchBtn>
 
           <LeftDiv>
-            <PostWriteBtn>게시물 작성</PostWriteBtn>
+            <PostWriteBtn onClick={()=>{alert('로그인을 해주세요!')}}>게시물 작성</PostWriteBtn>
             <div>
               <img src={globe} width="45%" />
             </div>

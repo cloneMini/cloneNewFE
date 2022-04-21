@@ -82,7 +82,6 @@ const addCommentDB = (contents, postId) => {
           authorization: `Bearer ${token}`,
         },
       }).then((res)=> {
-        console.log(res.data)
         dispatch(addComment(res.data.comment));
       })
      
@@ -102,7 +101,6 @@ const deleteCommentDB = (commentId) => {
       },
     })
       .then((response) => {
-        console.log(response);
         dispatch(deleteComment(commentId));
       })
       .catch((err) => {

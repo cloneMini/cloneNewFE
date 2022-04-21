@@ -10,15 +10,13 @@ function Room(props){
             </Imgbox>
             <Contentbox>
                 <Textbox>
-                    <p style={{color:'#gray'}}>{post.address}</p>
+                    <p style={{color:'gray'}}>{post.address}</p>
                 </Textbox>
                 <Textbox>
-                    <p style={{fontWeight:'bold', marginTop:'-5px', fontSize:'20px', borderBottom:'0.5px solid #d2d2d2', width:'60%'}}
+                    <p style={{fontWeight:'bold', marginTop:'-5px', fontSize:'24px', borderBottom:'0.5px solid #d2d2d2', width:'60%'}}
                     >{post.postTitle}</p>
                 </Textbox>
-                <Textbox>
-                    <p>{post.postDesc}</p>
-                </Textbox>
+                
                 <Textbox>
                     <div style={{color:'gray'}}>
                     <span >{post.room}</span>{" "}
@@ -92,7 +90,7 @@ const Contentbox = styled.div`
 const Textbox = styled.div`
     width:100%;
     height:30px;
-    margin: 5px 0px 5px 0px;
+    margin: 15px 0px 5px 0px;
     text-align:left;
 `
 export default Room
