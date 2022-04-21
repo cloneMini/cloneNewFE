@@ -86,7 +86,9 @@ const ShareBtn = styled.span`
   /* height: 42px; */
   border-radius: 8px;
   color:rgb(34, 34, 34);
-  
+  @media screen and (max-width: 650px) {
+    display:none;
+  }
 `;
 
 const Btn = styled.div`

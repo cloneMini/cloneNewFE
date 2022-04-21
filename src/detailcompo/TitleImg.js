@@ -36,8 +36,12 @@ const ImgBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-
   justify-content: center;
+  @media screen and (max-width: 1016px) {
+    width:100%;
+    height:10%;
+    flex-wrap:unset;
+  }
 `;
 
 const PieceBox = styled.div`
@@ -61,6 +65,10 @@ const BigImg = styled.div`
   cursor: pointer;
   filter: brightness(90%);
 }
+@media screen and (max-width: 1016px) {
+  border-radius:20px;
+  width:100%;
+}
 `;
 
 const PieceImg = styled.div`
@@ -73,7 +81,10 @@ const PieceImg = styled.div`
   &:hover{
   cursor: pointer;
   filter: brightness(90%);
-}
+  }
+  @media screen and (max-width: 1016px) {
+    display:none;
+  }
 `;
 
 const PieceImgR = styled.div`
@@ -87,6 +98,9 @@ const PieceImgR = styled.div`
   &:hover{
   cursor: pointer;
   filter: brightness(90%);
+  @media screen and (max-width: 1296px) {
+    display:none;
+  }
 }
 `;
 
@@ -101,6 +115,9 @@ const PieceImgRd = styled.div`
   &:hover{
   cursor: pointer;
   filter: brightness(90%);
+}
+@media screen and (max-width: 1296px) {
+  display:none;
 }
 `;
 

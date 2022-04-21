@@ -6,7 +6,7 @@ function KakaoMap(props) {
    const location = useSelector(state => state.comment.list.post[0])
   return (
     <>
-      <div>
+      <MapPlace>
         <Title>호스팅 지역</Title>
         <Location>{props.address}</Location>
         <Map
@@ -16,7 +16,7 @@ function KakaoMap(props) {
         >
           <MapMarker position={{ lat: location.latitude, lng: location.longitude }}></MapMarker>
         </Map>
-      </div>
+      </MapPlace>
     </>
   );
 }
@@ -35,3 +35,8 @@ const Location = styled.div`
   margin-bottom: 24px;
   color: #222222;
 `;
+const MapPlace = styled.div`
+@media screen and (max-width: 1000px) {
+  display:none;
+}
+`

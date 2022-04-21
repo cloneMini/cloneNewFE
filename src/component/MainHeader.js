@@ -69,7 +69,7 @@ const MainHeader = () => {
                 <ListItem>온라인 체험</ListItem>
               </List>
               <LeftDiv>
-                <PostWriteBtn>게시물 작성</PostWriteBtn>
+                <PostWriteBtn onClick={() => history.push("/addhost")}>게시물 작성</PostWriteBtn>
                 <GlobeBtn>
                   <Globe fill="white" />
                 </GlobeBtn>
@@ -102,7 +102,7 @@ const MainHeader = () => {
                 <ListItem>온라인 체험</ListItem>
               </List>
               <LeftDiv>
-                <PostWriteBtn onClick={() => history.push("/listpage")}>게시물 작성</PostWriteBtn>
+                <PostWriteBtn onClick={()=>{alert('로그인을 해주세요!')}} >게시물 작성</PostWriteBtn>
                 <GlobeBtn onClick={() => history.push("/user/signUp")}>
                   <Globe fill="white" />
                 </GlobeBtn>

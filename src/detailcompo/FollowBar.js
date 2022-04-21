@@ -70,8 +70,6 @@ const Ctext = styled.div`
 flex-direction: row;
 display: flex;
 `
-
-
 const BarContainer = styled.div`
   min-width: 500px;
   width: 100%;
@@ -102,7 +100,9 @@ const NavBox = styled.div`
   border-radius: 12px;
   text-align: left;
   border: 1px solid rgb(221, 221, 221);
-  
+  @media screen and (max-width: 1296px) {
+    display:none;
+  }
  
 `;
 
@@ -189,6 +189,8 @@ const Fuck = styled.div`
   font-weight: 600;
   text-decoration: underline black;
   cursor: pointer;
-
+  @media screen and (max-width: 1296px) {
+    display:none;
+  }
   
 `
