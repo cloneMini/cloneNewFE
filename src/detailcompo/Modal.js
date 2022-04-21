@@ -17,8 +17,8 @@ const handleform = (e)=> {
     <>
       <Overlay comModalOn={comModalOn}>
         <Container onClick={closecomModal}>
-          <Contents >
-          <Close onClick={closecomModal}>X</Close>
+          <Contents onClick={(e) => e.stopPropagation()}>
+          {/* <Close onClick={closecomModal} >X</Close> */}
             <Search type="text" value={searchbar} onChange={handleform} placeholder="후기 검색"/>
         
             {comment_list.filter((val)=>{
@@ -80,19 +80,6 @@ const Contents = styled.div`
   overflow: auto;
 `;
 
-const Close = styled.div`
-float: right;
-margin-bottom: 35px;
-border-radius: 30px;
-border: none;
-cursor: pointer;
-width: 25px;
-&:hover {
-    background-color: #f7f7f7;
- 
-}
-
-`
 
 const Search = styled.input`
     justify-content: center;
@@ -100,8 +87,8 @@ const Search = styled.input`
     cursor: text !important;
     display: flex !important;
     min-height: unset !important;
-    width: 80% !important;
-    margin: 15px 0px 60px 0px;
+    width: 90% !important;
+    margin: 15px 0px 60px 10px;
     border: none !important;
     color: rgb(34, 34, 34) !important;
     background-color: rgb(247, 247, 247) !important;

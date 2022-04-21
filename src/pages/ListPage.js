@@ -168,7 +168,7 @@ const Filter3 = styled.button`
                     getPost.map((element, idx) =>{
                         return <Room element={element} idx={idx}  onClick={()=>{
                             // history.push('/detailpage/'+post_list[idx].postId)
-                          
+                            history.push(`/detailpage/${element.postId}`)
                         }} />
                     })
                 }

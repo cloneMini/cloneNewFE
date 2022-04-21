@@ -26,8 +26,8 @@ const initialState = {
         address: "송파구, 서울, 한국",
         postCommentCnt: "32",
         nickName: "아이유",
-        lat:'',
-        lng: '',
+        // lat:'',
+        // lng: '',
         userProfile:
           "https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2020/10/PS20100800026.jpg",
         room: 1,

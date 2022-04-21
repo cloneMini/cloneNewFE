@@ -15,15 +15,18 @@ import {
 } from "react-icons/bs";
 import { GiHolyWater } from "react-icons/gi";
 import { MdError } from "react-icons/md";
-
 const Comment = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.comment.list.post);
   const comment_list = useSelector((state) => state.comment.list.comment);
+ 
   const paramsId = useParams().postId;
 
   const [comment, setComment] = React.useState("");
   const [comModalOn, setcomModalOn] = React.useState(false);
+
+
+
 
   const openModal =() =>{
     setcomModalOn(true)
@@ -31,9 +34,10 @@ const Comment = (props) => {
   }
   
   const closecomModal = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setcomModalOn(false);
     document.body.style.overflow ="unset"
+ 
   };
 
   
