@@ -69,6 +69,7 @@ const idCheck = (email) => {
       )
       .then((res) => {
         dispatch(checkDup(true));
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -91,9 +92,11 @@ const signupDB = (email, password, nickName, userProfile) => {
         },
       }).then((response) => {
         document.location.href = "/";
+        console.log('11');
       });
     } catch (err) {
       console.log(err);
+      window.alert('중복된 아이디입니다.');
     }
   };
 };
@@ -126,7 +129,7 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.token = action.payload.token;
-        draft.is_login = true;
+        draft.ok = true;
       }),
     [GET_USER]: (state, action) =>//여기서, aPp,js에서 실행
       produce(state, (draft) => {

@@ -12,15 +12,18 @@ const SignUp = (props) => {
   const [nickName, setNickName] = React.useState("");
   const [nickCheck, setNickCheck] = React.useState("");
   const [userProfile, setUserProfile] = React.useState("");
+  const [ProfileCh, setProfileCh] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [password2, setPassword2] = React.useState("");
   const [pwdCheck, setPwdCheck] = React.useState("");
   const [pwdCheck2, setPwdCheck2] = React.useState("");
   const [emailCheck, setEmailCheck] = React.useState("");
 
-  const onChange = useCallback((e) => {
-    setUserProfile(e.target.value);
-  }, []);
+  const checkUserProfile = (e) => {
+    if (e.target.value === "") {
+      setProfileCh("이미지를 url로 입력해주세요.");
+    }
+  };
 
   const checkEmail = (e) => {
     if (e.key === "Enter") {
@@ -32,14 +35,12 @@ const SignUp = (props) => {
         setEmailCheck("아이디가 형식에 맞지 않습니다.(알파벳4~20자)");
         return;
       }
-      setEmailCheck("아이디가 형식에 맞습니다.")
+      setEmailCheck("아이디가 형식에 맞습니다.");
     }
   };
 
   const checkNN = (e) => {
-
     if (e.key === "Enter") {
-  
       if (e.target.value === "") {
         setNickCheck("닉네임을 입력해주세요.");
         return;
@@ -98,17 +99,17 @@ const SignUp = (props) => {
 
     dispatch(userActions.signupDB(email, password, nickName, userProfile));
   };
-  
+
   const [ok, setOk] = React.useState(false);
-  React.useEffect(()=>{
+  React.useEffect(() => {
     let cookie = document.cookie;
-    if(cookie) {
+    if (cookie) {
       setOk(true);
-    }else {
+    } else {
       setOk(false);
     }
-  },[])
-  if(ok){
+  }, []);
+  if (ok) {
     return;
   }
   return (
@@ -121,6 +122,10 @@ const SignUp = (props) => {
           </UpperDiv>
           <DownDiv>
             <Welcome>에어비앤비에 오신 것을 환영합니다.</Welcome>
+            <Info>
+              모든 칸에서 입력 완료 후 확인을 위해 엔터키를 눌러주세요.
+            </Info>
+            <Info>(아랫쪽에 안내문구가 나와야 정상)</Info>
             <InputUpDiv>
               <Input
                 name="Email"
@@ -151,9 +156,15 @@ const SignUp = (props) => {
             <InputMidDiv>
               <Input
                 placeholder="프로필이미지를 넣어주세요(URL)"
-                onChange={onChange}
                 value={userProfile}
+                onChange={(e) => {
+                  setUserProfile(e.target.value);
+                }}
+                onKeyPress={(e) => {
+                  checkUserProfile(e);
+                }}
               ></Input>
+              <P>{ProfileCh}</P>
             </InputMidDiv>
             <InputMidDiv>
               <Input
@@ -206,7 +217,7 @@ const LoginBody = styled.div`
 `;
 
 const LoginBox = styled.div`
-  height: 700px;
+  height: 720px;
   width: 100%;
   max-width: 570px;
   border: 1.5px solid rgb(235, 235, 235);
@@ -247,6 +258,16 @@ const Welcome = styled.h3`
   color: rgb(34, 34, 34);
   font-weight: 400px;
   margin-bottom: 8px;
+  margin-left: 16px;
+  text-align: left;
+`;
+
+const Info = styled.h4`
+  line-height: 26px;
+  color: rgb(34, 34, 34);
+  font-weight: 300px;
+  margin-bottom: 4px;
+  margin-top: 4px;
   margin-left: 16px;
   text-align: left;
 `;
