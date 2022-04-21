@@ -2,11 +2,12 @@ import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Header from "../component/Header";
-
+import { useHistory } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = () => {
     if (!(email && password)) return window.alert('로그인 실패');
@@ -51,6 +52,9 @@ const Login = () => {
               <Continue onClick={()=> {
                 login()
               }}>로그인</Continue>
+              <Continue onClick={()=> {
+                history.push('/user/signUp');
+              }}>회원가입</Continue>
             </ContinueDiv>
           </DownDiv>
         </LoginBox>
@@ -66,7 +70,7 @@ const LoginBody = styled.div`
 `;
 
 const LoginBox = styled.div`
-  height: 450px;
+  height: 480px;
   width: 100%;
   max-width: 568px;
   border: 1.5px solid rgb(235, 235, 235);
@@ -151,7 +155,7 @@ const Continue = styled.button`
   );
   cursor: pointer;
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: center;
   font-size: 16px;
   width: 100%;

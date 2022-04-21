@@ -103,13 +103,13 @@ const SearchTblRight = styled.div`
 
 const Bold = styled.div`
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
   margin: 10px 50px;
   text-align: left;
 `;
 const NotBold = styled.div`
   font-weight: 400px;
-  font-size: 15px;
+  font-size: 14px;
   margin: 10px 0px 10px 50px;
   text-align: left;
 `;

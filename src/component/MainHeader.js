@@ -103,9 +103,9 @@ const MainHeader = () => {
                 <ListItem>온라인 체험</ListItem>
               </List>
               <LeftDiv>
-                <PostWriteBtn>게시물 작성</PostWriteBtn>
-                <GlobeBtn>
-                  <Globe fill="white" onClick={() => history.push("/user/signUp")}/>
+                <PostWriteBtn onClick={() => history.push("/listpage")}>게시물 작성</PostWriteBtn>
+                <GlobeBtn onClick={() => history.push("/user/signUp")}>
+                  <Globe fill="white" />
                 </GlobeBtn>
                 <ProfileBtn onClick={() => history.push("/user/login")}>
                   <img src={profile1} width="30%" />
@@ -124,6 +124,7 @@ const HeadArea = styled.div`
   position: relative;
   width: 100%;
   height: 180px;
+  z-index:1;
 `;
 
 const HeadDiv = styled.div`

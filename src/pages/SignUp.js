@@ -168,6 +168,7 @@ const SignUp = (props) => {
               <Input
                 placeholder="비밀번호"
                 type="password"
+                value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -214,9 +215,9 @@ const LoginBody = styled.div`
 `;
 
 const LoginBox = styled.div`
-  height: 720px;
+  height: 700px;
   width: 100%;
-  max-width: 568px;
+  max-width: 570px;
   border: 1.5px solid rgb(235, 235, 235);
   border-radius: 12px;
   position: relative;
@@ -247,7 +248,6 @@ const P = styled.p`
 const DownDiv = styled.div`
   padding: 24px;
   flex: 1 1 auto;
-  overflow-y: auto;
 `;
 
 const Welcome = styled.h3`

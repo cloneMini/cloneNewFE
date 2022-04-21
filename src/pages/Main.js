@@ -74,7 +74,7 @@ const Main = (props) => {
               여행 중 만나는
               <br /> 이색적인 즐길거리
             </ExperienceTxt>
-            <ExperienceBtn>체험</ExperienceBtn>
+            <ExperienceBtn width="60px" margin="6vw 1.5vw">체험</ExperienceBtn>
           </EnjoyableDiv>
         </StreetDiv>
         <StreetDiv>
@@ -84,7 +84,7 @@ const Main = (props) => {
               집에서 만나는
               <br /> 다양한 즐길 거리
             </ExperienceTxt>
-            <ExperienceBtn>온라인 체험</ExperienceBtn>
+            <ExperienceBtn width="120px" margin="6vw 3vw">온라인 체험</ExperienceBtn>
           </EnjoyableDiv>
         </StreetDiv>
       </Box6>
@@ -134,7 +134,7 @@ const PinkBtn = styled.button`
 `;
 
 const Box3 = styled.div`
-  background-color: linear-gradient(90deg, black 50%, white 50%);
+  background: linear-gradient(black 50%, #ffffff 50%);
   width: 100vw;
   height: 100vh;
   margin: auto;
@@ -151,6 +151,7 @@ const CuriousDorm = styled.div`
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index:0;
 `;
 const FlexBtn = styled.button`
   background-color: #ffffff;
@@ -193,6 +194,7 @@ const Excting = styled.div`
   font-weight: 600;
   text-align: left;
   margin: 4vh 10vh;
+  z-index:0;
 `;
 const Box5 = styled.div`
   margin: 0vh 4.5vw 0 4.5vw;
@@ -268,7 +270,7 @@ const ExperienceBtn = styled.button`
   color: #000000;
   background: #ffffff;
   border: none;
-  width: 10vw;
+  width: ${props=>props.width};
   height: 5vh;
   text-align: center;
   position: relative;
@@ -276,7 +278,7 @@ const ExperienceBtn = styled.button`
   left: 10%;
   bottom: 35vh;
   transform: translate(-50%, -90%);
-  margin: 6vw 4vw;
+  margin: ${props=>props.margin};
   border-radius: 10px;
   font-size: 1.01rem;
   font-weight: 500;
@@ -284,6 +286,7 @@ const ExperienceBtn = styled.button`
 
 const Box7 = styled.div`
 height:inherit;
+z-index:0;
 `
 const HostingDiv = styled.div`
 width: 90vw;
@@ -308,7 +311,7 @@ color: #000000;
 font-weight:600;
   background: #ffffff;
   border: none;
-  width: 10vw;
+  width: 12vw;
   height: 5vh;
   text-align: center;
   border-radius: 10px;
