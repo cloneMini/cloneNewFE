@@ -17,7 +17,6 @@ const DetailPage = () => {
     dispatch(commentActions.getCommentDB(paramsId))
   })
   const user = useSelector(state => state.user)
-  console.log(user);
 
   const cookie = getCookie('ok')
   const parseToken = (token = 'null') => {
@@ -27,7 +26,6 @@ const DetailPage = () => {
         return null;
       }
   }
-  console.log(parseToken(cookie));
   
   return (
     <>

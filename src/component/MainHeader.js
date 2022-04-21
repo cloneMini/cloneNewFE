@@ -20,7 +20,6 @@ const MainHeader = () => {
       setOk(false);
     }
   }, []);
-  console.log(ok);
 
   if (ok) {
     return (

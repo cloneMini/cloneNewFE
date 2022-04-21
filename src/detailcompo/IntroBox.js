@@ -11,7 +11,6 @@ import goods from "./Imagegroup/goods.PNG"
 
 const IntroBox = () => {
   const post = useSelector((state) => state.comment.list.post[0]);
-  console.log(post)
   return (
     <>
       {/* 추가 설명 */}

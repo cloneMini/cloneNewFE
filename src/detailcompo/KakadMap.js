@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 function KakaoMap(props) {
    const location = useSelector(state => state.comment.list.post[0])
-    console.log(location);
   return (
     <>
       <div>

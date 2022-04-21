@@ -37,7 +37,6 @@ const Header = () => {
             <ProfileBtn
               onClick={() => {
                 dispatch(userActions.logOutAction());
-                console.log('로그아웃');
               }}
             >
               <img src={profile1} width="30%" />
