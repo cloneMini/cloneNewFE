@@ -82,6 +82,7 @@ const SignUp = (props) => {
       }
       if (e.target.value !== password) {
         setPwdCheck2("패스워드가 일치하지 않습니다!");
+        return;
       }
       setPwdCheck2("패스워드가 일치합니다.");
     }
