@@ -135,7 +135,6 @@ function Addhost(){
                 <InputBox>
                     <Submit onClick={()=>{submit()}}>호스팅 하기</Submit>
                 </InputBox>
-               
             </ScreenRight>
         </div>
     )
@@ -156,7 +155,6 @@ const ScreenRight = styled.div`
     padding-top:100px;
     padding-left:100px;
     margin: 0 auto;
-    
 `
 const InputBox = styled.div`
     width:100%;
@@ -201,12 +199,4 @@ const Submit = styled.button`
     border-radius:15px;
     font-weight:bold;
 `
-const fileUpload = styled.p`
-    font-size:16px;
-    font-weight:bold;
-    margin-bottom:5px;
-    background:yellow;
-`
-
-
 export default Addhost
