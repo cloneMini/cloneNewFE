@@ -1,6 +1,5 @@
 export const idVal = (nickname) => {
   const _reg = /[A-Za-z0-9]{4,20}$/;
-  console.log(_reg.test(nickname));
   return _reg.test(nickname);
 };
 

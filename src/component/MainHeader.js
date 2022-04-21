@@ -47,7 +47,6 @@ const MainHeader = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     let cookie = document.cookie;
-    console.log(cookie);
     if (cookie) {
       setOk(true);
     } else {

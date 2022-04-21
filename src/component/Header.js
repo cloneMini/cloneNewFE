@@ -30,14 +30,13 @@ const Header = () => {
           </SearchBtn>
 
           <LeftDiv>
-            <PostWriteBtn>게시물 작성</PostWriteBtn>
+            <PostWriteBtn onClick={()=>{history.push('/addhost')}}>게시물 작성</PostWriteBtn>
             <div>
               <img src={globe} width="45%" />
             </div>
             <ProfileBtn
               onClick={() => {
                 dispatch(userActions.logOutAction());
-                console.log('로그아웃');
               }}
             >
               <img src={profile1} width="30%" />
@@ -60,7 +59,7 @@ const Header = () => {
           </SearchBtn>
 
           <LeftDiv>
-            <PostWriteBtn>게시물 작성</PostWriteBtn>
+            <PostWriteBtn onClick={()=>{alert('로그인을 해주세요!')}}>게시물 작성</PostWriteBtn>
             <div>
               <img src={globe} width="45%" />
             </div>

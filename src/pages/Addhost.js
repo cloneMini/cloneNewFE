@@ -36,13 +36,17 @@ function Addhost(){
       };
 
     const checked = (data) => {
-        let array = [roomName, address, desc, price, manCnt, wifi, parking]
-
+        let array = [roomName, address, desc, price, manCnt, wifi, parking, laundry];
         for(let i = 0; i < array.length; i++){
             if(array[i] == ''){
                 alert('내용을 입력해주세요!')
                 break;
             } else {
+                if(array[i+4]){
+                    if(array[4] == '인원수' || array[5] == '와이파이' || array[6] == '주차공간' || array[7] == '세탁시설'){
+                        alert('카테고리를 입력해주세요!'); break;
+                    }
+                }
                 if(array[array.length-1]){
                     if(array[array.length-1] !== ''){
                         return true;
@@ -51,7 +55,6 @@ function Addhost(){
             }
         }
     }
-    console.log(getInputs)
     const {roomName, address, desc, price, manCnt, wifi, parking, laundry} = getInputs;
     const onChange = (e) => {
         const {name, value} = e.target;
@@ -63,7 +66,8 @@ function Addhost(){
     const submit = () => {
         if(checked(getInputs) == true){
             dispatch(postActions.addPostDB(getInputs, fileInput))
-        } 
+            history.push('/listPage');
+        }
     }
     
     const onComplete = (data) => {
@@ -76,7 +80,7 @@ function Addhost(){
             <ScreenLeft>
                 <DaumPostCode style={postCodeStyle}  onComplete={onComplete}/>
                 <img onClick={()=>{history.push('/listPage')}} style={{width:'125px', height:'50px', margin:'5% 80% 10px 10px'}} src={Logo}/>
-                <p style={{fontSize:'45px', fontWeight:'bold', color:'white', margin:'30% 0% 0 0'}}>여러분의 집을 호스팅 해보세요!</p>
+                <p style={{fontSize:'45px', fontWeight:'bold', color:'white', margin:'30% 10% 0 0'}}>여러분의 집을 호스팅 해보세요!</p>
             </ScreenLeft>
             <ScreenRight>
                 <InputBox>
@@ -102,24 +106,24 @@ function Addhost(){
                     <Inputarea name='price' value={price} onChange={onChange}/>
                 </InputBox>
                 <InputBox>
-                    <Textarea>여러분의 숙소를 간략하게 소개해주세요!</Textarea>
+                    <Textarea>여러분의 숙소를 소개해주세요!</Textarea>
                     <Inputarea name='desc' value={desc} onChange={onChange}/>
                 </InputBox>
                 <InputBox>
                     <Select name='manCnt' value={manCnt} onChange={onChange}>
-                        <option>몇명?</option>
+                        <option>인원수</option>
                         <option>1인실</option>
                         <option>2인실</option>
                         <option>3인실</option>
                     </Select>
                     <Select name='wifi' value={wifi} onChange={onChange}>
                         <option>와이파이</option>
-                        <option selected>와이파이 있음</option>
+                        <option>와이파이 있음</option>
                         <option>와이파이 없음</option>
                     </Select>
                     <Select name='parking' value={parking} onChange={onChange}>
                         <option>주차공간</option>
-                        <option selected>주차공간 있음</option>
+                        <option>주차공간 있음</option>
                         <option>주차공간 없음</option>
                     </Select>
                     <Select name='laundry' value={laundry} onChange={onChange}>
@@ -131,7 +135,6 @@ function Addhost(){
                 <InputBox>
                     <Submit onClick={()=>{submit()}}>호스팅 하기</Submit>
                 </InputBox>
-               
             </ScreenRight>
         </div>
     )
@@ -139,6 +142,7 @@ function Addhost(){
 const ScreenLeft = styled.div`
     width:50vw;
     height:100vh;
+    text-align:center;
     background:linear-gradient(to right, blue, pink);
     @media screen and (max-width: 1200px) {
         display: none;
@@ -151,7 +155,6 @@ const ScreenRight = styled.div`
     padding-top:100px;
     padding-left:100px;
     margin: 0 auto;
-    
 `
 const InputBox = styled.div`
     width:100%;
@@ -196,12 +199,4 @@ const Submit = styled.button`
     border-radius:15px;
     font-weight:bold;
 `
-const fileUpload = styled.p`
-    font-size:16px;
-    font-weight:bold;
-    margin-bottom:5px;
-    background:yellow;
-`
-
-
 export default Addhost

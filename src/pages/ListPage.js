@@ -1,18 +1,14 @@
 import styled from "styled-components";
 import Room from '../component/Room';
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import homeIcon from '../elements/houseticon.png';
 import Header from "../component/Header";
-import { useDispatch, useSelector } from "react-redux";
-import {actionCreators as postActions} from '../redux/modules/post';
-import {actionCreators as mapActions} from '../redux/modules/map';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 function ListPage(){
     const history = useHistory();
-    const dispatch = useDispatch();
     const mapRef = useRef(null);
     const [getPost, setPost] = useState([]);
     const [getLot, setLot] = useState(false);
@@ -24,13 +20,12 @@ function ListPage(){
     const initMap = (loc, title, center) => {
         const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: center.latitude, lng: center.longitude },
-        zoom: 11,
+        zoom: 9,
         });
         const infoWindow = new window.google.maps.InfoWindow({
             content: "",
             disableAutoPan: true,
           });
-        
         const markers = loc.map((position, i) => {
             const titles = title[i]
             const myIcon = new window.google.maps.MarkerImage(homeIcon, null, null, null, new window.google.maps.Size(55,55));
@@ -55,16 +50,15 @@ function ListPage(){
             })
             .then(response => {
                 const post = response.data.post
+                let people = manCnt.current.value
                 let something = [];
-                if (manCnt == '1인실') something = post.filter(post => post.room == '1인실')
-                if (manCnt == '2인실') something = post.filter(post => post.room == '2인실')
-                if (manCnt == '3인실') something = post.filter(post => post.room == '3인실')
+                if (people == '1인실') something = post.filter(post => post.room == '1인실')
+                if (people == '2인실') something = post.filter(post => post.room == '2인실')
+                if (people == '3인실') something = post.filter(post => post.room == '3인실')
                 if (getLot) something = post.filter(post => post.parkinglot == '주차공간 있음')
                 if (getDry) something = post.filter(post => post.laundry == '세탁기 있음')
                 if (getWfi) something = post.filter(post => post.wifi == '와이파이 있음')
-                
                 if (something.length > 0) {
-
                     let locations = [];
                     for(let i = 0; i < something.length; i++){
                         locations.push({ lat: something[i].latitude, lng: something[i].longitude });
@@ -106,7 +100,6 @@ function ListPage(){
                         longitude = longitude / data.length;
                         return { latitude, longitude }
                     }
-                    console.log(post)
                     setPost(post)
                     initMap(locations, titleArray, calculate(locations));
                 }
@@ -126,7 +119,7 @@ function ListPage(){
     background:${getWfi == true ? '#eee' : 'white'};
     font-size:15px;
     &:hover{border: 1px solid black;}
-    `
+`
     const Filter2 = styled.button`
     width:100px;height:40px;
     border:0.5px solid #d2d2d2;
@@ -143,12 +136,10 @@ const Filter3 = styled.button`
     font-size:15px;
     &:hover{ border: 1px solid black;}
 `
-
     return(
         <>
         <Header/>
         <Upper>
-           
             <Botbox>
                 <Select onChange={onChange} ref={manCnt}>
                     <option>전체</option>
@@ -159,15 +150,13 @@ const Filter3 = styled.button`
                 <Filter1 getWfi={getWfi} onClick={()=>{setWfi(!getWfi)}}>무선 인터넷</Filter1>
                 <Filter2 onClick={()=>{setLot(!getLot)}}>주차공간</Filter2>
                 <Filter3 onClick={()=>{setDry(!getDry)}}>세탁기</Filter3>
-                <button onClick={()=>{initMap()}}>wdfwd</button>
             </Botbox>
         </Upper>
         <ListBox>
             <RoomList>
                 {
                     getPost.map((element, idx) =>{
-                        return <Room element={element} idx={idx}  onClick={()=>{
-                            // history.push('/detailpage/'+post_list[idx].postId)
+                        return <Room key={element.postId} element={element} idx={idx}  onClick={()=>{
                             history.push(`/detailpage/${element.postId}`)
                         }} />
                     })
@@ -175,7 +164,6 @@ const Filter3 = styled.button`
             </RoomList>
             <Mapbox>
                 <div  style={{width:'100%', height:'100%'}} ref={mapRef}></div>
-                
             </Mapbox>
         </ListBox>
         </>
@@ -212,7 +200,10 @@ const RoomList = styled.div`
     @media screen and (max-width: 1300px) {
         width:100%;
     }
-    
+    @media screen and (max-width: 650px) {
+        width:100%;
+        height:100%;
+    }
 `
 const Mapbox = styled.div`
     width: 56vw;
@@ -223,21 +214,19 @@ const Mapbox = styled.div`
         display : none;
     }
 `
-
-
 const Select = styled.select`
     width:100px;
     height:40px;
     border:0.5px solid #d2d2d2;
     border-radius:25px;
     margin-right:20px;
+    margin-left:-10px;
     background:white;
     font-size:15px;
-    padding-left:1.4%;
+    padding-left:30px;
     &:hover{
         border: 1px solid black;
     }
 `
-
 export default ListPage
 
