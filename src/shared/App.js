@@ -8,7 +8,7 @@ import Main from '../pages/Main';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Addhost from '../pages/Addhost';
-
+import { ConnectedRouter } from "connected-react-router";
 
 function App() {
   return (

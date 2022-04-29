@@ -124,7 +124,11 @@ const IntroBox = () => {
 
 export default IntroBox;
 const Wrap1 = styled.div`
-  padding-top:48px;
+  padding:48px 0px 48px 0px;
+  text-align: left;
+  width: 650px;
+  border-top: 1px solid rgb(221, 221, 221);
+  align-items: center;
   @media screen and (max-width: 1000px) {
     display:none;
   }
