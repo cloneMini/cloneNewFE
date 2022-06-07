@@ -8,6 +8,7 @@ import DaumPostCode from 'react-daum-postcode';
 import { useHistory } from "react-router-dom";
 
 function Addhost(){
+    alert('test')
     Geocode.setApiKey('AIzaSyCELxXggIezYq8kQ1FNW1zQwTjy6YSR-L4');
     Geocode.setLanguage('ko');
     Geocode.setRegion('kr');
