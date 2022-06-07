@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# 1. 프로젝트 소개
+>에어비엔비 클론코딩입니다. 게시물 출력과 지도에 마커출력 및 필터기능과 상세페이지가 있습니다
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+http://chamchipack.shop.s3-website.ap-northeast-2.amazonaws.com/
 
-## Available Scripts
+# 2. 제작 기간 & 팀원 소개
+- 기간: 2022년 4월 15일~ 22년 4월 21일
+- 총 6명으로 구성된 팀 프로젝트. (C반 4조)
 
-In the project directory, you can run:
+### 프론트 3명
+조찬익: 에어비엔비 페이지 지도, 전체 리스트, 작성페이지 구현
 
-### `npm start`
+이태훈: 상세페이지 전체 뷰, 상세페이지 지도기능, 댓글기능 구현
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+한유정: 메인페이지 전체 뷰, 상단 헤더, 로그인 기능 구현
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 백엔드 3명(Router 부분으로 파트 배분)
 
-### `npm test`
+한재혁: 리스트페이지, 호스트게시글작성, 호스트게시글삭제 API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+김연유: 로그인 API, 회원가입 API
 
-### `npm run build`
+신상렬: 상세페이지API, 후기 작성API, 후기 삭제API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 3. 사용 기술(개발 툴)
+- Server: AWS EC2 (Ubuntu 18.04 LTS)
+- Framework: React(FE), Node.js + Express(BE) (Javascript)
+- Database: MongoDB
+- Design Tool: Figma
+- Tool : Git Hub, Notion, Git Book
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 4. 핵심 기능 
+- 에어비엔비 페이지
+- 리스트페이지 : 게시물 리스트와 지도 동시출력 및 필터기능 적용
+- 상세페이지 : 게시글 댓글리스트, 달력출력
